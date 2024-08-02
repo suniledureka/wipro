@@ -1,0 +1,24 @@
+1. why every class is made as a child class of java.lang.Object?
+
+2. Relationships in Java - is-a, has-a , uses-a
+
+3. hashCode() method of java.lang.Object - what & why
+
+4. contract between hashCode() & equals() methods
+
+5. Overloading methods Vs Ovverriding methods
+
+6. upcasting vs downcasting  -- theory and practicals
+
+7. Garbage Collection
+
+8. method hiding vs method overriding
+
+9. Abstract Class Vs concrete class
+
+10. Abstract class Vs Interfaces
+
+11. Enhancements to Interfaces in Java 8, 9 etc
+
+
+
