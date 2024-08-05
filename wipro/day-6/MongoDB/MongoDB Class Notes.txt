@@ -1,0 +1,456 @@
+MongoDB
+=======
+
+1. Types of Databases 
+	- what is database?
+     	- how many types of databases are available in market
+
+2. SQL & NoSQL Databases
+	
+3. SQL Vs NoSQL Databases
+
+4. What is MongoDB?
+
+5. MongoDB Terminology
+
+6. MongoDB Environment Setup / Installation
+
+7) Working with MongoDB - CRUD Operations
+
+
+A Database Management System provides the mechanism to store and retrieve data.
+There are many kinds of DBMS available in market
+
+  a) Relational Databases 	- SQL Databases
+  b) Non-Relational Databases 	- NoSQL Databases
+
+SQL DBs and NonSQL DBs differ in terms of data retrieval, distribution, storage and processing
+
+How data will be managed in SQL / Relational DBs?
+ -> table of rows and columns - with a strict structure and clear dependencies
+ -> proper structure and clear relationships
+ -> Oracle, MySQL, SQL Server, PostgeSQL, DB2 etc
+
+
+How data will be managed in NoSQL?
+ -> Non-Relational Databases are not only limited to a Table structure - NoSQL.
+ -> NoSQL databases are document oriented - in form of documents
+ -> we can work with non-structured data like articles, photos, videos etc are collected as a single document
+ -> MongoDB, Redis, Casssandra, HBase etc
+ -> documents can be JSON documents, wide-column stores, key-value pairs etc
+
+Key  		
+1001
+
+Document
+{
+  "customerId": 101,
+  "orderItems": [
+                 {
+		   "productId": "PROD_7685",
+		   "qty": 5,
+                   cost: 8500.75
+		 },
+                 {
+		   "productId": "PROD_8574",
+		   "qty": 2,
+                   cost: "875"
+		 }
+                ],
+   "orderDate": "05-08-2024" 
+}
+
+
+When to go for NoSQL Databases?
+
+-> when you want to store and retrieve huge amount of data - big data
+-> the relationship between the data that you store is not that important
+-> that data is not structured and changing over time
+-> constraints and joins support is not require at DB level
+-> the data is growing continuously and you need to scale the database regularly to handle the data
+
+Vertical Scaling	- resource increase - RAM increase
+Horizontal Scaling	- add new server
+
+
+What is MongoDB?
+
+-> MongoDB is a popular Non-Relational Database - to deal with huge amount of un-structured data
+-> MongoDB is open source, cross-platform, document-oriented database
+-> MongoDB is written in C++
+-> MongoDB  provides high performance, high reliability, and automatic scaling
+-> MongoDB  is developed by a US based company 10gen (2007) - name changed to MongoDB, Inc (2013)
+
+
+
+RDBMS Vs MongoDB
+
+1) RDBMS is having Relational Database. MongoDB has Non-Relational Database
+2) In RDBMS we need to design DB Tables then only we can do the coding. In MongoDB we can directly start the coding 
+3) RDBMS supports SQL language. MongoDB supports SQL as well as JSON Query Language
+4) RDBMS is Table based. MongoDB is key-value based
+5) RDBMS is row/record based. MongoDB is document based
+6) RDBMS is column based. MongoDB is field based
+7) RDBMS is Vertically Scalable. MongoDB is Horizontally Scalable
+8) RDBMS process data slowly. MongoDB process data fastly
+
+
+Mapping MongoDB with RDBMS
+
+sl no	 RDBMS				MongoDB
+1.	Database			Database
+2. 	Tables				Collections
+3.	Records/Rows			Documents
+4.	Columns				Fields
+
+MongoDB Terminologies
+
+Database, Collections, Documents, Fields
+
+Fields (key-value pairs) are stored in Document
+Documents are stored in Collection
+Collections are stored in Database
+
+-----------------------------------------------------------------------------
+
+MongoDB Environment Setup
+=========================
+
+1) Download & Install MongoDB 
+https://www.mongodb.com/
+Products (NavBar) > Community Edition  > Download Community
+
+Version 	: 7.x.x
+Platform	: Windows x64
+Package		: msi
+> Download
+	mongodb-windows-x86_64-7.0.12-signed.msi
+
+- Install
+
+Compass - is a Graphical Tool for MongoDB
+
+- the default port of MongoDB - 27017
+
+2) Set the PATH Environment Variable for MongoDB   C:\Program Files\MongoDB\Server\7.0\bin
+
+
+3) Open MongoDB Shell
+cmd> mongo
+
+Note: ==> If installed MongoDB version is 6.0 or above, mongo command will not work on Powershell/cmd.
+
+To run mongo commands, you have to install MongoDB Shell
+Mongo Shell - Mongo Shell is used to perform operations with Mongo Database
+
+Download & Extract MongoDB Shell
+
+https://www.mongodb.com/try/download/shell		
+-> mongosh-2.2.15-win32-x64.zip  
+-> extract it to any of your folder choice
+-> set Environment Variable PATH for mongosh-2.2.15-win32-x64\bin
+C:\Program Files\MongoDB\mongosh-2.2.15-win32-x64\bin
+
+
+cmd>mongosh
+
+Connecting to:          mongodb://127.0.0.1:27017/
+test>
+
+
+Show All Databases		> show dbs
+Show Current Database   	> db
+Create Or Switch Database 	> use wipro
+show all the collection		> show collections	OR	> db.getCollectionNames()
+
+Create a collection		> db.createCollection("employees")
+				> show collections	OR	> db.getCollectionNames()
+				> db.getCollectionNames().forEach(function(col) { print(col) })
+
+to drop a collection		> db.employees.drop()
+
+
+###--- MongoDB Insert Documents to Collection ---###
+
+Syntax:  db.<COLLECTION_NAME>.insert(document)
+
+Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite
+
+to create (if not present) and write a document to a collection 
+			> db.address.insert({'aid':101, 'street': 'Ameerpet', 'city': 'Hyderabad', state: 'Telangana'})
+
+>db.address.insertOne({'aid':102, 'street': 'Jubilee Hilld', 'city': 'Hyderabad', state: 'Telangana'})
+
+to display all the documents in a collection     > db.address.find()	 > db.address.find().pretty()
+
+
+--  insert an array of documents ----
+
+open notepad and write the following
+
+var allCourses = [
+	{ 
+	  course: "Java",
+	  details: { duration: "6 months", Trainer: "Sanjay Singh" },
+	  batch: [ { size: "Small", qty: 5 }, { size: "Medium", qty: 10}, ],
+	  category: "Programming Languages"
+	},
+	{
+	  Course: "UI Technology",
+	  details: { Duration: "3 months", Trainer: "Mark" },
+	  batch: [ { size: "Small", qty: 5 }, { size: "Large", qty: 10 }],
+	  category: "Web Designing"
+        }
+];
+
+
+in Mongo Shell - copy and paste the content in shell
+> var allCourses = .....
+
+> db.courses.insertMany(allCourses)
+
+> db.courses.find()
+
+
+Example #2
+
+> db.employees.insertMany([
+    {
+        "employee_id": 794875,
+        "employee_name": "David Smith",
+        "job": "Sales Representative",
+        "department_id": 2,
+        "salary": 20000,
+        "hire_date": NumberLong("1643969311817")
+    },
+    {
+        "employee_id": 794876,
+        "employee_name": "Joe Butler",
+        "job": "Sales Manager",
+        "department_id": 3,
+        "salary": 30000,
+        "hire_date": NumberLong("1645338658000")
+    }
+]);
+
+
+-- to do search criteria
+
+> db.courses.find({'course': 'java'})
+
+-- we can apply regular expression
+> db.courses.find({'course': /^java$/i})
+
+> db.courses.find().count()
+
+--- to display documents in Ascending order of a key
+> db.courses.find().sort({course: 1})
+
+--- to display documents in Descending order of a key
+> db.courses.find().sort({course: -1})
+==================================================================================================
+
+$$$--- MongoDB UPDATE Documents ---$$$
+
+In MongoDB, update() method is used to update or modify the existing documents of a collection.  
+
+Syntax: db.COLLECTION_NAME.update(SELECTION_CRITERIA, UPDATED_DATA)
+
+Collection.update() is deprecated. Use updateOne(), updateMany(), or bulkWrite().
+
+We can use $set and $inc operators to update any field in MongoDB.  
+The $set operator will set the newly specified value while the $inc operator will increase the value by a specified value.
+
+Update an existing document
+
+-- update the existing course "Java" to "Python"
+> db.courses.update({'course': 'Java'}, {$set: {'course' :'Python}})   -- updates only the first match
+> db.courses.updateMany({'course': 'Java'}, {$set: {'course': 'Python'}})
+
+> db.courses.find({'course': 'Python'})
+> db.courses.find({'course': 'Python'}).count()
+
+//for case sensitive search - we should use regex		> db.courses.find({'course': /^python$/i}).count()
+> db.courses.find({course: /^python$/i}).count()
+
+> db.courses.updateMany({'course': /^java$/i}, {$set: {'course': 'Python'}})
+
+
+$inc usage - operator will increase the value by a specified value.
+> db.employees.updateOne({eid: 101}, {$inc: {esal: 100}})
+===================================================================================================================
+
+###--- MongoDB DELETE Documents ---###
+
+remove(deletion criteria, JustOne) method works on 2 parameters
+1) deletion criteria : with the use of its syntax , we can remove the document from the collection
+2) JustOne - it removes only one document when set to true or 1
+
+Syntax: db.collection_name.remove(DELETION_CRITERIA)
+
+Remove All Documents - pass an empty query document {} to remove() method . 
+The remove() method does not remove the indexes
+
+> db.courses.remove({})
+Collection.remove() is deprecated. Use deleteOne(), deleteMany(), findOneAndDelete(), or bulkWrite().
+
+
+--- Remove All Documents that match a condition ----
+> db.courses.remove({'type' : 'Programming Language'})
+
+--- Remove a Single Document that match a condition ----
+
+> db.courses.remove({"category" : 'Programming language'}, 1) //removes only on1
+> db.courses.deleteMany({category: 'Programming Language'})
+> db.courses.deleteMany({category: /^Programming Language$/i})
+
+Extra 
+> db.getCollectionNames().forEach(function(col) {print('collection name: ' + col)})
+
+Get All Rows			> db.posts.find()
+Get All Rows Formatted		> db.posts.find().pretty()
+Find Rows 			> db.posts.find({category: 'News'})
+				> db.posts.find({category: 'News'}).pretty()
+
+Sort Rows 	# asc	> db.posts.find().sort({ title: 1 }).pretty()
+Sort Rows          # desc   >  db.posts.find().sort({ title: -1 }).pretty()
+
+Count Rows			> db.posts.find().count()	> db.posts.find({ category: 'news' }).count()
+Limit Rows			> db.posts.find().limit(2).pretty()
+Chaining			> db.posts.find().limit(2).sort({ title: 1 }).pretty()
+
+Foreach			> db.posts.find().forEach(function(doc){	print('Blog Post:' + doc.title) })
+Find One Row			> db.posts.findOne({category: 'News'})
+Find Specific Fields		> db.posts.find({ title: 'Post One' }, {  title: 1,  author: 1})
+
+
+Drop Database			>  db.dropDatabase()
+
+
+---------------------------------------------------------------
+Greater Than & Less Than
+
+> db.posts.find({Views: {$gt: 8}}).pretty()
+> db.posts.find({Views: {$gte: 8}}).pretty()
+> db.posts.find({Views: {$lt: 8}}).pretty()
+> db.posts.find({Views: {$lte: 8}}).pretty()
+
+--------------------------------------------------------------
+
+
+===== Data Modelling in MongoDB ========
+
+--> process of designing and creating the structure of collections and documents
+--> maintaining documents/ data in an organized manner - which improves the database efficiency, ensures data security, data accuracy etc
+-> MongoDB Data modeling is the process of arranging unstructured data from a real-world event into a logical data model in a database. 
+
+Types of Data Modelling in MongoDB
+ 1) Normalized Data Model
+ 2) Embedded Data Model
+
+https://www.geeksforgeeks.org/mongodb-data-modelling/
+----------------------------------------------------------------------------------------------------
+
+
+========  Indexing in MongoDB =============
+
+https://www.geeksforgeeks.org/indexing-in-mongodb/?ref=ml_lbp
+
+Indexing in MongoDB is a crucial feature that enhances query processing efficiency. 
+
+Indexes are used to increase the speed of retrieval of data when we have large chunks of documents in a collection
+ex: book index?
+
+Without indexing, MongoDB must scan every document in a collection to retrieve the matching documents and leading to slower query performance. 
+
+- by default - every collection will have an Index on "_id" key		-- check in MongoDB Compass
+
+> db.employees.getIndexes()
+> db.employees.getIndexes().forEach(function(ind){print(ind)})
+> db.employees.getIndexes().forEach(function(ind){print(ind.name)})
+
+db.COLLECTION_NAME.createIndex({KEY:1}) 
+
+> db.employees.createIndex({"name": 1})  //ascending
+> db.employees.ensureIndex({"empId": -1}) //descending
+
+> db.employees.dropIndex('name_1')
+
+
+Refer: https://www.bmc.com/blogs/mongodb-indexes/
+
+
+===== Aggregation Framework in MongoDB ==========
+
+The purpose of MongoDB's Aggregation Framework is to design a pipeline consisting of multiple stages for processing documents. You start with your collection's data and after each stage of the pipeline you are closer to the end result which will be the desired documents.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

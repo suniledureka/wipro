@@ -1,8 +1,0 @@
-1. Interface members
-
-2. var and record
-
-3. Project Lombok
-
-4. Exception Handling, IO Streams, Collections Framework, Functional Programming, Lambda Expressions, Streams API
-
