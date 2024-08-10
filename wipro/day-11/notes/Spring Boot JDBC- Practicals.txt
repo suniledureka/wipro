@@ -1,0 +1,269 @@
+Spring Boot JDBC  / Spring JDBC / Spring DAO
+
+JDBC - Java Database Connectivity
+
+
+Design an Employee Management System
+
+1. New Employee
+2. Search an Employee
+3. Update and Employee
+4. Delete an Employee
+5. All Employees
+
+enter an option: 1
+enter employee no: xxx
+enter employee name: xxxxx xxxx
+enter employee salary: xxxxx.xx
+O/P
+
+enter an option: 2
+enter employee no to be searched: xxx
+
+....
+
+Step-1
+sql> create table emp(empno int(5), ename varchar(30), sal float(10,2), primary key(empno));
+
+
+Step-2
+Create Spring Boot Application with following dependencies:
+ MySQL Driver, Spring Data JDBC, Lombok
+
+Step-3
+Create a DTO (Data Transfer Object)/ Entity class in dto package  - Employee.java
+
+package com.wipro.ems.dto;
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Employee {
+	private Integer employeeId;
+	private String employeeName;
+	private Float employeeSal;
+}
+
+Step -4  --- DAO/ Repository Layer
+1) Create an Interface - EmployeeDAO.java
+
+package com.wipro.ems.dao;
+public interface EmployeeDAO {
+	public Integer saveEmployee(Employee emp);
+	public Integer updateEmployee(int id, Employee emp);
+	public Integer deleteEmployeeById(int eid);
+	public Employee findEmployeeById(int eid);
+	public List<Employee> findAllEmployees();
+}
+
+2) Create the DAO Implementation class - EmployeeDAOImpl.java
+
+package com.wipro.ems.dao;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+
+import com.wipro.ems.dto.Employee;
+
+@Repository
+public class EmployeeDAOImpl implements EmployeeDAO {
+	@Autowired
+	private JdbcTemplate jt;
+
+	@Override
+	public Integer saveEmployee(Employee emp) {
+		String sql = "insert into emp values(" + emp.getEmployeeId() + ",'" + emp.getEmployeeName() + "',"
+				+ emp.getEmployeeSal() + ")";
+		int employeesSaved = jt.update(sql);
+		return employeesSaved;
+	}
+
+	@Override
+	public Integer updateEmployee(int id, Employee emp) {
+		String sql = "update emp set ename='" + emp.getEmployeeName() + "', sal=" + emp.getEmployeeSal()
+				+ " where empno=" + id;
+		int employeesUpdated = jt.update(sql);
+		return employeesUpdated;
+	}
+
+	@Override
+	public Integer deleteEmployeeById(int eid) {
+		String sql = "delete from emp where empno=" + eid;
+		int employeesDeleted = jt.update(sql);
+		return employeesDeleted;
+	}
+
+	@Override
+	public Employee findEmployeeById(int eid) {
+		Employee emp = null;
+
+		String sql = "select ename, sal from emp where empno=" + eid;
+		try {
+			emp = jt.queryForObject(sql, new RowMapper<Employee>() {
+
+				@Override
+				public Employee mapRow(ResultSet rs, int rowNum) throws SQLException {
+					String name = rs.getString(1);
+					float sal = rs.getFloat(2);
+					return new Employee(eid, name, sal);
+				}
+
+			});
+		} catch (Exception ex) {}
+		return emp;
+	}
+
+	@Override
+	public List<Employee> findAllEmployees() {
+		String sql = "select * from emp";
+		
+		List<Employee> employees = jt.query(sql, new ResultSetExtractor<List<Employee>>() {
+
+					@Override
+					public List<Employee> extractData(ResultSet rs) throws SQLException, DataAccessException {
+						List<Employee> empList = new ArrayList<Employee>();
+						while(rs.next()) {
+							int id = rs.getInt(1);
+							String name = rs.getString(2);
+							float sal = rs.getFloat(3);
+							
+							Employee emp = new Employee(id, name, sal);	
+							empList.add(emp);
+						}
+						return empList;
+					}
+					
+				});
+		
+		return employees;
+	}
+
+}
+
+
+
+Step-5 --- Service Layer
+1) Create an Interface - EmployeeService.java
+
+package com.wipro.ems.services;
+public interface EmployeeService {
+	public void saveEmployee(Employee emp);
+	public void updateEmployee(int id, Employee emp);
+	public void deleteEmployee(int id);
+	public Employee getEmployee(int id);
+	public void getAllEmployees();
+}
+
+2) Create Service Implementation class - EmployeeServiceImpl.java
+package com.wipro.ems.services;
+
+@Service
+public class EmployeeServiceImpl implements EmployeeService {
+	@Autowired
+	private EmployeeDAO dao;
+	
+	@Override
+	public void saveEmployee(Employee emp) {
+		int n = dao.saveEmployee(emp);
+		if(n > 0)
+			System.out.println("###-- Employee Saved ---###");
+		else
+			System.err.println("$$$ -- Employee could not be saved ---$$$");
+	}
+
+	@Override
+	public void updateEmployee(int id, Employee emp) {
+		int n = dao.updateEmployee(id, emp);
+		if(n > 0)
+			System.out.println("###-- Employee Updated ---###");
+		else
+			System.err.println("$$$ -- Employee could not be Updated ---$$$");
+	}
+
+	@Override
+	public void deleteEmployee(int id) {
+		int n = dao.deleteEmployeeById(id);
+		if(n > 0)
+			System.out.println("###-- Employee Deleted ---###");
+		else
+			System.err.println("$$$ -- Employee could not be Deleted ---$$$");
+	}
+
+	@Override
+	public Employee getEmployee(int id) {
+		return dao.findEmployeeById(id);
+	}
+
+	@Override
+	public void getAllEmployees() {
+		List<Employee> employees = dao.findAllEmployees();
+		for(Employee emp : employees) {
+			System.out.println(emp);
+		}
+	}
+}
+ 
+Step-6   Launcher Application
+package com.wipro.ems;
+
+@SpringBootApplication
+public class Application implements CommandLineRunner {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
+
+	@Autowired
+	private EmployeeService empService;
+
+	@Override
+	public void run(String... args) throws Exception {
+		System.out.println("spring container initialzed");	
+		
+		/*
+		// saving a new employee
+		Employee emp = new Employee(101, "Chris", 2500.5f);
+		empService.saveEmployee(emp);
+		*/
+		
+		/*
+		// updating a new employee
+		Employee emp = new Employee(101, "Christopher", 5000f);
+		empService.updateEmployee(101, emp);	
+		*/
+		
+		/*
+		//deleting an employee
+		empService.deleteEmployee(102);
+		*/
+		
+		//getting an employee
+		Employee emp = empService.getEmployee(101);
+		if(emp != null)
+			System.out.println(emp);
+		else
+			System.out.println("no matching employee found");
+		
+		System.out.println();
+		//to display all the employees
+		empService.getAllEmployees();
+	}	
+}
+
+Step-7  - in src/main/resources/application.properties  or in application.yml
+
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/db_wipro
+spring.datasource.username=root
+spring.datasource.password=root
+
+
+
