@@ -1,8 +1,0 @@
-spring:
-  datasource:
-    password: root
-    url: jdbc:mysql://localhost/db_wipro
-    username: root
-  jpa:
-    hibernate:
-      ddl-auto: update
