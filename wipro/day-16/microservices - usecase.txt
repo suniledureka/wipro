@@ -1,0 +1,153 @@
+accounts microservice
+---------------------
+CREATE TABLE IF NOT EXISTS customer (
+  customer_id int AUTO_INCREMENT  PRIMARY KEY,
+  name varchar(100) NOT NULL,
+  email varchar(100) NOT NULL,
+  mobile_number varchar(20) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS accounts (
+  customer_id int NOT NULL,
+  account_number int AUTO_INCREMENT  PRIMARY KEY,
+  account_type varchar(100) NOT NULL,		SAVINGS (Default Value)
+  branch_address varchar(200) NOT NULL,		Ameerpet, Hyderabad, TG (Default)
+);
+
+--- CASE - 1 ----
+
+Create Account
+
+POST   http://localhost:8080/api/create
+{
+    "name": "Sunil Joseph",
+    "email": "sunil@wipro.com",
+    "mobileNumber": "9848586878"
+}
+
+long randomAccNumber = 1000000000L + new Random().nextInt(900000000);
+
+
+Responses - Success
+{
+    "statusCode": "201",
+    "statusMsg": "Account created successfully"
+}
+
+Response - trying to register a new account with same mobile no
+{
+    "apiPath": "uri=/api/create",
+    "errorCode": "BAD_REQUEST",
+    "errorMessage": "Customer already registered with given mobileNumber 9848586878",
+    "errorTime": "2024-08-18T22:37:12.4638405"
+}
+
+Validation Failures:
+
+{
+    "name": "Name can not be a null or empty"
+}
+
+{
+    "name": "Name can not be a null or empty",
+    "email": "Email address can not be a null or empty"
+}
+{
+    "name": "Name can not be a null or empty",
+    "email": "Email address should be a valid value"
+}
+
+{
+    "mobileNumber": "Mobile number must be 10 digits"
+}
+
+
+CASE - 2
+
+Fetch Account Details
+GET   http://localhost:8080/api/fetch?mobileNumber=9848586878
+ 
+Response - success
+{
+    "name": "Sunil Joseph",
+    "email": "sunil@wipro.com",
+    "mobileNumber": "9848586878",
+    "accountsDto": {
+        "accountNumber": 1271319704,
+        "accountType": "Savings",
+        "branchAddress": "Ameerpet, Begumpet, Hyderabad"
+    }
+}
+
+
+Response - Failure - Validation
+{
+    "apiPath": "uri=/api/fetch",
+    "errorCode": "INTERNAL_SERVER_ERROR",
+    "errorMessage": "fetchAccountDetails.mobileNumber: Mobile number must be 10 digits",
+    "errorTime": "2024-08-18T22:43:17.5053798"
+}
+
+Response - Failure - Non existing Mobile No
+
+{
+    "apiPath": "uri=/api/fetch",
+    "errorCode": "NOT_FOUND",
+    "errorMessage": "Customer not found with the given input data mobileNumber : '9848586879'",
+    "errorTime": "2024-08-18T22:43:54.9061749"
+}
+
+
+--- Case -3 Update Account Details based on Account Number -----
+
+PUT http://localhost:8080/api/update
+
+{
+    "name": "Sunil Joseph",
+    "email": "sunil@xyz.com",
+    "mobileNumber": "9848586878",
+    "accountsDto": {
+        "accountNumber": 1271319704,
+        "accountType": "Current",
+        "branchAddress": "123 Main Street, New York"
+    }
+}
+
+Response - Success
+
+{
+    "statusCode": "200",
+    "statusMsg": "Request processed successfully"
+}
+
+Response Failure of non-existing account no
+
+{
+    "apiPath": "uri=/api/update",
+    "errorCode": "NOT_FOUND",
+    "errorMessage": "Account not found with the given input data AccountNumber : '1271319708'",
+    "errorTime": "2024-08-18T22:46:54.2138971"
+}
+
+
+Case - 4
+Delete Account and Customer
+DELETE    http://localhost:8080/api/delete?mobileNumber=9848586879
+
+{
+    "statusCode": "200",
+    "statusMsg": "Request processed successfully"
+}
+
+{
+    "apiPath": "uri=/api/delete",
+    "errorCode": "NOT_FOUND",
+    "errorMessage": "Customer not found with the given input data mobileNumber : '9848586879'",
+    "errorTime": "2024-08-18T22:48:27.1824125"
+}
+
+
+
+
+
+
