@@ -1,0 +1,277 @@
+Making Microservices Resilient / Resilience in Microservices
+===========================================================
+
+Resilient = able to withstand or recover quickly from difficult conditions./ something capable of withstanding the tough times and bouncing back to a normal life. 
+
+microservices are resilient in nature - so that they can withstand tough times like network problem or any performance issues - so these kind of challenges our microservices may face on day-to-day basis 
+
+--------- Need of Resiliency inside Microservices -------------
+
+Challenge # 7
+
+1) How do we avoid cascading failures inside our microservices network?
+    we all know that - inside a microservice network when my client application or my UI application is sending a request to the microservice network - many microservices will work together and they will send a combined response to the client application. In such scenario -how we are going to handle a scenario where one of the service is failing  or responding very slowly - how do we make sure that it is not having an effect on the other microservices
+ accounts ---> loans & cards --- total response back to client
+	--> loans or cards microservice fails - other microservices keep waiting
+ we need to make sure that the entire chain of microservices does not fail if one of the participating microservice is failing or is responding slowly
+
+2) How do we handle failures gracefully with fallbacks?
+    if any of the microservice (accounts) is not working - at least we should be able to return back cards or loans data information to client instead of sending an exception saying that we are not able to send any kind of information
+   return a default value, or a value from cache or call another service
+
+3) How to make our services self healing capable?
+  If one of the participating microservice inside a microservice network is responding very slowly due to some performance issue or due to some network issues - how we are going to make our services self healing capable. how to configure some timeouts , retries or give time for a failed microservice to recover itself 
+
+Solution:
+
+-> inside microservices there are many patterns to build resilient applications. In the java ecosystem we used to have a library called Hystrix (developed by Netflix team itself) previously. Hystrix entered maintenance mode in 2018, now we use a new library - Resilience4J ; it supports many resilient related patterns which we can use based on business requirements
+
+110, 111
+
+Resilience4J --> is a lightweight fault tolerance library designed for functional programming. It offers the following patterns for increasing fault tolerance due to network problems or failure of any of the multiple services:
+ --> Circuit Breaker -- used to stop making requests when a service invoked is failing
+ --> Fallback -- alternative paths to failing requests
+ --> Retry -- used to make retries when a service has temporarily failed
+ --> Rate Limit -- limits the number of calls that a services receives in a time
+ --> Bulkhead -- limits the number of outgoing concurrent requests to a service to avoid overloading
+
+reference: https://resilience4j.readme.io/   ---- Core Modules --- View More
+
+	   https://resilience4j.readme.io/docs/getting-started
+
+
+--------- Typical usecase or scenario for the need of Resiliency inside Microservices -------------
+112
+
+resource usage (memory, threads) is more in accounts microservice as it is waiting for the response from cards microservice and same happens in Edge server
+
+
+
+
+Practicals   in accounts ms  add a new endpoint GET  http://localhost:8080/api/contact-info
+
+(a) in application.yml
+
+accounts:
+  message: "Welcome to Wipro Bank accounts related APIs"
+  contactDetails:
+    name: "Sunil Joseph - Developer"
+    email: "sunil@wipro.com"
+  onCallSupport:
+    - (40) 238-41700
+    - (40) 238-41701
+
+
+(b) create a Record in dto package as AccountsContactInfoDto.java
+
+@ConfigurationProperties(prefix = "accounts")
+public record AccountsContactInfoDto(String message, Map<String, String> contactDetails, List<String> onCallSupport) {
+
+}
+
+(c) in controller class -  CustomerController.java
+    @Autowired
+    private AccountsContactInfoDto accountsContactInfoDto;
+    
+    @GetMapping("/contact-info")
+    public ResponseEntity<AccountsContactInfoDto> getContactInfo(){
+    	return ResponseEntity.status(HttpStatus.OK).body(accountsContactInfoDto);
+    }
+
+(d) to enable support for @ConfigurationProperties annotated beans
+on bootstrap class
+
+@EnableConfigurationProperties(value = {AccountsContactInfoDto.class})
+
+
+(e) Run eureka server, accounts, gateway server
+
+(f) GET http://localhost:8072/wiprobank/accounts/api/contact-info
+
+
+
+-------- Circuit Breaker Pattern -------------
+113
+short circuit
+
+circuit breaker pattern will stop all the future requests coming to the cards microservice and will send the immediate failed response to the accounts microservice and from there to gateway
+
+--------- Three states of Circuit Breaker Pattern -------------
+
+how circuit breaker pattern is going to control the traffic coming towards a particular microservice. by default circuit breaker is not going to monitor all the microservices - we need to configure the circuit breaker pattern wherever we need 
+
+whenever we activate the circuit breaker pattern to any microservice - it is going to control the flow towards the microservice by using 3 different states
+ (a) CLOSED state
+ (b) OPEN state
+ (c) HALF_OPEN state
+
+114
+
+
+--------- Implement Circuit Breaker Pattern in Gateway & Implement Circuit Breaker Pattern with Feign Client -------------
+
+task : implement circuit breaker pattern in Gateway server and inside accounts microservice
+
+-- inside gatewayserver project
+
+dependency: Resilience4j  spring-cloud-starter-circuitbreaker-reactor-resilience4j
+Spring Cloud Circuit breaker with Resilience4j as the underlying implementation
+
+check in pom.xml and make sure the added dependency is spring-cloud-starter-circuitbreaker-reactor-resilience4j not spring-cloud-starter-circuitbreaker-resilience4j
+
+
+-- inside bootstrap class
+@Bean
+public RouteLocator wiproBankRouteConfig(RouteLocatorBuilder routeLocatorBuilder) {
+ return routeLocatorBuilder.routes()
+ 	.route(p -> p
+   		    .path("/wirobank/accounts/**")
+		    .filters( f -> f.rewritePath("/wiprobank/accounts/(?<segment>.*)","/${segment}")
+				.addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
+				.circuitBreaker(config -> config.setName("accountsCircuitBreaker")))
+
+		   .uri("lb://ACCOUNTS"))
+
+
+-- in application.yml of gatewayserver
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      slidingWindowSize: 10
+      permittedNumberOfCallsInHalfOpenState: 2
+      failureRateThreshold: 50
+      waitDurationInOpenState: 10000
+
+
+resilience4j.circuitbreaker.configs.default.slidingWindowSize= 10
+resilience4j.circuitbreaker.configs.default.failureRateThreshold= 50
+resilience4j.circuitbreaker.configs.default.waitDurationInOpenState: 10000
+resilience4j.circuitbreaker.configs.default.permittedNumberOfCallsInHalfOpenState= 2
+
+
+slidingWindowSize: 10  --- using this property we are communicating to the circuit breaker pattern on how many requests it has to initially monitor before it tries to change the status from closed to open state ; or in other words with this property we are telling to circuit breaker pattern please at least monitor 10 requests coming towards our accounts microservice - after monitoring 10 requests take the decision whether to continue with the closed state or move to the open status
+
+permittedNumberOfCallsInHalfOpenState: 2 --- once the circuit breaker pattern moved into open state - it will never be in open status for ever - periodically it is going to move to the half-open state and it is going to allow certain amount of traffic to the accounts microservice and since circuit breaker pattern cannot decide how many requests it has to pass - we need to provide such information to circuit breaker pattern using this property;  here we mentioned the value 2 - this means I want my circuit breaker pattern to allow 2 requests in the half-open status - based on how these 2 requests are processed - it can decide whether to go back to the open state or move to the close state 
+ 
+failureRateThreshold: 50 ---- atleast 50% of my requests are failed then my circuit breaker pattern can move to the open state from the closed state 
+
+waitDurationInOpenState: 10000 (10000ms) --- our circuit breaker pattern is going to wait for 10s whenever it will try to move to half-open state and allow the partial traffic.
+
+
+resilience4j.circuitbreaker.configs.default ----> settings are applicable for all kind of circuit breakers that we are  going to create inside our microservice
+            incase if we want to go with different properties for different circut breakers , then we need to use the circuit breaker name as we defined above as "accountsCircuitBreaker"
+
+
+resilience4j.circuitbreaker.configs.accountsCircuitBreaker:
+
+
+Run eureka server,  - Debug accounts (only),  Run Gateway
+
+http//localhost:8761/
+
+--actuator of gateway server
+http//localhost:8072/actuator    -- check for circuitbreakers
+http//localhost:8072/actuator/circuitbreakers   --- empty now
+
+--> to understand the events that are happening behind the scenes under the circuitbreaker
+http://localhost:8072/actuator/circuitbreakerevents --- empty now
+
+
+test accounts microservice with gateway server all the circuit breaker related information gets populated inside actuator/circuitbreaker
+
+POSTMAN  --- GET http://localhost:8072/wiprobank/accounts/api/contact-info
+
+http//localhost:8072/actuator/circuitbreakers    --- content
+http://localhost:8072/actuator/circuitbreakerevents --- content
+
+
+http//localhost:8072/actuator/circuitbreakerevents?name=accountsCircuitBreaker  -- only one event
+http://localhost:8072/actuator/circuitbreakerevents/accountsCircuitBreaker
+
+POSTMAN  --- GET http://localhost:8072/wiprobank/accounts/api/contact-info
+POSTMAN  --- GET http://localhost:8072/wiprobank/accounts/api/contact-info
+
+http//localhost:8072/actuator/circuitbreakerevents?name=accountsCircuitBreaker   -- 2 events
+from this we can understand that the circuit breaker is monitoring our microservice continuously
+
+http//localhost:8072/actuator/circuitbreakers      bufferedCalls: 2, state: CLOSED
+
+
+
+----> to check the real performance or demo of circuitbreaker pattern ---
+inside AccountsController  (to mimic the slow response -- set a breakpoint on the following method)
+
+@GetMapping
+public ResponseEntity<AccountContactInfoDto> getContactInfo(){
+  return ResponseEntity
+		.status(HttpStatus.OK)
+		.body(accountsContactInfo);
+}
+
+POSTMAN  --- GET http://localhost:8072/wiprobank/accounts/api/contact-info
+  ---> breakpoint stopped the execution
+
+http//localhost:8072/actuator/circuitbreakerevents?name=accountsCircuitBreaker    type:ERROR
+
+http//localhost:8072/actuator/circuitbreakers		state still in CLOSED state - 50% of the calls never failed
+
+POSTMAN  --- GET http://localhost:8072/wiprobank/accounts/api/contact-info  -- 4 times - check the error response
+
+
+http//localhost:8072/actuator/circuitbreakerevents?name=accountsCircuitBreaker    type:ERROR, FAILURE_RATE_EXCEEDED, STATE_TRANSITION, NOT_PERMITTED
+
+http//localhost:8072/actuator/circuitbreakers		
+
+
+POSTMAN  --- GET http://localhost:8072/wiprobank/accounts/api/contact-info 
+
+now in HALF_OPEN state and after 2 requests it will be back to OPEN_STATE
+
+release the breakpoint
+---------------------------------------------------->
+
+we have implemented circuit breaker pattern inside Gateway server - but does not have any fall back mechanism - since we don't have any fallback mechanism inside the response we are throwing some runtime exception details like service unavailable or gateway timeout exception etc. 
+
+In real business applications throwing runtime exceptions to the client application or UI application is not a valid approach - we need to have some fallback mechanism and inside this fallback mechanism we can write some logic where we can send some message to the client applications which is going to make sense for them. 
+
+--- To create a fallback mechanism for circuit breaker pattern 
+
+inside gateway server application - create a new controller class
+
+package com.wipro.gatewayserver.controller;
+
+@RestController
+public class FallbackController {
+    @RequestMapping("/contactSupport")
+    public Mono<String> contactSupport() {
+        return Mono.just("An error occurred. Please try after some time or contact support team!!!");
+    }
+}
+
+
+inside bootstrap class
+@Bean
+public RouteLocator wiprobankRouteConfig(RouteLocatorBuilder routeLocatorBuilder) 
+{
+ return routeLocatorBuilder.routes()
+    .route(p -> p
+	 	 .path("/wiprobank/accounts/**")
+		 .filters( f -> f.rewritePath("/wiprobank/accounts/(?<segment>.*)","/${segment}")
+		.addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
+		.circuitBreaker(config -> config.setName("accountsCircuitBreaker")
+					.setFallbackUri("forward:/contactSupport"))) //accounts/contactSupports
+	.uri("lb://ACCOUNTS"))
+
+
+POSTMAN GET  http://localhost:8072/wiprobank/accounts/api/contact-info    <--- happy response
+
+http://localhost:8072/actuator/circuitBreakers		state: CLOSED
+
+http//localhost:8072/actuator/circuitbreakerevents?name=accountsCircuitBreaker
+
+work with breakpoint in accounts microservice for mimicking slow response
+
+POSTMAN GET  http://localhost:8072/wiprobank/accounts/api/contact-info
+
+release the breakpoint
