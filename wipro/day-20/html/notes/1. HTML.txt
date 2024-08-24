@@ -1,0 +1,319 @@
+HTML
+====
+- Hyper Text Markup Language 
+
+- developed by Tim Berners Lee in 1991
+
+- HTML is not a programming language, it is a markup language 
+
+- Markup is the process of giving some extra features to a normal text
+
+- A markup language is a set of markup tags 
+
+- An HTML document is called as a web page.
+
+- A web site is a collection of web pages
+
+- An HTML document is saved with the extension of .html (or) .htm
+
+The purpose of a web browser is to read HTML documents and display them as web pages. 
+
+HTML Tags
+---------
+HTML tags are keywords surrounded by angle brackets
+
+ <tagname>content</tagname>
+
+Two type of HTML tags:
+----------------------
+(1) Paired Tags- 
+Paired tags or container tag has got opening tag (or) start tag and closing tag (or) end tag
+
+Eg: <html>
+     ......
+    </html>
+
+(2) Unpaired Tags- 
+Unpaired tags will not have closing tag. 
+- also known as singular or stand-alone or empty tags.
+Eg: <br>, <hr> , <img>
+
+
+HTML Comments
+-------------
+<!-- 
+   comments here 
+-->
+
+HTML Document Structure:
+------------------------
+
+An HTML document has got two sections:
+
+(1) Header Section 
+  <head>		
+    .......
+  </head>
+
+It is used to provide general information about the web page like:
+> title for the web page
+> integrate CSS & Java Scripts
+> integrate external CSS and Java Script links
+> specify the meta information
+> provide the information for search engine
+> to provide favicon
+etc
+
+(2) Body Section 
+ <body>
+  .......
+ </body>
+
+- used to specify the visible page content, which will be displayed in the document region of the browser
+
+<!DOCTYPE html>
+<html>
+ <head>
+	
+ </head>
+	
+ <body>
+
+ </body>
+</html>
+
+
+The <!DOCTYPE> declaration
+--------------------------
+- it defines the document type to be HTML.
+- it is not an HTML tag.
+- it is an instruction to the web browser about what version of HTML the page is written in.
+
+<!DOCTYPE> declaration for HTML5  is:
+    <!DOCTYPE html>
+
+
+HTML Heading Tags
+-----------------
+Headings are defined with the <h1> to <h6> tags and are paired tags. 
+
+<h1> - It is used to create first level heading or main heading
+  <h1>heading here</h1>
+
+<h2> - second level heading or sub heading
+<h3> 
+<h4>
+<h5>
+<h6> - Least Level Heading
+
+While displaying any heading, browser adds one line before and one line after that heading - block elements.
+
+
+HTML document can be created using any of the editors like:
+(1) Notepad
+(2) Editplus
+(3) Notepad++
+(4) Sublime Text Editor
+(5) Atom Editor (GitHub)
+(6) Brackets Editor  (Adobe)
+(7) Jetbrains Webstorm 
+(8) Dream Weaver (Adobe)
+(9) Visual Studio Code (MS)
+etc
+
+Task: Download & Install VSCode (Visual Studio Code)
+
+
+HTML Paragraph Tag
+------------------
+Paragraphs are defined with <p> tag.
+
+<p> tag is a paired tag and is a block element.
+
+ <p> ... paragraph data .... </p>
+
+Use "lorem" extension
+
+Line Break Tag
+--------------
+<br> - stands for break
+<br> is an empty tag
+
+&nbsp; - Non Breakable Space  (No Break Space)
+- used to add space between words or characters.
+It is a special character (entity) in HTML. 
+
+
+Centering Content
+-----------------
+<center> - tag used to put any content in the center of the page or any container
+
+<center> 
+  <h1>Wipro Technologies</h1>
+</center>
+
+
+- Inline elements takes content width as its own width.
+- Block level elements takes parent width as its own width.
+
+<DIV> Tag
+---------
+- it defines a division or section in an HTML document
+- <div> is a container tag and inside that we can add any number of tags
+- <div> tag is used with block-level content.
+- by default no styles are added to <div>
+The div tag is used in HTML to make divisions of content in the web page like (text, images, header, footer, navigation bar, etc)
+
+
+<SPAN> Tag
+----------
+- this tag is also for making sections in a web page
+- it is an inline element
+- <span> tag is used for grouping and applying styles to inline elements.
+
+
+
+Difference between <div> and <span>:
+-------------
+<div> is a block element, <span> is inline element
+
+<div> should be used to wrap sections of a document
+<span> should be used to wrap a portion of text
+
+
+- Block level elements:
+   - elements that takes parent's width by default
+     Eg: <h1>,<p>,...
+- Inline element:
+   - elements that takes content width  
+     Eg: <a>,<img>,... 
+
+
+
+HTML Horizontal Rules
+---------------------
+<hr> - an empty tag that creates a horizontal line in a web page. 
+
+<hr color=red width="50%" size=5 align=left>
+
+
+
+
+Text Formatting Tags
+--------------------
+HTML Formatting is a process of formatting text for better look and feel. HTML provides us ability to format text without using CSS. There are many formatting tags in HTML. These tags are used to make text bold, italicized, or underlined.
+
+The following HTML tags are used to format the appearance of the text on your web page.
+
+1) Bold Text:
+
+<b>		defines bold text
+<strong>	defines strong text
+The text in between the tags will be bold, and stand out against text around it, the same as in a word processor.
+Note: using <strong> instead of <b>, means you are using Semantic Markup. It is used in Text-to-Speech programs (screen readers)
+
+2) Italics Text:
+<i>		defines italic text
+<em>		defines emphasized text
+italics displays the text at a slight angle.
+Used to emphasize text, which usually appears in italics, but can vary according to your browser.
+
+3) Striking Text:
+<strike> or <s>
+<del>		defines deleted text
+
+4) Underlined Text:
+<u>
+<ins>		defines inserted text
+
+5) Script Text:
+<sub>		defines subscripted text
+<sup>		defines superscripted text
+
+6) <mark> 	used for indicating text as marked or highlighted for reference purposes
+
+etc
+
+
+Computer Output Tags 
+--------------------
+1) <pre>	Defines preformatted text
+Any text between the pre tags, including spaces, carriage returns and punctuation, will appear in the browser as it would in a text editor (normally browsers ignore multiple spaces)
+
+
+2) <code>	Defines computer code text
+Text is displayed in a fixed-width font, commonly used when showing source code
+
+<pre>
+ <code>
+  int x = 5;
+  int y = 6;
+  int z = x + y;
+  System.out.println("Sum = "+z);
+ </code>
+</pre> 
+
+3) <kbd>	Defines keyboard text 
+
+ <p>
+  Open a file by pressing <kbd>ALT + F + O</kbd>  
+ </p> 
+
+4) <samp>	Defines sample output from a computer program. 
+
+ <p>If you input wrong value, the program will return <samp>Exception!</samp></p> 
+
+5) <tt>		Defines teletype text
+The text appears to have been typed by a typewriter, in a fixed-width font
+
+6) <var>	Defines a variable
+The variable could be a variable in a mathematical expression or a variable in programming context
+
+Ex:
+<div>
+ Einstein defined: 
+  <var>E</var> =    <var>mc</var><sup>2</sup>. 
+</div>
+
+
+Citation & Quotations Tags 
+--------------------------
+
+1) <abbr>	defines an abbreviation
+
+2) <acronym> 	defines an acronym
+
+Note: <acronym> tag is not supported in HTML5
+
+Eg: 
+<abbr title="Wipro Technologies Limited">W T L</abbr> is addressed at Hyderabad
+
+3) <address>  defines an address element
+
+4) <bdo>   defines the text direction
+ <bdo dir="rtl"> Wipro</bdo>
+
+5) <q>	defines a short quotation
+  <q>All that glitters is not gold</q>
+
+6) <blockquote> defines a long quotation. Browsers usually indent <blockquote> elements.
+Defines a long quotation, and the quote is displayed with an extra wide margin on the left hand side of the block quote.
+
+7) <cite>  defines a citation, the title of a work
+
+Small - <small> </small>
+    Instead of having to set a font size, you can use the small tag to render text slightly smaller than the text around it. Useful for displaying the 'fine-print'.
+
+
+
+Ex:
+<blockquote>
+ Any in-accuracies in this index may be explained by the fact that it has been sorted with the help of a computer.<br>
+   from <cite>The Art of Computer Programming</cite> by Donald Knuth
+</blockquote>
+
+8) <dfn>	defines a definition term, defining instance of a term in HTML
+Ex:
+A <dfn>definition</dfn> is an explanation of the meaning of a word.
+
+
