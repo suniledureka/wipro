@@ -1,0 +1,8 @@
+spring:
+  data:
+    mongodb:
+      database: Productsdb
+      host: localhost
+      port: 27017
+server:
+  port: 8080 

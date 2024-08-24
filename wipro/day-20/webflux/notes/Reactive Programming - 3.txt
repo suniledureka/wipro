@@ -1,0 +1,185 @@
+Functional Endpoint in Reactive Programming
+-------------------------------------------
+
+how the functional endpoint is different from REST API?
+
+- in REST API, consumer need to send a request to controller and based on the incoming request URI, corresponding mapped controller method will gets executed and calls the service logic
+
+ Browser / POSTMAN ------> Controller -------> Service ------> DAO/ Repository
+
+- in functional endpoint, client will send a request to Router, and Router will redirect the request to corresponding Handler
+
+ Browser / POSTMAN ------> Router -------> Handler
+
+-- functional endpoint is an alternative to annotation based programming
+-- we can use functional endpoint in REST API, as part of reactive programming
+
+Practical
+=========
+
+-- new string start project 04.sb-webflux-functional_endpoint
+dependencies: Spring Reactive Web, Lombok, Dev Tools
+
+---- Customer.java ----
+
+package com.wipro.webflux.dto;
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Customer {
+	private Integer customerId;
+	private String customerName;
+}
+
+--- CustomerDAO.java
+
+package com.wipro.webflux.dao;
+@Repository
+public class CustomerDAO {
+    public Flux<Customer> getCustomersAsStream()  {
+        return Flux.range(1, 50)
+                .doOnNext(i -> System.out.println("processing customer : " + i))
+                .map(i -> new Customer(i, "customer" + i));
+    }
+}
+
+--- create a new Service class - CustomerHandler.java ----
+
+package com.wipro.webflux.service;
+@Service
+public class CustomerHandler {
+   @Autowired
+   private CustomerDAO dao;
+	
+    public Mono<ServerResponse> loadCustomers(ServerRequest request){
+        Flux<Customer> customerList = dao.getCustomersAsStream();
+        return ServerResponse.ok().body(customerList,Customer.class);
+    }	
+}
+
+
+---- create a Router class --- RouterConfig.java 
+
+package com.wipro.webflux.router;
+@Configuration
+public class RouterConfig {
+
+    @Autowired
+    private CustomerHandler handler;
+
+    @Bean
+    public RouterFunction<ServerResponse> routerFunction(){
+        return RouterFunctions.route()
+                .GET("/router/customers", handler::loadCustomers)                
+                .build();
+    }
+}
+
+
+Run as Spring Boot Application
+http://localhost:8080/router/customers
+================================================================
+
+--- now trying with stream API -----
+
+in RouterConfig.java
+.GET("/router/customers/stream", streamHandler::getCustomers)
+
+in CustomerDAO class
+
+    public Flux<Customer> getCustomersStream()  {
+        return Flux.range(1,10)
+                .delayElements(Duration.ofSeconds(1))
+                .doOnNext(i -> System.out.println("processing customer : " + i))
+                .map(i -> new Customer(i, "customer" + i));
+    }
+
+
+--- new Handler class --- CustomerStreamHandler.java
+
+@Service
+public class CustomerStreamHandler {
+
+    @Autowired
+    private CustomerDao dao;
+
+    public Mono<ServerResponse> getCustomers(ServerRequest request) {
+        Flux<Customer> customersStream = dao.getCustomersStream();
+        return ServerResponse.ok()
+                  .contentType(MediaType.TEXT_EVENT_STREAM)
+                  .body(customersStream, Customer.class);
+    }
+}
+
+
+
+--- RouterConfig.java
+
+@Configuration
+public class RouterConfig {
+    @Autowired
+    private CustomerHandler handler;
+
+    @Autowired
+    private CustomerStreamHandler streamHandler;
+	    
+    @Bean
+    public RouterFunction<ServerResponse> routerFunction(){
+        return RouterFunctions.route()
+                .GET("/router/customers",handler::loadCustomers)  
+                .GET("/router/customers/stream", streamHandler::getCustomers)
+                .build();
+    }	
+}
+
+
+
+----- equivalent to Path Parameters ----
+
+
+package com.wipro.webflux.router;
+@Configuration
+public class RouterConfig {
+
+    @Autowired
+    private CustomerHandler handler;
+
+    @Autowired
+    private CustomerStreamHandler streamHandler;
+
+    @Bean
+    public RouterFunction<ServerResponse> routerFunction(){
+        return RouterFunctions.route()
+                .GET("/router/customers", handler::loadCustomers)
+                .GET("/router/customers/stream", streamHandler::getCustomers)
+                .GET("/router/customer/{input}", handler::findCustomer)
+                .POST("/router/customer/save", handler::saveCustomer)
+                .build();
+    }
+}
+
+
+
+in CustomerHandler.java
+
+    public Mono<ServerResponse> findCustomer(ServerRequest request){
+      int customerId= Integer.valueOf( request.pathVariable("input"));
+       // dao.getCustomerList().filter(c->c.getId()==customerId).take(1).single();
+        Mono<Customer> customerMono = dao.getCustomerList().filter(c -> c.getId() == customerId).next();
+        return ServerResponse.ok().body(customerMono,Customer.class);
+    }
+
+
+    public Mono<ServerResponse> saveCustomer(ServerRequest request){
+        Mono<Customer> customerMono = request.bodyToMono(Customer.class);
+        Mono<String> saveResponse = customerMono.map(dto -> dto.getId() + ":" + dto.getName());
+        return ServerResponse.ok().body(saveResponse, String.class);
+    }
+
+
+
+in application.properties
+ spring.main.web-application-type=reactive
+
+
+
