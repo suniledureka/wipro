@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            font-family:'Comic Sans MS', Serif;
+        }
+        #emp_details table{
+            width:80%;
+            margin:auto;
+            font-size:20px;
+            text-align:center;
+            padding:10px;
+            box-shadow:0 0 10px black;
+            margin-top:40px;  
+            border-radius: 15px; 
+        }
+        tr{
+            height:50px;
+        }
+        td, th{            
+            border-radius:20px;            
+        }
+        th{
+            background-color:maroon;
+            color:white;
+        }
+        #emp_details table tbody tr:nth-child(odd) td{
+            background-color:blueviolet;
+        }
+        #emp_details table tbody tr:nth-child(even) td{
+            background-color:teal;
+        }  
+        #emp_details table tbody tr td:hover{
+            background-color:black;
+            color:white;
+            box-shadow:0 0 10px black
+        }  
+        /* 
+        #emp_details table tbody tr:nth-child(odd) td:hover{
+            box-shadow:0 0 10px blueviolet
+        } 
+        */  
+    </style>
+    <title>Table</title>
+</head>
+<body>
+    <div id="emp_details">
+        <table cellspacing="20px">
+            <!-- table header -->
+            <thead>
+                <tr>
+                    <th>EMP NO</th>
+                    <th>NAME</th>
+                    <th>SALARY</th>
+                </tr>
+            </thead>
+
+            <!-- table content -->
+            <tbody>
+                <tr>
+                    <td>101</td>
+                    <td>Sunil Joseph</td>
+                    <td>2500.00</td>
+                </tr>
+                <tr>
+                    <td>102</td>
+                    <td>Naveen</td>
+                    <td>3500.00</td>
+                </tr>    
+                <tr>
+                    <td>103</td>
+                    <td>Harsha Vardhan</td>
+                    <td>4500.00</td>
+                </tr>    
+                <tr>
+                    <td>104</td>
+                    <td>Vamsi Krishna</td>
+                    <td>5500.00</td>
+                </tr>    
+                <tr>
+                    <td>105</td>
+                    <td>Rabindra</td>
+                    <td>6500.00</td>
+                </tr>                                                    
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
