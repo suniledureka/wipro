@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio & Video</title>
+    <style>
+        video {
+            width: 40%;
+            border: 5px solid brown;
+            border-radius: 20px;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Play Audio</h2>
+    <audio id="movie_song">
+        <source src="media/song.mp3" type="audio/mp3">
+        <p>This browser is not supporting audio files!</p>
+    </audio>
+
+    <p>Click the buttons to play or pause the audio.</p>
+
+    <button onclick="playAudio()" type="button">Play Audio</button>
+    <button onclick="pauseAudio()" type="button">Pause Audio</button>
+
+    <script type="text/javascript">
+        let audio_tool = document.getElementById("movie_song")
+        
+        function playAudio(){
+            audio_tool.play();
+        }
+
+        function pauseAudio(){
+            audio_tool.pause();
+        }
+    </script>
+</body>
+
+</html>

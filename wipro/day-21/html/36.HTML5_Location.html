@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>geo-location</title>
+    <style type="text/css">
+        body {
+            font-family: Verdana;
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div id="latitude">geo location not supported </div>
+    <div id="longitude">geo location not supported </div>
+
+    <script type="text/javascript">
+        var lat = document.getElementById("latitude");
+        var lon = document.getElementById("longitude");
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(onSuccess, onFailure, { timeout: 5000 });
+        }
+
+        function onSuccess(position) {
+            lat.innerHTML = position.coords.latitude;
+            lon.innerHTML = position.coords.longitude;
+            
+        }
+
+        function onFailure(error) {
+            if (error.code == error.PERMISSION_DENIED) //1
+            {
+                lat.innerHTML = lon.innerHTML = "Permission Denied";
+            }
+            if (error.code == error.POSITION_UNAVAILABLE)  //2
+            {
+                lat.innerHTML = lon.innerHTML = "Network or Satellite Down";
+            }
+            if (error.code == 3) //error.TIMEOUT
+            {
+                lat.innerHTML = lon.innerHTML = "GeoLocation timed out";
+            }
+            if (error.code == error.UNKNOWN_ERROR) //4
+            {
+                lat.innerHTML = lon.innerHTML = "Other Error";
+            }
+        }
+    </script>   
+</body>
+</html>
