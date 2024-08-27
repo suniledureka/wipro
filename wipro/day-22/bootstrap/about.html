@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/mdb.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
+
+    <style>
+        .bg-teal {
+            background-color: rgb(1, 29, 29);
+        }
+
+        .text-teal {
+            color: rgb(1, 29, 29);
+        }
+        .my_img{
+            border:5px solid white;
+            border-radius:15px;
+            box-shadow:0 0 10px black;
+        }
+        .my_card{         
+            border-radius:15px;
+            box-shadow:0 0 10px black;
+            transition:all 0.5s;                        
+        }
+        .my_card:hover{
+            background-color:rgb(0, 20, 10);
+            color:white;
+            transform:perspective(400px) rotateY(10deg);
+        }
+        .my_card:hover .fab{
+            color:white !important
+        }
+    </style>
+    <title>SIT | About Us</title>
+</head>
+
+<body>
+    <!-- Main NavBar-->
+    <nav class="navbar navbar-dark bg-teal navbar-expand-md">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand text-warning" style="font-size: 25px;">
+                <img src="img/bootstrap.png" width="25px" height="25px" alt="">
+                Softwave IT Solutions
+            </a>
+            <!-- responsive toggle button-->
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#sit-navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="sit-navbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a href="index.html" class="nav-link px-2">
+                            <i class="fa fa-home"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link px-2">
+                            <i class="fa fa-id-badge"></i> About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="courses.html" class="nav-link px-2">
+                            <i class="fa fa-book"></i> Courses
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="batches.html" class="nav-link px-2">
+                            <i class="fa fa-id-card"></i> Batches
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link px-2">
+                            <i class="fa fa-envelope"></i> Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Us-->
+    <section class="p-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="font-weight-bold text-teal">
+                        About Us
+                        <small>It's Nice to Meet You!</small>
+                    </h2>
+                    <hr>
+                </div>               
+            </div>
+        </div>
+    </section>
+
+    <!-- aboutus content-->
+    <section class="p-3">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <a href="img/sit.jpg" data-toggle="lightbox">
+                        <img src="img/sit.jpg" alt="" class="img-fluid my_img">
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <h2 class="font-weight-bold text-teal"> Softwave IT Solutions</h2>
+                    <p class="lead">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, commodi, animi recusandae quod corporis vel harum eaque iure dolorem itaque amet facere illo officia vitae debitis aut aliquam! Architecto temporibus officiis magni qui ullam inventore voluptatem voluptas in ab illum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas ut tempore quos sed eveniet recusandae quidem facere expedita, tenetur dolor.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trainers Section-->
+    <section class="p-3 text-center">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h1 class="text-teal font-weight-bold">Our Trainers</h1>
+                    <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, laudantium?</p>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-md-3">
+                    <div class="card my_card">
+                        <div class="card-body">
+                            <img src="img/sunil.jpg" alt="" class="img-fluid w-50 rounded-circle my_img" style="margin-top:-70px">
+                            <h3 class="mt-3">Sunil Joseph</h3>
+                            <p class="lead">Trainer</p>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate quas amet sint corrupti enim aut optio repudiandae harum voluptas explicabo.</p>
+                            <div class="d-flex justify-content-between">
+                                <i class="fab fa-facebook-f fa-2x"></i>
+                                <i class="fab fa-twitter fa-2x"></i>
+                                <i class="fab fa-github fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card my_card">
+                        <div class="card-body">
+                            <img src="img/person2.jpg" alt="" class="img-fluid w-50 rounded-circle my_img" style="margin-top:-70px">
+                            <h3 class="mt-3">Naveen</h3>
+                            <p class="lead">Trainer</p>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate quas amet sint corrupti enim aut optio repudiandae harum voluptas explicabo.</p>
+                            <div class="d-flex justify-content-between">
+                                <i class="fab fa-facebook-f fa-2x"></i>
+                                <i class="fab fa-twitter fa-2x"></i>
+                                <i class="fab fa-github fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="col-md-3">
+                    <div class="card my_card">
+                        <div class="card-body">
+                            <img src="img/person3.jpg" alt="" class="img-fluid w-50 rounded-circle my_img" style="margin-top:-70px">
+                            <h3 class="mt-3">Harsha V</h3>
+                            <p class="lead">Trainer</p>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate quas amet sint corrupti enim aut optio repudiandae harum voluptas explicabo.</p>
+                            <div class="d-flex justify-content-between">
+                                <i class="fab fa-facebook-f fa-2x"></i>
+                                <i class="fab fa-twitter fa-2x"></i>
+                                <i class="fab fa-github fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card my_card">
+                        <div class="card-body">
+                            <img src="img/person4.jpg" alt="" class="img-fluid w-50 rounded-circle my_img" style="margin-top:-70px">
+                            <h3 class="mt-3">Vamsi K</h3>
+                            <p class="lead">Trainer</p>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate quas amet sint corrupti enim aut optio repudiandae harum voluptas explicabo.</p>
+                            <div class="d-flex justify-content-between">
+                                <i class="fab fa-facebook-f fa-2x"></i>
+                                <i class="fab fa-twitter fa-2x"></i>
+                                <i class="fab fa-github fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>               
+            </div>
+        </div>
+    </section>
+
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/mdb.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
+    <script>
+        $('.carousel').carousel({
+            interval: 2000
+        })
+
+        $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+                event.preventDefault();
+                $(this).ekkoLightbox({
+                    alwaysShowClose: true                    
+                });
+            });
+    </script>
+</body>
+
+</html>

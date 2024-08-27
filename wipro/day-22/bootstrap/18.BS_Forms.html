@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/mdb.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .bg-warning {
+            background: linear-gradient(45deg, darkslategray, blueviolet);
+            color: white;
+            border-radius: 20px;
+            box-shadow: 0 0 10px black;
+        }
+    </style>
+    <title>BS | Forms</title>
+</head>
+
+<body>
+    <nav>
+        <h2>Bootstrap | Forms</h2>
+    </nav>
+    <!-- Name, Password, Email Address , Gender, Message, Attach Profile-->
+    <div class="container">
+        <form action="" class="bg-warning p-2 mt-4 w-50">
+            <div class="form-group">
+                <label for="name" class="form-check-label">Name</label>
+                <input type="text" id="name" placeholder="Enter name" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Password" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter email" class="form-control">
+                <small class="form-text text-muted">should be min 8 characters with Uppercase and 1 special
+                    character</small>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" class="form-control">
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" rows="3" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="file">Attach Profile</label>
+                <input type="file" id="file" class="form-control-file">
+                <small id="fileHelp">Max 3MB size</small>
+            </div>
+            <div class="form-group">
+                <label for="hobbies">Hobbies</label>
+                <div class="form-check">
+                    <input type="checkbox" id="hobbies" name="hobby" value="Cricket" class="form-check-input">Cricket
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="hobbies" name="hobby" value="Coding" class="form-check-input">Coding
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="hobbies" name="hobby" value="Movies" class="form-check-input">Movies
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Register">
+            </div>
+        </form>
+    </div>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/mdb.js"></script>
+</body>
+
+</html>
