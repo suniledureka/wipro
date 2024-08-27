@@ -1,0 +1,31 @@
+body{
+    margin:0px;
+    background-color:rgba(0,0,0,0.3);
+}
+#nav{
+    background-color:black;
+    padding:20px;
+    text-align:center;
+}
+a{
+    text-decoration:none;
+    font-size:20px;
+    padding:8px;
+    background-color: blueviolet;
+    border-radius:15px;
+    margin-right:20px;
+    color:white;
+    display:inline-block;
+    width:150px;
+}
+a:hover{
+    background:linear-gradient(45deg,black,orangered);    
+}
+a:focus{
+    background:linear-gradient(45deg,orangered, black);
+    outline:none;
+}
+a:hover, a:focus{
+    box-shadow:0 0 10px white;    
+    text-transform: uppercase;
+}

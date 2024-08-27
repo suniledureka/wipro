@@ -1,0 +1,75 @@
+body{
+    margin:0px;
+    font-family:'Arial',sans-serif;
+    color:white;
+}
+.main-nav{
+    background-color:black;
+    padding:10px;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content: space-between;
+}
+.main-nav h2{
+    margin:0px;    
+}
+.main-nav .nav-items a{
+    color:white;
+    text-decoration:none;
+    font-size:18px;
+    padding:8px 30px;
+    text-align:center;
+    border-radius:15px;
+}
+.main-nav .nav-items a:hover{
+    background-color:orange;
+    box-shadow:0 0 10px white;
+}
+/* main content section settings*/
+.main-content{
+    background:black url('../images/group.jpg') no-repeat scroll center;
+    background-size:cover;    
+    width:100%;
+    height:100vh;
+}
+.main-content-wrapper{
+    width:inherit;
+    height:inherit;
+    background-color:rgba(0,0,0,0.7);
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content: space-evenly;
+    overflow:hidden;
+}
+.main-content-wrapper h1{
+    margin:0px;
+    font-size:55px;        
+}
+.main-content-wrapper p{
+    font-size:18px;
+    font-family:'comic sans ms',sans-serif;
+    margin:30px;
+}
+.btn{
+    padding:10px 30px;
+    border:none;
+    background:orange;
+    border-radius:10px;    
+    font-size:20px;
+}
+.btn:hover{
+    box-shadow:0 0 10px white;
+}
+
+/*page responsivenes*/
+@media (max-width:400px){
+    .main-nav{
+        flex-direction:column
+    }
+    .main-content-wrapper h1{
+        font-size:20px;
+    }
+}
