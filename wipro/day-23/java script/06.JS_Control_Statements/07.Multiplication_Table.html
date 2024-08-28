@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        div{
+            font-size:20px;
+            margin:40px;
+        }
+        input, button{
+            font-size:20px;
+        }
+    </style>
+    <title>Multiplication Table</title>
+</head>
+
+<body>
+    <nav>
+        <h2>Java Script | Multiplication Table of a Number</h2>
+    </nav>
+    <div>
+        Enter a Number 
+        <input type="text" id="txtNum" autofocus size=5 >
+        <button onclick="printMTable()">Show</button>
+    </div>
+    <div id="mul_region"></div>
+    <script>
+        function printMTable(){
+            let txtNum = document.getElementById('txtNum')
+            let num = txtNum.value
+            let res = ''
+            for(let i=1;i<=10;i++){
+                let p = num * i
+                //console.log(`${num} x ${i} = ${p}`)
+                res += `${num} x ${i} = ${p} <br>`
+            }
+            document.getElementById('mul_region').innerHTML = res
+
+            console.log(res)
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body,
+        input {
+            font-family: 'comic sans ms', sans-serif;
+            font-size: 22px;
+        }
+
+        input:focus {
+            background-color: yellow
+        }
+    </style>
+    <title>Multiplication Table</title>
+</head>
+
+<body>
+    <div>
+        Which Number's Multiplication Table
+        <input type="text" size=5 autofocus id="txtNum" onblur="mTable(this.value)">
+    </div>
+    <div id="mul_table" style="margin:50px;"></div>
+
+    <script>
+        function mTable(num) {
+            let mul_table = document.getElementById('mul_table')
+            mul_table.style.color = 'black'
+            let res = ''
+            if (isNaN(num) || num.length<=0) {
+                res = 'Please enter a number'
+                mul_table.style.color = 'red'
+            }
+            else {
+                for (let i = 1; i <= 10; i++) {
+                    let prod = num * i
+                    res += `${num} x ${i} = ${prod} <br>`
+                }
+            }
+            mul_table.innerHTML = res
+        }
+    </script>
+</body>
+
+</html>
