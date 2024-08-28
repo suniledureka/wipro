@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>ES6</title>
+</head>
+<body>
+    <nav>
+        <h2>
+            Java Script | Collections | Set
+        </h2>
+    </nav>
+    <script>
+        let courses = new Set()
+        courses.add('HTML')
+        courses.add('CSS')
+        courses.add("Java Script")
+        courses.add('jQuery')
+        courses.add('HTML') //duplicate element
+
+        console.log('No of Courses = '+ courses.size)
+
+        for(let course of courses){
+            console.log(course)
+        }
+        courses.delete('HTML')
+        console.log('No of Courses = '+ courses.size)
+    </script>
+</body>
+</html>

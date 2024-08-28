@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        table{
+            width:70%;
+            font-size:20px;
+            border-collapse:collapse;
+        }
+        td, th{
+            border:1px solid black;
+        }
+        tr{
+            height:50px;
+        }
+    </style>
+    <title>Arrays Usecase</title>
+</head>
+
+<body>
+    <div>
+        <h2>Employee Management</h2>
+    </div>
+    <section style="margin:50px;font-size:20px;">
+        <article>
+            <button onclick="allEmployees()">All Employees</button>
+            <button onclick="activeEmployees()">Active Employees</button>
+            <button onclick="inActiveEmployees()">In-Active Employees</button>
+            <button onclick="seniorEmployees()">Senior Employees</button>
+        </article>
+        <article style="margin-top: 50px;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Designation</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="employee_data"></tbody>
+            </table>
+        </article>
+    </section>
+    <script>
+        let employees = [
+            {
+                name: 'Sunil',
+                age: 40,
+                designation: 'Manager',
+                active: true
+            },
+            {
+                name: 'Naveen',
+                age: 35,
+                designation: 'Sr.Manager',
+                active: false
+            },
+            {
+                name: 'Rahul',
+                age: 25,
+                designation: 'Software Engineer',
+                active: true
+            },
+            {
+                name: 'Harsha',
+                age: 32,
+                designation: 'Team Lead',
+                active: false
+            }
+        ];
+        
+        let tbody = document.getElementById('employee_data')
+
+        let allEmployees = ()=>{
+           displayEmployees(employees)
+        }
+        /*
+        let activeEmployees = ()=>{
+            let response_data = ''
+            employees.forEach((emp)=>{
+                if(emp.active){
+                 response_data += `<tr><td>${emp.name}</td><td align=center>${emp.age}</td><td>${emp.designation}</td><td align=center>${emp.active.toString().toUpperCase()}</td></tr>`
+                }
+            })
+            tbody.innerHTML = response_data
+        }        
+        */
+
+        let activeEmployees = ()=>{           
+            let active_employees = employees.filter((emp)=>{                                 
+                return emp.active
+            })   
+            displayEmployees(active_employees)         
+        }     
+
+        let inActiveEmployees = ()=>{            
+            let in_active_employees = employees.filter((emp)=>{                                 
+                return !emp.active
+            })   
+            displayEmployees(in_active_employees)         
+        }
+
+        let seniorEmployees = ()=>{
+            let senior_employees = employees.filter((emp)=>{
+                return emp.age > 30
+            })
+            displayEmployees(senior_employees)
+        }
+
+        let displayEmployees = (emps)=>{
+            let response_data = ''
+            emps.forEach((emp)=>{
+             response_data += `<tr><td>${emp.name}</td><td align=center>${emp.age}</td><td>${emp.designation}</td><td align=center>${emp.active.toString().toUpperCase()}</td></tr>`            
+            })
+            tbody.innerHTML = response_data
+        }
+    </script>
+</body>
+
+</html>

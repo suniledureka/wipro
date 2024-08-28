@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Rest Operator</title>
+</head>
+<body>
+    <nav>
+        <h2>Java Script Rest Operator</h2>
+    </nav>
+
+    <script>
+        function myBiodata(firstName, lastName, ...otherInfo) { 
+            return otherInfo;
+        }
+
+        // Invoke myBiodata function while passing five arguments to its parameters:
+        console.log(myBiodata("Sunil", "Joseph", "Java Full-stack Dev", "Web Developer", "Male"));
+    </script>
+</body>
+</html>

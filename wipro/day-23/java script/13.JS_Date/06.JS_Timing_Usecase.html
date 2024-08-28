@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #counter {
+            margin: 20px;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            font-size: 30px;
+            border-radius: 50%;
+            text-align: center;
+            margin: 40px auto;
+            background-color: darkred;
+            color: white;
+            font-weight: bolder;
+            box-shadow: 0 0 10px black;
+        }
+    </style>
+    <title>Counter</title>
+</head>
+
+<body>
+    <div>
+        <h2>Java Script | Counter | Usecase</h2>
+    </div>
+    <div id="counter">
+        START
+    </div>
+    <script>
+        let counter = document.getElementById('counter')
+
+        let count = 1
+        let show_count = () => {
+            if (count == 15) {                
+                clearInterval(han)
+                counter.innerText = 'Done'                
+            }
+            else{
+             counter.innerText = count
+             count++
+            }
+        }
+
+        let han = setInterval(show_count, 1000)
+
+    </script>
+</body>
+
+</html>

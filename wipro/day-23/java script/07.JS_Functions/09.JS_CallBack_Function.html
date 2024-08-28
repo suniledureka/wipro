@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Call Back Functions</title>
+</head>
+<body>
+    <div>
+        <h2>JS Call Back Functions</h2>
+    </div>
+
+    <script>
+        let sum = (x,y)=>{
+            return x+y
+        }
+
+        let diff = (x,y)=>(x-y)
+
+        function calculate(x=0,y=0, operation){
+            let res = operation(x,y)
+            console.log(res)      
+        }
+
+        calculate(10, 20, sum)
+        calculate(10, 20, diff)
+        calculate(10, 20, (x,y)=>{return x*y })
+        calculate(10, 2, (a, b) => (a/b))
+    </script>
+</body>
+</html>

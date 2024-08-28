@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="report_card.css">    
+    <title>Report Card</title>
+</head>
+<body>
+    <div>
+        <button onclick="fun_data_entry()">Data Entry</button>
+        <button onclick="generate_rc()" id="rc_button">Generate Report Card</button>
+    </div>
+
+    <div id="report_card">
+        <table id="rc_table">
+            <thead>
+                <tr>
+                 <th colspan=2>REPORT CARD</th>
+                </tr>
+                <tr>
+                 <th align=left colspan="2">NAME: <span id="rc_name"></span></th>
+                </tr>
+            </thead>
+
+            <tbody id="rc_body">
+                <!-- section for displaying subject names with marks -->
+            </tbody>
+
+            <tfoot id="rc_foot">
+                <!-- section for displayng total and Average-->                
+            </tfoot>
+        </table>
+    </div>
+    <script type="text/javascript" src="report_card.js"></script>
+</body>
+</html>
