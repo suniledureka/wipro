@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table{
+            border-collapse:collapse;
+        }
+        table tr{
+            height:45px;
+        }
+        tbody tr:nth-child(even){
+            background:linear-gradient(45deg,black,limegreen);
+            color:white;
+        }
+        tbody tr:nth-child(odd){
+            background:linear-gradient(45deg,black,darkred);
+            color:white;
+        }        
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="allEmployees()">All Employees</button>
+    <hr>
+    No of Employees <span id=noRecs></span>
+    <br><br>
+    <table border=1 width=70% style="font-size:18px">
+        <thead>
+            <tr>
+                <th>SL NO</th>
+                <th>EMP NO</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+        <tbody id="table_body">
+
+        </tbody>
+    </table>
+
+    <script src="employee_details.js"></script>
+    <script>
+        let allEmployees = () => {
+            let rows = ''
+            let no=1
+
+            let emps = employees.filter((emp)=>{
+                return emp.age>=90                
+            })
+
+            for(let emp of emps){                
+                 rows = `${rows}<tr>
+                    <td>${no++}</td>
+                    <td>SIT_${emp.id}</td>
+                    <td>${emp.first_name}</td>
+                    <td>${emp.last_name}</td>
+                    <td align=center>${emp.age}</td>
+                    <td align=center>${emp.gender}</td>
+                    <td>${emp.country}</td>
+                    </tr>`            
+            }
+            document.querySelector('#table_body').innerHTML = rows
+            document.querySelector('#noRecs').innerHTML = emps.length
+        }
+    </script>
+</body>
+</html>

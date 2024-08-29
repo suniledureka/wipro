@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        input{
+            font-size:20px;
+            border:none;
+            background-color:yellow;
+            padding:10px;
+            border-radius:10px
+        }        
+    </style>
+    <title>Key Event</title>
+</head>
+<body>
+    <nav>
+        <h2>Java Script | Key Event | Keypress | allow only alphabets (A-Z a-z) and space</h2>
+    </nav>
+    <section>
+        <article>
+            <label for="txtName">User Name</label>
+            <input type="text" size=22 placeholder="enter name" autofocus="autofocus" maxlength="40" id="txtName">
+        </article>        
+    </section>
+
+    <script>
+        //get reference of text field
+        let txtName = document.querySelector('#txtName')
+
+        let validateData = () => {
+            //console.log(event.keyCode)
+            let key = event.keyCode; //to get the ASCII value of the character pressed; here event is KeyPress
+            console.log(event.key+" - "+event.keyCode)
+
+            if(!((key>=65&&key<=90) || (key>=97&&key<=122) || key==32)){
+                event.preventDefault()
+            }
+        }
+
+        txtName.addEventListener('keypress',validateData)
+    </script>
+</body>
+</html>

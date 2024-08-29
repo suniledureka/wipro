@@ -1,0 +1,37 @@
+body{
+    margin:0px;
+    font-family:'Verdana',serif;    
+}
+nav{
+    background:linear-gradient(45deg,darkslategray,darkviolet);
+    color:aquamarine;
+    padding:15px;
+}
+h2{
+    margin:0px;
+    color:aqua
+}
+section{
+    margin-top:30px;
+}
+article{
+    margin:10px;
+    font-size:20px;
+    margin-top:30px;
+}
+input,button{
+    font-size:20px;
+}
+button{
+    border:none;
+    border:1px solid black;
+    border-radius:10px;
+    padding:10px;
+    width:200px;
+    margin-top:50px;
+}
+button:hover{
+    border:none;
+    background:linear-gradient(45deg,black,darkred);
+    color:white
+}

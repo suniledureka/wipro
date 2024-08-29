@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+    body{
+        margin:0px;
+    }        
+    nav{
+        background-color:brown;
+        color:white;
+        padding:20px;
+        margin-bottom:50px;
+    }
+    nav h2{
+        margin:5px 0px;
+    }
+     article{
+         width:50%;
+         margin:auto;
+         font-size:20px;
+         line-height:2;
+         background:linear-gradient(45deg,black,orangered);
+         color:white;
+         text-align:center;
+         border-radius:20px;
+         padding:10px;
+     }
+     input{
+         font-size:20px;
+     }
+     .age_err{
+         color:aqua;
+         font-size:16px;
+     }
+    </style>
+    <title>Age Validation</title>
+</head>
+<body>
+    <nav>
+        <h2>Java Script | Age Validation | Approach-2</h2>
+        <p style="text-align:left;font-size:20px;">
+            1. Age should have only digits <br>
+            2. Age should be between 10 and 90
+        </p>
+    </nav>
+
+    <section>
+        <article>
+            <form action="register.jsp" id="register_form">
+                <label for="txtAge">Enter Age</label>
+                <input type="text" size="5" name="age" id='txtAge'>
+                <span class="age_err"></span>
+                <div>
+                    <input type="submit" value="Regsiter">
+                </div>
+            </form>
+        </article>
+    </section>
+
+    <script>
+        let txtAge = document.querySelector('#txtAge')
+        let age_err = document.querySelector('.age_err')
+        let register_form = document.querySelector('#register_form')
+
+        register_form.addEventListener('submit', function(){
+            let result = validateAge()
+            if(result)
+              register_form.submit()
+            else
+              event.preventDefault() 
+        })
+
+        let validateAge = ()=>{
+            //get age value
+            let age = txtAge.value.trim()
+            let err_msg = ''
+            let flag=0
+            
+            if(isNaN(age)){
+                err_msg='Age should have only digits'
+                flag=1
+            }
+            else if(age<10 || age>90){
+                err_msg = 'Age should be between 10 and 90'
+                flag=1
+            }
+            if(flag==1){
+                age_err.innerText = err_msg
+                return false
+            }
+            else{
+                return true
+            }
+        }
+    </script>
+</body>
+</html>

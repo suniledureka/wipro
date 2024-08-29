@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0px;
+            font-family: 'Verdana', serif;
+        }
+
+        nav {
+            background: linear-gradient(45deg, darkslategray, darkviolet);            
+            padding: 15px;
+        }
+
+        h2 {
+            margin: 0px;
+            color: aqua
+        }
+
+        section {
+            margin: 30px 0px;
+        }
+
+        article {            
+            font-size: 20px;
+            margin-top: 30px;
+        }
+
+        select {
+            font-size: 19px;
+        }
+        #stateList{
+            color:blue;
+            width:300px;
+            margin:20px auto;
+        }
+        #canvas{
+            width:300px;
+            height:200px;
+            border-radius:15px;
+            box-shadow:0 0 10px black;
+            margin-top:20px;
+            background-color:black;
+        }
+        input{
+            font-size:20px;
+        }
+        #print{
+            border:1px solid black;
+            background:transparent;
+            padding:7px 25px;
+            border-radius:20px;
+            color:white;
+            font-size:20px;
+        }
+        #print:hover{
+            box-shadow:0 0 10px white
+        }
+    </style>
+    <title>Change Event</title>
+</head>
+
+<body onload="getCountry()">
+    <nav>
+        <h2>Java Script | Event Handling | change Event</h2>
+    </nav>
+    <section>
+        <article>
+            Select a Country Name:
+            <select name="country_name" id="country_name" onchange="getCountry()">
+                <option value="">select a country name</option>
+                <option value="IND">India</option>
+                <option>America</option>
+                <option>England</option>
+                <option>Singapore</option>
+                <option>Malasia</option>
+                <option>Poland</option>
+                <option>Japan</option>
+                <option>Italy</option>
+            </select>
+
+            <p id="stateList">States @ &lt;country_name&gt;</p>
+
+        </article>
+
+        <hr>
+        <article style="background-color:lightgoldenrodyellow;padding:20px 10px">
+            <label for="">Apply Background Color</label>
+            <select name="bg_color" id="bg_color">
+                <option value="">select background color</option>
+                <option value="#FF0000">red</option>
+                <option>green</option>
+                <option>blue</option>
+                <option>lime</option>
+                <option>violet</option>
+            </select>
+            <div id="canvas"></div>
+        </article>
+
+        <hr>
+        <article style="background-color:teal;color:white;padding:20px 10px">
+            <input type="checkbox" id="install_select" onchange="installOrNot(this)"> I accept the License Agreement 
+            <input type="button" id="install_button" value="Install" disabled="disabled" onclick="alert('Installation is Starting...')">
+        </article>   
+        
+        <hr>
+        <article style="background-color: firebrick;padding:20px;color:white">            
+            <button id="print">Print Page</button>
+        </article>           
+    </section>
+
+    <script>
+        let country_name = document.getElementById('country_name');
+        let stateList = document.getElementById('stateList');
+
+        let bg_color = document.querySelector('#bg_color');
+        let canvas = document.querySelector('#canvas');
+        
+        let install_button = document.querySelector('#install_button')
+
+        function getCountry(){
+            let country = country_name.value;
+            //alert(country);
+            let cname = 'Please select a country'
+            
+            if(country.length>0){
+                cname = 'State @ '+ country
+            }
+            stateList.innerHTML = cname
+        }
+
+        let changeBgColor = ()=>{
+            let clr = bg_color.value
+            if(clr.length<=0){
+              clr='black'    
+            }
+            canvas.style.backgroundColor = clr
+        }
+
+        bg_color.addEventListener('change', changeBgColor);
+
+        /*to enable or to disable a button*/
+        let installOrNot = (id) => {
+           if(id.checked){
+                install_button.disabled = ''
+           }
+           else{
+               install_button.disabled = 'disabled'
+           }
+        }
+
+        /*print dialog box*/
+        let print = document.querySelector('#print')
+        print.addEventListener('click', function(){
+            window.print();
+        })
+    </script>
+</body>
+
+</html>
