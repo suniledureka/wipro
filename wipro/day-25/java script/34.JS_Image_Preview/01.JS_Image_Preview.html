@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        div {
+            margin: 40px;
+            font-size: 20px;
+        }
+
+        img {
+            width: 220px;
+        }
+    </style>
+    <title>Image Preview</title>
+</head>
+
+<body>
+    <nav>
+        <h2>Java Script | Image Preview</h2>
+    </nav>
+    <div>
+        Upload Picture
+        <input type="file" onchange="previewImage(this)">
+        <br><br>
+        <img src="" alt="Preview Image">
+    </div>
+    <script>
+        let previewElement = document.querySelector('img');
+
+        let previewImage = (fileElement) => {
+            let imagePaths = fileElement.files;
+            //console.log('No of files selected = '+ imagePaths.length);
+            if(imagePaths.length>0)
+            {
+                let file = imagePaths[0];
+                let file_type = file.type;
+                console.log(file_type+" - ")
+                /*check for image file type*/
+                let pattern =/image/;
+                if(file_type.match(pattern))
+                {
+                  let reader = new FileReader(); 
+
+                  reader.addEventListener('load', function(){
+                     previewElement.src = reader.result;
+                  }) 
+
+                  reader.readAsDataURL(file);
+                }
+                else{
+                    alert('Please select an image file!')
+                    previewElement.src=''
+                }
+            }//if
+            else
+            {
+               alert('Please select a file!') 
+            }
+        }
+    </script>
+</body>
+
+</html>

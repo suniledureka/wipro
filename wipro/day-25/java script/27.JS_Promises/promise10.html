@@ -1,0 +1,11 @@
+<script>
+    const promise1 = Promise.resolve('first promise resolved');
+    const promise2 = 100;
+    const promise3 = new Promise((resolve, reject) => {
+        setTimeout(resolve('second promise resolved'), 1000);
+        //setTimeout(resolve, 1000, 'second promise resolved');
+    });
+
+    Promise.all([promise1, promise2, promise3]).then((values) => console.log(values)); //which is first resolved or rejected.
+
+</script>

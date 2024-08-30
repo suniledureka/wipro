@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Scopes in JS</title>
+
+</head>
+
+<body>
+    <nav>
+        <h2>Java Script | Scopes</h2>
+    </nav>
+    <script>
+        /*
+        {
+            let n = 10;
+            {
+                let n = 12;
+                console.log(n)
+            }
+            console.log(n);
+        }
+        */
+        /*
+        for(var i=1;i<=5;i++){
+            console.log('i = '+i)
+        }
+        console.log(i) //6
+        */
+
+        /*
+        for(let i=1;i<=5;i++){
+            console.log('i = '+i)
+        } 
+        console.log(i)       
+        */
+        /*
+        let x = 22;
+        function myFun(){
+            //x = 33;
+            let x = 33;
+            let y = 44;
+            console.log(`-- from inside function - ${x}, ${y}`);
+        }
+        myFun();
+        console.log(`-- from outside function - ${x}, ${y}`);
+        */
+
+    </script>
+    <script>
+        //nested function scope
+        let x= 10;
+        let outerFun = function(){
+            let y = 20;
+            /* inner function definition*/
+            let innerFun = function(){
+                let z = 30;
+                console.log(`Inside inner function (${x}, ${y}, ${z})`)
+            }
+            console.log(`Inside outer function (${x},${y})`)
+
+            innerFun(); //function call
+        }
+
+        outerFun(3);//function
+    </script>
+</body>
+
+</html>

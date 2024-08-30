@@ -1,0 +1,369 @@
+Synchronous Vs Asynchronous
+===========================
+-> Synchronous means the code runs in a particular sequence of instructions given in the program.
+-> Each instruction waits for the previous instruction to complete its execution.
+-> Synchronous basically means that you can only execute one thing at a time
+-> Due to synchronous programming, sometimes important instructions get blocked due to some previous instructions, which causes a delay in the UI.
+
+synchronous.java
+
+function first(){
+    console.log('function - 1')
+}
+
+let second = () =>{ 
+    console.log('function - 2')
+    for(let i=1; i<=1000000; i++){
+        console.log(`${i}`)
+    }
+}
+
+let third = function(){
+    console.log('function - 3')
+}
+
+first();
+second();
+third();
+
+
+--- index.html ---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>synchronous</title>
+</head>
+<body>
+    <script src="synchronous.js"></script>
+</body>
+</html>
+
+
+
+-> Asynchronous code execution allows to execute next instructions immediately and doesn't block the flow
+-> Asynchronous means that you can execute multiple things at a time and you don't have to finish executing the current thing in order to move on to next one
+
+asynchronous.js
+
+function first(){
+    console.log('function - 1')
+}
+
+let second = () =>{ 
+    setTimeout(() => {
+            console.log('function - 2')
+            for(let i=1; i<=1000000; i++){
+                console.log(`${i}`)
+            }
+        }, 0);
+}
+
+let third = function(){
+    console.log('function - 3')
+}
+
+first();
+second();
+third();
+
+---- index.html -----
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>asynchronous</title>
+</head>
+<body>
+    <script src="asynchronous.js"></script>
+</body>
+</html>
+
+
+
+Callback Vs Promises Vs Async/Await
+===================================
+
+-> A callback is a function passed as an argument to another function.
+-> A callback allow a function to call another function
+-> A call back function can run after another function has finished.
+-> A JavaScript callback is a function which is to be executed after another function has finished execution.
+A more formal definition would be - Any function that is passed as an argument to another function so that it can be executed in that other function is called as a callback function.
+
+   <script>
+     setTimeout(() => {
+		 alert('callback function');
+	 }, 1000);
+   </script>
+
+setTimeout() is an asynchronous function, meaning that the timer function will not pause execution of other functions in the functions stack
+
+
+-- callback.js ---
+function first(){
+    console.log('function - 1')
+}
+
+let second = (callback) =>{ 
+    setTimeout(() => {
+            console.log('function - 2')
+            for(let i=1; i<=1000000; i++){
+                console.log(`${i}`)
+            }
+
+            callback(); //calling third()
+        }, 5000);
+}
+
+let third = function(){
+    console.log('function - 3')
+}
+
+first();
+second(third);
+
+
+--- callbacks.html ---
+<body>
+    <nav>
+        <h2>Callback in Java Script</h2>
+    </nav>   
+
+    <script src="callbacks.js"></script>
+
+
+
+ 
+callback.js
+
+/*
+1.Passing 10 as the initial value to Step1
+2.If there is no error, then passing the result to Step2
+3.If there is no error again, then passing the result to Step3
+4.Finally, printing the result.
+*/
+
+function step1(value, callback) {	
+  callback(value + 10, false);
+}
+
+function step2(value, callback) {
+  callback(value + 10, false);
+}
+
+function step3(value, callback) {
+  callback(value + 10, false);
+}
+
+
+step1(10, function(result1, error) {
+   if (!error) {
+     step2(result1, function(result2, error) {
+	if (!error) {
+	   step3(result2, function(result3, error) {
+	     if (!error) {
+		console.log('Result= ' + result3);
+	     }
+	   });
+	}
+      });
+  }
+});
+
+
+
+
+A callback is a function passed as an argument to another function.
+
+Callback Hell : Nested callbacks stacked below one another forming a pyramid structure. (Pyramid of Doom). This style of programming becomes difficult to understand & manage
+
+Callback Hell Solutions - 1 Split Callbacks into Smaller functions
+
+step1(10, function(result1, error){
+  if(!error)
+    return result1;
+});
+
+function step1(value, callback){
+  let result1 = callback(value + 10, false);
+  step2(result1, function(result2, error){
+     if(!error)
+       return result2;
+   });
+}
+
+function step2(value, callback){
+  let result2 = callback(value + 10, false);
+  step3(result2, function(result3, error){
+     if(!error)
+       return result3;
+  });
+}
+
+
+function step3(value, callback){
+ let result3 = callback(value + 10, false);
+ console.log(result3);
+}
+
+
+<!-- nested callbacks-->
+<script>
+    function callbackHell(){
+        setTimeout(() => {
+            console.log('1');
+            setTimeout(() => {
+                console.log('2');;
+                setTimeout(() => {
+                    console.log('3')
+                }, 1000)
+            }, 1000)
+        }, 3000)
+    }
+
+  callbackHell();  
+</script>
+
+-- issues
+1) multiple nested callbacks
+2) issue in handling error
+3) response of one callback cannot be given as an input to another callback 
+--------------------------------------------------------------------------------------------
+
+Callback Hell Solution-2  - Promises
+
+Promises in Java Script
+-----------------------
+
+Promise is for "eventual" completion of task. It is an object in JS.
+It is a solution to callback hell.
+
+-- to initialize a Promise
+let promise = new Promise( (resolve, reject) => { .... } )
+
+Function with 2 handlers resolve & reject are callbacks provided by JS
+
+"Producing code" is code that can take some time
+"Consuming code" is code that must wait for the result
+A Promise is an Object that links Producing code and Consuming code
+
+A Promise contains both the producing code and calls to the consuming code:
+
+A Promise is an object representing the eventual completion or failure of an asynchronous operation and its resulting value.
+
+A JavaScript Promise object can be:
+ Pending : the result is undefined
+ Resolved : the result is a value (fulfilled)	resolve( result )
+ Rejected : the result is an error object	reject( error )
+
+
+
+consuming promise
+
+promise.then(...)
+       .then(...)
+       .then(...)
+       .catch()
+
+Example:
+  <script>
+     //initializing promise
+     const ride = new Promise((resolve, reject) => {
+		 let arrived = false;
+		 if(arrived)
+		   resolve("driver arrived");
+	     else
+		   reject("book another cab");
+	 });
+   </script>
+
+   <script>
+     // consuming promise
+     ride.then((value, data) => {
+		 console.log(value);		 
+	 }).catch(error => {
+		 console.log(error);
+	 });
+   </script>
+
+
+
+function step1(value, error) {
+	return new Promise((resolve, reject) => {
+		if (!error) {
+			resolve(value + 10);
+		} else {
+			reject('Something went wrong');
+		}
+	});
+}
+
+function step2(value, error) {
+	return new Promise((resolve, reject) => {
+		if (!error) {
+			resolve(value + 10);
+		} else {
+			reject('Something went wrong');
+		}
+	});
+}
+
+function step3(value, error) {
+	return new Promise((resolve, reject) => {
+		if (!error) {
+			resolve(value + 10);
+		} else {
+			reject('Something went wrong');
+		}
+	});
+}
+
+step1(10, false)
+ 	.then((result1) => step2(result1, false))
+ 	.then((result2) => step3(result2, false))
+ 	.then((result3) => console.log(result3))
+ 	.catch((error) => console.log(error));
+
+
+Available Promise State and Values
+> Pending (undefined)
+> Fullfilled (resolved value)
+> Rejected (reason for rejection)
+
+
+-----------------------------------------------------------------------------------
+fetch API - To retrieve and send data asynchronously
+
+	
+Async-Await
+
+-> asyn and await make promises easier to write
+-> async makes a function to return a Promise
+-> await makes a function to wait for a promise
+-> await operator is used to wait for a Promise. It can only be used inside an async function
+
+
+What is the need of Async/ Await
+
+-> issue - chaining of promises
+step1(10, false)
+ 	.then((result1) => step2(result1, false))
+ 	.then((result2) => step3(result2, false))
+ 	.then((result3) => console.log(result3))
+ 	.catch((error) => console.log(error));		if the number of promises increases
+
+use try...catch for exception handling
+
+Async function always returns a promise
+Await will take the promise and converts to actual result.
+
+
+
+
+
+
+

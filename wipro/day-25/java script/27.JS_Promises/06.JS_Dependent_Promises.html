@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Promises in JS</title>
+</head>
+
+<body>
+    <nav>
+        <h2>Java Script | Dependent Promises</h2>
+    </nav>
+    <script>
+
+        let doCourse = function(){
+            return new Promise((resolve, reject) => {
+                //doing course
+                let courseDone = true
+                if (courseDone)
+                    resolve('Course Done')
+                else
+                    reject(new Error('Course NOT Done'))
+            })
+        }
+
+        /* -- doing Project Promise ---*/
+        let doProject = ()=>{
+            return new Promise((resolve, reject) => {
+            //doing project
+            let projectDone = true
+            if (projectDone)
+                resolve('Project Done')
+            else
+                reject(new Error('Project NOT Done'))
+        })
+        }
+
+        /* -- doing Technical Interview Promise ---*/
+        let doTechnicalRound = ()=>{
+            return new Promise((resolve, reject) => {
+            //doing Technical Round
+            let TRCleared = true
+            if (TRCleared)
+                resolve('Technical Round Cleared')
+            else
+                reject(new Error('Technical Round NOT Done'))
+        })
+        }
+
+
+        /* -- doing Manager Interview Promise ---*/
+        let doManagerRound = ()=>{
+            return new Promise((resolve, reject) => {
+            //doing Manager Round
+            let MRCleared = true
+            if (MRCleared)
+                resolve('Manager Round Cleared')
+            else
+                reject(new Error('Manager Round NOT Done'))
+        })
+        }
+        /* -- doing HR Interview Promise ---*/
+        let doHRRound = function(){
+            return new Promise((resolve, reject) => {
+            //doing HR Round
+            let HRCleared = true
+            if (HRCleared)
+                resolve('GOT APPOINTMENT LETTER')
+            else
+                reject(new Error('JOB Rejected'))
+        })
+        }
+
+        /*
+        let p = doCourse()
+        console.log(p)
+        */
+
+        doCourse().then((message)=>{
+            console.log(message)
+            doProject().then((msg)=>{
+                console.log(msg)
+                doTechnicalRound().then((msg)=>{
+                    console.log(msg)
+                    doManagerRound().then((msg)=>{
+                        console.log(msg)
+                        doHRRound().then((message)=>{
+                            console.log(message)
+                        }).catch(err=>console.log(err.toString()))
+                    })
+                })    
+            })
+        })
+        .catch((err)=>{
+            console.log(err.toString())
+        })
+        </script>
+</body>
+
+</html>

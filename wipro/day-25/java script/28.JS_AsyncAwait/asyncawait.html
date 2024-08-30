@@ -1,0 +1,14 @@
+<script>
+    async function getUsers() {
+        const response = await fetch('https://api.github.com/users'); //await will wait until the fetch promise is fulfilled
+        //console.log(response)
+        const users = await response.json();
+        //console.log(users)
+        for (let user of users) {
+            let { id, login, type } = user;
+            console.log(`ID: ${id} | Name: ${login} | Type: ${type}`)
+        }
+    }
+
+    getUsers();
+</script>

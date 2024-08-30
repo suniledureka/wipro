@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Promises in JS</title>
+</head>
+<body>
+    <nav>
+        <h2>Java Script | Promises</h2>
+    </nav>
+    <script>
+        let promiseToCleanRoom = new Promise(function(resolve, reject){
+            //cleaning room
+            let isCleaned = false
+            if(isCleaned)
+              resolve('Cleaned')
+            else
+              reject('NOT Cleaned')  
+        })
+
+        promiseToCleanRoom.then((message)=>{
+            console.log(`Room is ${message}`)
+        })
+        .catch((errMsg)=>{
+            console.log(`Room is ${errMsg}`)
+        })
+    </script>
+</body>
+</html>

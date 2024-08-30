@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Callbacks</title>
+</head>
+<body>
+    <nav>
+        <h2>Java Script | Callbacks</h2>
+    </nav>
+    <script>
+        let sum = (a,b)=>{
+            return a+b
+        }
+
+        let diff = (a,b)=>{
+            return a-b
+        }
+
+
+        let calculate = function(x,y,callback){            
+           let result = callback(x,y)
+           return result
+        }
+    </script>
+    <script>
+        let output;
+        output = calculate(4,3,sum)
+        console.log(output)
+
+        output = calculate(7,2,diff)
+        console.log(output)
+
+        output = calculate(5,4, (a,b)=>{
+            return a*b
+        })
+        console.log(output)        
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Promises in JS</title>
+</head>
+<body>
+    <nav>
+        <h2>Java Script | Dependent Promises</h2>
+    </nav>
+    <script>
+        /* -- doing course Promise---*/
+        let doCourse = new Promise((resolve,reject)=>{
+            //doing course
+            let courseDone = true
+            if(courseDone)
+              resolve('Course Done')
+            else
+              reject(new Error('Course NOT Done'))  
+        })
+
+        /* -- doing Project Promise ---*/
+        let doProject = new Promise((resolve,reject)=>{
+            //doing project
+            let projectDone = true
+            if(projectDone)
+             resolve('Project Done')
+            else
+             reject(new Error('Project NOT Done')) 
+        })
+
+        /* -- doing Technical Interview Promise ---*/
+        let doTechnicalRound = new Promise((resolve,reject)=>{
+            //doing Technical Round
+            let TRCleared = true
+            if(TRCleared)
+             resolve('Technical Round Cleared')
+            else
+             reject(new Error('Technical Round NOT Done')) 
+        })        
+
+
+        /* -- doing Manager Interview Promise ---*/
+        let doManagerRound = new Promise((resolve,reject)=>{
+            //doing Manager Round
+            let MRCleared = true
+            if(MRCleared)
+             resolve('Manager Round Cleared')
+            else
+             reject(new Error('Manager Round NOT Done')) 
+        })  
+
+        /* -- doing HR Interview Promise ---*/
+        let doHRRound = new Promise((resolve,reject)=>{
+            //doing HR Round
+            let HRCleared = true
+            if(HRCleared)
+             resolve('GOT APPOINTMENT LETTER')
+            else
+             reject(new Error('Failed in HR Round'))             
+        }) 
+
+        //console.log(doCourse)               
+        doCourse.then((message)=>{
+            console.log(message)
+            doProject.then((message)=>{
+                console.log(message)
+                doTechnicalRound.then((message)=>{
+                    console.log(message)
+                    doManagerRound.then((message)=>{
+                        console.log(message)
+                        doHRRound.then((msg)=>{
+                            console.log(msg)
+                        }) 
+                        .catch((err)=>{
+                        console.log(err.toString())
+                    })                       
+                    })                    
+                })
+            })  
+            .catch((error)=>{
+                console.log(error.toString())
+            })          
+        })
+        .catch((error)=>{
+            console.log(error.toString())
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Promises in JS</title>
+</head>
+<body>
+    <nav>
+        <h2>Java Script | Promises</h2>
+    </nav>
+    <script>
+        let cleanRoom = function(){
+            return new Promise((resolve,reject)=>{
+               let isCleaned = true
+               if(isCleaned)
+                 resolve('Room Cleaned')
+               else
+                 reject('Room NOT Cleaned')   
+            })
+        }
+
+        let removeGarbage = function(){
+            return new Promise((resolve,reject)=>{
+               let isRemoved = true
+               if(isRemoved)
+                 resolve('Garbage Removed')
+               else
+                 reject('Garbage is NOT Removed')   
+            })
+        }        
+
+        let winIceCream = function(){
+            return new Promise((resolve, reject)=>{
+                resolve('Won Ice Cream')
+            })
+        }
+        
+        /*
+        let p = cleanRoom()
+        console.log(p)
+        */
+
+        /*
+        cleanRoom().then((msg)=>{
+            console.log(msg);
+        }).catch((err)=>{
+            console.log(err);
+        })
+        */
+        //cleanRoom().then((msg)=>console.log(msg)).catch((error)=>console.log(error))
+        
+        
+        cleanRoom().then((msg)=>{
+            console.log(msg)
+            return removeGarbage().then((msg)=>{
+                console.log(msg)
+                return winIceCream().then((msg)=>{
+                    console.log(msg)
+                })
+            })
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+       
+    </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!-- chiaining promises -->
+<script>
+    const promise1 = new Promise((resolve,  reject) => {
+        setTimeout(() => {
+            resolve('promise-1 resolved status')
+        }, 5000)        
+    })
+    console.log(promise1);
+</script>
+<script>
+    promise1.then((response1) => {
+          console.log(`${response1}`);
+          return response1 + ' & chaining promise';
+        })
+        .then((response2) => {
+            console.log(response2);
+        })
+</script>
