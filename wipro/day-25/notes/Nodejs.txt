@@ -1,0 +1,685 @@
+-> Node.js is an open source server environment.
+-> Node.js allows you to run JavaScript on the server.
+-> Node.js uses JavaScript on the server
+-> Node.js is free
+-> Node.js runs on various platforms (Windows, Linux, Unix, Mac OS X, etc.)
+-> Node.js uses asynchronous programming!
+
+-> Node.js is a cross-platform environment and library for running JavaScript applications outside the browser. It is used for creating server-side and networking web applications. It is open source and free to use. 
+
+Node.js is a platform built on Chrome's JavaScript runtime (V8 Engine) for easily building fast and scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
+
+
+Node.js also provides a rich library of various JavaScript modules to simplify the development of web applications.
+
+    Node.js = Runtime Environment + JavaScript Library 
+
+
+Different parts of Node.js  -  picture
+
+
+What Can Node.js Do?
+
+-> Node.js can generate dynamic page content
+-> Node.js can create, open, read, write, delete, and close files on the server
+-> Node.js can collect form data
+-> Node.js can add, delete, modify data in your database
+
+What is a Node.js File?
+
+-> Node.js files contain tasks that will be executed on certain events
+-> A typical event is someone trying to access a port on the server
+-> Node.js files must be initiated on the server before having any effect
+-> Node.js files have extension ".js"
+
+
+
+Practicals - 1
+-----------------------------------------------------
+1.js
+
+console.log("Node.js Example");
+
+Node.js command prompt
+cmd> node 1.js
+-----------------------------------------------------
+Node.js Modules 
+-> same as JavaScript libraries
+-> Node.js has a set of built-in modules
+-> require() function is used to include a modules
+
+var http = require('http');   -- now application has access to HTTP module and is able to create a server
+
+
+=== Node.js Console ====
+
+The Node.js console module provides a simple debugging console similar to JavaScript console mechanism provided by web browsers.
+
+There are three console methods that are used to write any node.js stream:
+
+    console.log()
+    console.error()
+    console.warn()
+
+The console.log() function is used to display simple message on console. We can also use format specifier in console.log() function.
+The console.error() function is used to render error message on console.
+The console.warn() function is used to display warning message on console.
+
+2.js
+
+console.log("Node.js Example");
+console.log('My Name is %s', 'Sunil');
+
+const name = 'John';  
+console.warn(`Welcome to Wipro Mr/Mrs ${name}!`);   
+
+console.log(new Error('This is an error'));
+
+-----------------------------------------------------
+
+3. js  Node.js web-based Example
+
+A node.js web application contains the following three parts:
+
+- import required modules: The "require" directive is used to load a Node.js module.
+- create server: You have to establish a server which will listen to client's request similar to Apache HTTP Server.
+- read request and return response: Server created in the second step will read HTTP request made by client which can be a browser or console and return the response.
+
+var http = require("http");  
+http.createServer(function (request, response) {  
+       // Send the HTTP header, HTTP Status: 200 : OK & Content Type: text/plain  
+       response.writeHead(200, {'Content-Type': 'text/plain'});  
+       response.end('Welcome to Wipro Tech\n');  //Send the response body as "Hello World"  
+    })
+   .listen(8080);  
+
+    // Console will print the message  
+console.log('Server running at http://localhost:8080/');  
+
+
+Node.js command prompt
+cmd>node 3.js
+
+http://localhost:8080
+
+
+let http = require("http"); 
+http.createServer(function (request, response) { 
+    response.writeHead(200, {'Content-Type': 'text/html'});  
+    response.end('<p style=font-size:20px;color:blue>Welcome to Wipro Tech</p>');  
+ })
+ .listen(8080, function(){
+     console.log('Server running at http://localhost:8080/');  
+ });  
+
+
+
+-------------------------------------------------------------
+Our Own Modules
+
+You can create your own modules, and easily include them in your applications.
+
+-- dateModule.js --
+
+exports.myDateTime = function () {
+  return Date();
+}; 
+
+-- the "exports" keyword to make properties and methods available outside the module file.
+
+4.js
+
+let dt = require('./dateModule')
+console.log(dt.myDateTime());
+
+cmd>node 4.js
+
+----------------------------------------------------------------------
+5.js
+
+var http = require('http');
+var dt = require('./dateModule');
+
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/html'});
+  res.write("Today is : <strong>" + dt.myDateTime() + '</strong>');
+  res.end();
+}).listen(8080); 
+
+console.log("server running on http://localhost:8080/");
+
+---------------------------------------------------------------------
+
+Node.js HTTP Module
+
+--> this module is used to transfer data over the Hyper Text Transfer Protocol (HTTP).
+--> to include HTTP module - 
+     var http = require('http'); 
+
+Node.js as a Web Server
+The HTTP module can create an HTTP server that listens to server ports and gives a response back to the client.
+Use the createServer() method to create an HTTP server:
+
+http.createServer(function (req, res) {
+  res.write('Hello World!'); //write a response to the client
+  res.end(); //end the response
+}).listen(8080); //the server object listens on port 8080 
+
+The function passed into the http.createServer() method, will be executed when someone tries to access the computer on port 8080.
+
+---------------------------------------------------------------------
+
+Add an HTTP Header
+
+If the response from the HTTP server is supposed to be displayed as HTML, you should include an HTTP header with the correct content type:
+Example
+var http = require('http');
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/html'});
+  res.write('Hello World!');
+  res.end();
+}).listen(8080); 
+
+The first argument of the res.writeHead() method is the status code, 200 means that all is OK, the second argument is an object containing the response headers.
+-----------------------------------------------------------------------------
+
+Read the Query String
+---------------------
+
+The function passed into the http.createServer() has a "request" argument that represents the request from the client, as an object (http.IncomingMessage object).
+
+This object has a property called "url" which holds the part of the url that comes after the domain name:
+
+
+6.js
+
+let http = require('http');
+http.createServer(function (request, response) {
+  response.writeHead(200, {'Content-Type': 'text/html'});
+  //console.log(request)
+  response.write("URL = " + request.url+'<br><br>');
+  response.write('Method = ' + request.method)
+  response.end();
+}).listen(8080, () => console.log("server running on http://localhost:8080/")); 
+
+
+
+
+http://localhost:8080/sunil
+
+-----------------------------------------------------------------------------
+
+Split the Query String
+
+There are built-in modules to easily split the query string into readable parts, such as the URL module
+
+7.js
+
+let http = require('http');
+let url = require('url');
+
+http.createServer(function (request, response) {
+  response.writeHead(200, {'Content-Type': 'text/html'});
+  let q = url.parse(request.url, true).query;
+  let txt = q.user + " " + q.pass;
+  res.end(txt);
+}).listen(8080);
+console.log('Server listening on http://localhost:8080/');
+
+http://localhost:8080/login?user=admin&pass=12345
+
+-----------------------------------------------------------------------------
+
+Node.js File System Module
+
+The Node.js file system module allows you to work with the file system on your computer.
+
+	var fs = require('fs'); 
+
+Common use for the File System module:
+
+-> Read files
+-> Create files
+-> Update files
+-> Delete files
+-> Rename files
+
+
+fs.readFile() method is used to read files on your computer.
+
+webpage.html
+
+<!doctype html>
+<html lang="en">
+ <head>
+  <title>my age</title>
+ </head>
+ <body>
+  <h1>My Header</h1>
+  <p>My paragraph.</p>
+ </body>
+</html>
+
+
+8.js
+
+var http = require('http');
+var fs = require('fs');
+
+http.createServer(function (req, res) {
+  fs.readFile('webpage.html', function(err, data) {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write(data);
+    return res.end();
+  });
+}).listen(8080); 
+
+console.log('Server listening on http://localhost:8080/');
+
+-----------------------------------------------------------------------------
+Create Files
+
+The File System module has methods for creating new files:
+
+-> fs.appendFile()
+-> fs.open()
+-> fs.writeFile()
+
+The fs.appendFile() method appends specified content to a file. If the file does not exist, the file will be created:
+
+9.js
+
+var fs = require('fs');
+
+fs.appendFile('java.txt', 'Java is a high level Programming Language', function (err) {
+  if (err) 
+      throw err;
+  console.log('Saved!');
+}); 
+-----------------------------------------------------------------------------
+
+The fs.open() method takes a "flag" as the second argument, if the flag is "w" for "writing", the specified file is opened for writing. If the file does not exist, an empty file is created
+
+10.js
+
+var fs = require('fs');
+
+fs.open('java.txt', 'w', function (err) {
+  if (err) 
+      throw err;
+  console.log('Saved!');
+}); 
+-----------------------------------------------------------------------------
+
+The fs.writeFile() method replaces the specified file and content if it exists. If the file does not exist, a new file, containing the specified content, will be created:
+
+11.js
+
+var fs = require('fs');
+
+fs.writeFile('java1.txt', 'Java is a Programming Language', function (err) {
+  if (err) 
+	 throw err;
+
+  console.log('Saved!');
+}); 
+
+-----------------------------------------------------------------------------
+
+Update Files
+
+The File System module has methods for updating files:
+
+-> fs.appendFile()
+-> fs.writeFile()
+
+The fs.appendFile() method appends the specified content at the end of the specified file:
+
+12.js
+
+var fs = require('fs');
+
+fs.appendFile('java.txt', 'Java is a Programming Language\n', function (err) {
+  if (err) 
+	 throw err;
+
+  console.log('Saved!');
+}); 
+
+
+-----------------------------------------------------------------------------
+
+The fs.writeFile() method replaces the specified file and content:
+
+13.js
+
+var fs = require('fs');
+
+fs.writeFile('java.txt', 'This is modified content\n', function (err) {
+  if (err) 
+	 throw err;
+
+  console.log('File Updated!');
+}); 
+
+-----------------------------------------------------------------------------
+
+fs.unlink() method deletes the specified file
+
+14.js
+
+var fs = require('fs');
+
+fs.unlink('java.txt', function (err) {
+  if (err) 
+	 throw err;
+
+  console.log('File Deleted!');
+}); 
+
+-----------------------------------------------------------------------------
+
+fs.rename() method renames the specified file:
+
+15.js
+
+var fs = require('fs');
+
+fs.rename('java.txt', 'java_updated.txt', function (err) {
+  if (err) 
+	 throw err;
+
+  console.log('File Renamed!');
+}); 
+
+-----------------------------------------------------------------------------
+Node.js URL Module
+
+-> URL module splits up a web address into readable parts.
+	var url = require('url'); 
+
+-> url.parse() -- Parse an address with the url.parse() method, and it will return a URL object with each part of the address as properties
+
+16.js
+
+var url = require('url');
+var address = 'http://localhost:8080/default.htm?year=2024&month=August';
+var q = url.parse(address, true);
+
+console.log(q.host); //returns 'localhost:8080'
+console.log(q.pathname); //returns '/default.htm'
+console.log(q.search); //returns '?year=2024&month=August'
+
+var qdata = q.query; //returns an object: { year: 2024, month: 'August' }
+console.log(qdata.month); //returns 'August'
+-----------------------------------------------------------------------------
+
+Node.js File Server
+
+page1.html
+
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Java</h1>
+<p>Java is a Programming Language</p>
+</body>
+</html> 
+
+page2.html
+
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Python</h1>
+<p>Python is a Programming Language</p>
+</body>
+</html> 
+
+17.js
+
+var http = require('http');
+var url = require('url');
+var fs = require('fs');
+
+http.createServer(function (req, res) {
+  var q = url.parse(req.url, true);
+  var filename = "." + q.pathname;
+
+  fs.readFile(filename, function(err, data) {
+    if (err) {
+      res.writeHead(404, {'Content-Type': 'text/html'});
+      return res.end("404 Not Found");
+    } 
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write(data);
+    return res.end();
+  });
+}).listen(8080); 
+
+http://localhost:8080/page1.html
+http://localhost:8080/page2.html
+-----------------------------------------------------------------------------
+
+Node.js NPM
+
+-> NPM is a package manager for Node.js packages
+-> www.npmjs.com hosts thousands of free packages to download and use.
+-> The NPM program is installed on your computer when you install Node.js
+
+-> A package in Node.js contains all the files you need for a module.
+-> Modules are JavaScript libraries you can include in your project.
+
+Example:
+
+Download "upper-case":
+
+cmd> npm install upper-case 
+
+NPM creates a folder named "node_modules", where the package will be placed. All packages you install in the future will be placed in this folder.
+
+18.js
+
+var http = require('http');
+var uc = require('upper-case');
+
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/html'});
+  res.write(uc.upperCase("This text comes in uppercase!"));
+  res.end();
+}).listen(8080); 
+
+-----------------------------------------------------------------------------
+
+Events in Node.js
+
+-> Every action on a computer is an event. Like when a connection is made or a file is opened.
+-> Objects in Node.js can fire events, like the readStream object fires events when opening and closing a file:
+
+19.js
+
+var fs = require('fs');
+var rs = fs.createReadStream('./page1.html');
+rs.on('open', function () {
+  console.log('The file is open');
+}); 
+
+======================================= ******************* ====================================================
+
+-----------------------------------------------------------------------------
+
+Events Module
+
+Node.js has a built-in module, called "Events", where you can create-, fire-, and listen for- your own events.
+
+To include the built-in Events module use the require() method. In addition, all event properties and methods are an instance of an EventEmitter object. To be able to access these properties and methods, create an EventEmitter object:
+
+var events = require('events');
+var eventEmitter = new events.EventEmitter(); 
+
+The EventEmitter Object
+
+You can assign event handlers to your own events with the EventEmitter object.
+In the example below we have created a function that will be executed when a "scream" event is fired.
+To fire an event, use the emit() method.
+
+20.js
+
+var events = require('events');
+var eventEmitter = new events.EventEmitter();
+
+//Create an event handler:
+var myEventHandler = function () {
+  console.log('I hear a scream!');
+}
+
+//Assign the event handler to an event:
+eventEmitter.on('scream', myEventHandler);
+
+//Fire the 'scream' event:
+eventEmitter.emit('scream');
+-----------------------------------------------------------------------------
+
+Node.js Upload Files
+
+There is a very good module for working with file uploads, called "Formidable".
+The Formidable module can be downloaded and installed using NPM:
+
+cmd>npm install formidable
+
+var formidable = require('formidable'); 
+
+21.js
+
+var http = require('http');
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/html'});
+  res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
+  res.write('<input type="file" name="filetoupload"><br>');
+  res.write('<input type="submit">');
+  res.write('</form>');
+  return res.end();
+}).listen(8080); 
+
+
+fileupload.js
+
+var http = require('http');
+var formidable = require('formidable');
+
+http.createServer(function (req, res) {
+  if (req.url == '/fileupload') {
+    var form = new formidable.IncomingForm();
+
+    form.parse(req, function (err, fields, files) {
+      res.write('File uploaded');
+      res.end();
+    });
+  } else {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
+    res.write('<input type="file" name="filetoupload"><br>');
+    res.write('<input type="submit">');
+    res.write('</form>');
+    return res.end();
+  }
+}).listen(8080); 
+
+-----------------------------------------------------------------------------
+
+--- Save the file ---
+
+var http = require('http');
+var formidable = require('formidable');
+var fs = require('fs');
+
+http.createServer(function (req, res) {
+  if (req.url == '/fileupload') {
+    var form = new formidable.IncomingForm();
+
+    form.parse(req, function (err, fields, files) {		
+      var oldpath = files.filetoupload[0].filepath;
+	  console.log(oldpath)
+      var newpath = 'D:/' + files.filetoupload[0].originalFilename;
+      // Read the file
+        fs.readFile(oldpath, function (err, data) {
+            if (err) throw err;
+            console.log('File read!');
+
+            // Write the file
+            fs.writeFile(newpath, data, function (err) {
+                if (err) throw err;
+                 res.write('File uploaded and moved!');
+                 res.end();
+                console.log('File written!');
+            });
+
+            // Delete the file
+            fs.unlink(oldpath, function (err) {
+                if (err) throw err;
+                console.log('File deleted!');
+            });
+        });
+ });
+  } else {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
+    res.write('<input type="file" name="filetoupload"><br>');
+    res.write('<input type="submit">');
+    res.write('</form>');
+    return res.end();
+  }
+}).listen(8080); 
+-----------------------------------------------------------------------------
+
+Simple REST based CRUD API
+
+var express = require("express"),
+bodyParser = require("body-parser"),
+server = express();
+
+//body parser for parsing request body
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({ extended: true }));
+
+//temperary store for `item` in memory
+var itemStore = [];
+
+//GET all items
+server.get('/item', function (req, res) {
+  res.json(itemStore);
+});
+
+//GET the item with specified id
+server.get('/item/:id', function (req, res) {
+  res.json(itemStore[req.params.id]);
+});
+
+//POST new item
+server.post('/item', function (req, res) {
+ itemStore.push(req.body);
+ res.json(req.body);
+});
+
+//PUT edited item in-place of item with specified id
+server.put('/item/:id', function (req, res) {
+ itemStore[req.params.id] = req.body
+ res.json(req.body);
+});
+
+//DELETE item with specified id
+server.delete('/item/:id', function (req, res) {
+ itemStore.splice(req.params.id, 1)
+ res.json(req.body);
+});
+
+//START SERVER
+server.listen(3000, function () {
+    console.log("Server running");
+})
+
+-----------------------------------------------------------------------------
+
+
+
+
