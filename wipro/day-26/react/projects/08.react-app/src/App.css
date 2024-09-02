@@ -1,0 +1,24 @@
+.navbar{
+    background-image: linear-gradient(to left, red 0%, yellow 100%);
+    padding: 10px 3px;
+  }
+.navbar h2{
+    margin: 0px;
+  }
+.card{
+    width:350px;
+    margin:20px;
+    color: white;
+    background: linear-gradient(to right,#2E3192 , #1BFFFF);
+    padding: 4px 6px;
+    border-radius:10px;
+    box-shadow: 0 0 10px black;
+    display: inline-block;    
+}
+.card-body{
+    text-align: justify;
+    font-size:18px;
+}
+.card h2{
+    color:black
+}

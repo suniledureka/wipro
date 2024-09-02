@@ -1,0 +1,9 @@
+.logo{
+    width: 200px;
+    height: 180px;
+    border-radius: 50%;
+    box-shadow:0 0 10px black;
+}
+.left-align{
+    text-align:left
+}
