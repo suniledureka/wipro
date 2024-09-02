@@ -1,0 +1,740 @@
+Multi Page web app vs Single Page web app
+=========================================
+
+-> In Multi Page web application, for every request new web page will be loaded at client side because of this lot of common data & common resources will be loaded multiple times at client side
+		Ex : www.axisbank.com
+
+-> In Single Page Application (SPA), common data and common resources will be loaded only once. For every request only body data will be updated.
+		Ex: angular.io / react.dev
+
+========
+React.js
+========
+-> React.js (or simply React) is an open source and popular JavaScript library 
+-> ReactJS is developed and maintained by Facebook - 2013
+-> React.js is widely used for building user interfaces (UIs) for web applications
+-> React allows developers to create reusable UI components and efficiently update and render those components when the underlying data changes
+-> React uses Virtual DOM
+-> React is component based
+-> React.js is the most popular front end library along with Angular and VueJS
+
+==== Learn with ChatGPT ====
+
+A ReactJS application is made up of multiple components, each component responsible for outputting a small, reusable piece of HTML code. 
+
+The components are the heart of all React applications. 
+
+These Components can be nested with other components to allow complex applications to be built of simple building blocks. 
+
+
+==> React JS is Component based Development <==
+
+In traditional web development - a page will have header , navigation, sidebar, main content area, cards in content area, footer etc
+Here we create index.html and we write the complete code in it and we create separate file index.css for styling and index.js for dynamic programming/ DOM manipulation.
+
+Ex: Facebook --> got around 30K components like Posts, Profiles, chatting, Advertisements, market place etc - each one is known as a component
+
+Ex: a Hotel - which has got different departments - entire hotel is not managed by a single person
+In complex application development like FB - we should use something like "Divide & Rule" approach.
+
+A small piece of UI is called as component. NavBar is a component, footer is a component, each Card is a component - card may have header component, footer component etc.
+
+each component is represented with a Custom Tag like <NavBar/>
+
+<html>
+ <body>
+   <Header />
+   <NavBar />
+..
+
+
+ReactJS uses virtual DOM based mechanism to fill data in HTML DOM. The virtual DOM works fast as it only changes individual DOM elements instead of reloading complete DOM every time.
+
+DOM Vs VirtualDOM   - https://www.geeksforgeeks.org/difference-between-virtual-dom-and-real-dom/
+
+1) Real DOM is also called as Physical DOM, Regular DOM
+2) Real DOM works at the browser level, every time it will create new memory instance, even for small changes in the web application
+3) It will load the entire web application at a time , so consumes more memory space - poor performance
+
+
+reactjs.org   https://react.dev/
+
+google "react google trends"  - React/Angular/Vuejs
+
+
+Pre-Requisites
+-> Basic Knowledge on HTML
+-> Basic Concepts in CSS
+-> Good Knowledge in Java Script with Functions and ES6 Features - arrow functions, spread operator, rest operator, destructuring etc
+-> Bootstrap 
+
+==================
+Environment Setup
+==================
+
+-> Download & Install NodeJS - https://nodejs.org/en
+
+cmd> node –v	
+cmd> node --version	
+cmd> npm --version
+cmd> npm –v		
+cmd> npx -v
+
+The npx stands for Node Package Execute 
+NPX comes with the npm, when you installed npm above 5.2.0 version then automatically npx will be installed. 
+It is an npm package runner that can execute any package that you want from the npm registry without even installing that package
+
+
+Dev Envrionment Setup
+-> Node   node --version   minimum 5.2.0 (npx)
+-> Browser Chrome
+-> Text Editor  - Visual Studio Code (extension - code spell checker)
+-> React Developer Tools - a google chrome extension
+React Developer Tools is a Chrome DevTools extension for the open-source React JavaScript library. It allows you to inspect the React component hierarchies in the Chrome Developer Tools.
+
+Profiler and Components in Chrome (Inspect Element)
+
+
+
+------------------------------
+Install React App - Approach-1
+------------------------------
+-- create-vite is a tool to quickly start a project from a basic template for popular frameworks. --
+
+> npm create vite@latest 01.react-app
+
+> npm install     --- to install all the mmodules present in package.json
+
+> npm run dev
+
+http://localhost:5173/
+
+------------------------------
+Install React App - Approach-2
+-------------------------------
+
+https://create-react-app.dev/
+
+cmd> npm install create-react-app -g
+cmd> create-react-app 02.react-app
+
+	OR
+
+cmd> npx create-react-app 03.react-app
+
+
+https://github.com/facebook/create-react-app
+
+-- using npx
+cmd> npx create-react-app 01.react-app
+
+-- using npm
+cmd> npm init react-app 01.react-app
+
+-- using yarn
+cmd> yarn create react-app 01.react-app
+
+Yarn is an established open-source package manager used to manage dependencies in JavaScript projects. It assists with the process of installing, updating, configuring, and removing packages dependencies.
+Yarn is generally faster than NPM
+
+===============================================================================
+developers can develop reactjs application with Java Script or with TypeScript
+
+cmd> npx create-react-app my-app --template typescript
+
+in Javascript .jsx extension & in TypeScript .tsx extension
+===============================================================================
+
+
+to run the application
+> cd 03.react-app		
+> npm start  
+
+to run the application in a specific port
+=> package.json (Windows):
+"scripts": {
+    "start": "set PORT=4000 && react-scripts start"
+}
+
+
+
+
+NPM (Node Package Manager) is the default package manager employed in JavaScript runtime environment in Node.js. 
+
+Before npm 5.0.0, it was necessary to add --save after package name because it will save the installed package to package.json file in the dependency section.
+
+--------------------------------------------------------------------
+NPM Vs NPX
+--------------------------------------------------------------------
+
+While NPM is used as a package manager, NPX, on the other hand, is used to execute Javascript packages (Node Package Runner).
+
+NPM stands for Node Package Manager. It is a Javascript package manager and the default package manager for Node projects. NPM is installed when NodeJS is installed on a machine. This database is called the NPM Registry.
+
+NPX stands for Node Package eXecute. It is simply an NPM package runner. It allows developers to execute any Javascript Package available on the NPM registry without even installing it. NPX is installed automatically with NPM version 5.2.0 and above.
+
+NPM is a package manager used to install, delete, and update Javascript packages on your machine.	
+NPX is a package executer, and it is used to execute Javascript packages directly, without installing them.
+
+-----------------------------------------------------------------
+Babel - is a java script compiler (new version of java script compiler)
+Webpack - bundling your resources
+
+make some changes in App.js
+<img src={logo} .../>
+<h1>react tutorial</h1>
+
+================
+Folder Structure
+================
+
+node_modules -- contains all dependencies required by the app. Main dependencies also listed in package.json - all our dependencies , when we work with source control we normally ignore this folder
+
+package.json -- manifest file of our project which contains the metadata of project with project name, version, dependecnies, scriptsetc. Every Node.js project has a package.json and it contains info about our project, for example list of dependencies and scripts
+
+package-lock.json -- A snapshot of the entire dependency tree. The purpose of package-lock.json is to ensure that the same dependencies are installed consistently across different environments, such as development and production environments.  It also helps to prevent issues with installing different package versions, which can lead to conflicts and errors.
+packaage-lock.json is automatically generated for any operations where npm modifies either the node_modules tree, or package.json. It describes the exact tree that was generated, such that subsequent installs are able to generate identical trees, regardless of intermediate dependency updates.
+
+/public - contains static assets including index.html (page template)
+
+/public/src - in simplest form it's the brain of our app. This is where we will do all of our work. 
+
+/src/index.js - is the JavaScript entry point.
+
+/public/index.html -- id="root" - our entire app, is the page template
+
+.gitignore - specifies which files source control (Git) should ignore
+
+README -- the markdown file where you can share more info about the project for example build instructions and summary
+
+==========================================
+delete "node_modules" folder
+
+
+cmd>npm install -- all the dependencies from package.json  where the list of dependencies are available
+cmd>npm start   -- will start the dev server
+
+public - index.html  
+     change <title>React Tutorial</title>
+
+==================
+Product Ready Code
+==================
+
+cmd>npm run build -- creates the production ready code, create the production build for our application - The "build" directory containing the production build is created within the root project folder.
+
+This build/static folder contains your CSS, JS and media files.
+Notice that for files within the build/static folder, a unique hash is appended to the file name. This hash code is generated based on the contents of the file itself, i.e., if the contents of the file change in the next build, the hash code (hence, the filename) will also change.
+
+Many .js files are generated and placed inside the build/static/js directory. These are called chunks. 
+
+[number].[hash].chunk.js
+
+Your application code within App.js will be placed inside the following file.
+main.[hash].js
+
+==============================================
+Run the following command to serve the build version in a static server. 
+	
+cmd>npm install -g serve
+cmd>serve -s build
+
+-- The app is now running in production mode
+
+==============================================
+
+How to tell if the React app is running in development mode or production mode?
+--------------------------------------------------------------------------------
+Step 1: Install the React Developer Tools extension to your browser.
+
+Step 2: Check the extension icon's background colour. Ensure yours react app is running, and the browser extension is active. 
+
+If the icon's background colour is red, the app is in development mode.
+And if the icon's background colour is black, the app is in production mode.
+
+
+
+src - contains the source code of our application
+src/index.js -- importing App component and placed that in "root" region
+             -- is the entry point
+
+.gitignore -- specifies which files will not be considered for Version Control
+           -- build will be created by the hosting provider for you
+
+README.md
+
+=================================
+React JS Application Control Flow
+=================================
+
+-> React is Component based
+-> Any component can be made with one html file, one css file and one java script file	    .html, .css, .js
+
+React have got its own templating language called as .jsx 	
+JSX = HTML + Java Script
+JSX - Java Script XML - Extension to Java Script
+
+JS is standard Javascript, JSX is an HTML-like syntax that you can use with React to (theoretically) make it easier and more intuitive to create React components.
+
+-> In React Architecture - we will be having one component "App Component" -> under App Component , we can create any number of components
+
+App Component contains ---> App.jsx/ App.js and App.css - two files required -> which will be auto generated
+
+-> the custom tag used to represent "App Component" is <App/>
+
+
+Example to create our own component - "Card Component" - we should develop "Card.jsx" and "Card.css" and will be represented with the custom tag <Card/>
+
+Component Names should start with capital letter
+
+Practical:
+Open Terminal in VSCode
+> npm start
+
+Control Flow:: localhost:3000 ====> public/index.html                                   <div id="root"></div>
+               src/index.js   -- Java Script Entry Point
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />   ----- custom tag made with App.js and App.css
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+
+In App.css --- change the animation time to 0.5s
+----------------------------------------------------------------------
+===================================
+Customize the default App Component
+===================================
+-> remove all code from src/App.css
+
+-> remove <header...> element from <div className="App> of src/App.js
+   remove  -> import logo from './logo.svg'
+
+-> check the page -- an empty page
+
+-> write following inside <div className="App"> of src/App.js
+    <div className="App">
+      <h2>Welcome to App Component</h2>
+    </div>
+
+ we got a global style sheet for ReactJS project -- index.css  (check it)
+   ---> remove all and keep body{margin: 0px}
+
+----------------------------------------------------------------------
+Remove Boilerplate
+
+--> remove src folder
+--> create src folder
+--> create index.js inside src
+--> VS Code > File Preferences > Keyboard Shortcuts 
+
+
+-- src/index.js ----
+
+//import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+
+function Wipro(){
+    const styles = {
+      color: "white",
+      textShadow: '0 0 10px black',
+      padding: "10px"
+    }
+
+    return(
+        /*
+        <h2 style = {{color: 'blue', textShadow: '0 0 10px black'}}>Wipro Technologies Limited</h2>
+        */
+        <div>
+            <h1 style={styles}>Wipro Technologies Limited</h1>
+            <h3 className="header">Gachibowli, Hyderabad, Telangana, India</h3>
+            <img src="../logo.png"/>
+        </div>    
+    )
+}
+
+//ReactDOM.render(<h1>Wipro Technologies Limited</h1>, document.getElementById('root'))
+//ReactDOM.render(<Wipro />, document.getElementById('root'))/*
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
+//root.render(<h1>Wipro Technologies Limited</h1>)
+root.render(<Wipro/>)
+
+--- src/index.css ----
+body{
+    text-align:center;
+}
+.header{
+    color:brown;
+}
+===============================================
+VS Code Extensions
+
+1. Live Server
+2. IntelliSense for CSS class names in HTML
+3. ES7 React/Redux/GraphQL/React-Native snippets
+4. Simple React Snippets
+
+===============================================
+Functional Components Vs Class based Components
+===============================================
+
+-> A functional component is just a plain JavaScript pure function that accepts props as an argument and returns a React element(JSX). 
+-> A class component requires you to extend from React.Component and create a render function that returns a React element. There is no render method used in functional components
+
+--- index.js ----
+import React from 'react';
+import ReactDOM from 'react-dom';
+const App = () => {
+   return(
+     <div>This is App Component</div>
+   )
+}
+
+ReactDOM.render(<App/>, document.getElementById('root'));
+
+cmd>npm start
+
+
+======================================================
+--- src/components/Header.js -----
+
+
+import React from 'react'
+import { createElement } from 'react'
+
+const Header = () => {
+  return (
+      //React.createElement('h2', {}, 'Wipro Technologies Limited')
+      //React.createElement('h2', {style: {color: 'blue'}}, 'Wipro Technologies Limited')
+      
+      React.createElement('div', {style: {backgroundColor: 'aquamarine', padding: '10px'}},
+                                    createElement('h2', {}, 'Wipro Technologies'),
+                                    createElement('img', {src: 'https://akm-img-a-in.tosshub.com/businesstoday/images/story/202310/wipro_2-sixteen_nine.jpg', width: '300px'})
+      ) 
+  )
+}
+
+export default Header
+
+--- src/components/Contents.jsx -----
+import React from 'react'
+import Logo from '../assets/logo.png'
+import './contents.css'
+
+const Contents = () => {
+  return (
+    <div className="left-align">
+      <img src={Logo} alt="" className="logo"/>
+      <h2>React.js Topics</h2>
+    </div>
+  )
+}
+
+export default Contents
+
+
+
+-- src/components/contents.css -----
+.logo{
+    width: 200px;
+    height: 180px;
+    border-radius: 50%;
+    box-shadow:0 0 10px black;
+}
+.left-align{
+    text-align:left
+}
+
+
+---- src/App.js ----
+import './App.css';
+import Contents from './components/Contents';
+import Header from './components/Header'
+
+function App() {
+  return (
+    <div className="App">
+      <Header />
+      <Contents />
+    </div>
+  );
+}
+
+export default App;
+
+
+
+======================================================
+<h3>2 + 4</h3>
+handle bars {} - <h3> {2 + 4} </h3>
+
+Curly braces { } are special syntax in JSX. It is used to evaluate a JavaScript expression during compilation. A JavaScript expression can be a variable, function, an object, or any code that resolves into a value.
+=======================================================
+Practicals #
+
+--- src/components/TopicsCard.jsx ---
+
+import React, { Component } from 'react'
+import './TopicsCard.css'
+
+export default class TopicsCard extends Component {
+  render() {
+    return (
+        <div className="card">
+            <h2>01. Introduction to React.js</h2>
+            <div className="card-body">                
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit totam architecto veniam pariatur reprehenderit eveniet sunt id deserunt soluta, minima, tenetur et quae recusandae voluptates doloremque ab! Tempore, voluptates nostrum.</p>
+            </div>
+        </div>
+    )
+  }
+}
+
+-- src/components/TopicsCard.css ----
+.card{
+    width:350px;
+    margin:20px;
+    color: white;
+    background: linear-gradient(to right,#2E3192 , #1BFFFF);
+    padding: 4px 6px;
+    border-radius:10px;
+    box-shadow: 0 0 10px black;
+    display: inline-block;    
+}
+.card-body{
+    text-align: justify;
+}
+.card h2{
+    color:black
+}
+
+
+--- src/components/EnvironmentSetup.jsx -----
+import React from 'react'
+
+export default function EnvironmentSetup() {
+    return (
+        <div className="card">
+            <h2>Environment Setup</h2>
+            <div className="card-body">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit totam architecto veniam pariatur reprehenderit eveniet sunt id deserunt soluta, minima, tenetur et quae recusandae voluptates doloremque ab! Tempore, voluptates nostrum.</p>
+            </div>
+        </div>
+    )
+}
+
+
+
+---- src/App.js ----
+import './App.css';
+import EnvironmentSetup from './components/EnvironmentSetup';
+import TopicsCard from './components/TopicsCard';
+
+function App() {
+  return (
+    <div>     
+        <h2 className="navbar">React.js Certification Training @ Wipro Academy</h2>
+        <TopicsCard />
+        <EnvironmentSetup />
+    </div>
+  );
+}
+
+export default App;
+
+
+======================================================
+---> in the new version (from 17 ) no need to import React from 'react'
+---> sometimes "hot reloading" may not work - means if you make any changes in css file or js file - it many not gets auto refreshed in page
+google for "create react app hot reloading not working"
+
+solutions --> in root folder - create a new file with name ".env" with content 
+FAST_REFRESH=false
+
+stop server and restart it
+
+
+JSX is a syntax extension for JavaScript. It was written to be used with React. 
+-------------------------------------------------------
+
+----------------------------------------------------------------------
+
+applying inline styles to component
+
+import ReactDOM from 'react-dom'; 
+function Greeting(){
+	return <h2 style={{color: 'red'}}>Welcome to ReactJS</h2>;
+}
+
+ReactDOM.render(<Greeting/>, document.getElementById('root')); 
+
+
+
+approach#2 React 18
+
+import ReactDOM from 'react-dom/client'; // from react 18
+function Greeting(){
+	const greetStyle = {color: 'blue'}
+	return <h2 style={greetStyle}>Welcome to ReactJS</h2>;
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Greeting/>);
+
+
+Bootstrap Configuration with React JS 
+
+=> src/App.js
+import './App.css';
+import React,{Fragment} from 'react';
+function App() {
+  return (
+      <Fragment>
+        <nav className="navbar">
+          <span>Welcome to ReactJS</span>
+        </nav>
+      </Fragment>  
+  );
+}
+export default App;
+
+=> install/ integrate bootstrap
+https://getbootstrap.com > Get started > Download > npm (section)
+terminal> npm install bootstrap
+
+=> integrate font-awesome
+google for "fontawesome npm"
+terminal> npm i font-awesome  / npm install font-awesome
+
+--> when we install any package - its entry will be in package.json
+
+==> integrate Bootstrap and FontAwesome -- src/index.js
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.bundle';
+import 'font-awesome/css/font-awesome.css';
+
+-----------------------------------------------------------------------------
+Text Editor Setup
+
+helpful extensions for VSCode
+1) Auto Rename Tag
+2) Highlight Matching Tag - restart VSCode to get effect
+3) Prettier - Code Formatter - formats the code when we save the file
+   Settings -- search for "format" -- enable "Format on Save" & "Format on Paste"
+   Settings -- search for "default format" and set the default formatter to "Prettier- Code formatter"
+   Reload VSCode
+
+4) Emmet - just provide the HTML tag without <> - not need to type out all. No need to install it , by default it is available
+
+ h2#something.someValue
+
+  in settings.json
+ terminal.integrated.font....
+ "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+
+4) React Snippets - Simple React Sinppets
+5) ES7 React/Redux/GraphQL/React-Native Snippets - saves us from boiler place code
+ES7 Snippets
+
+=====================================================
+create a new file in src/Testing.js and write the 
+
+rafc tab - create react arrow function component 
+rfc tab - create functional component - regular java script function
+rcc tab -- create React call component
+
+
+-- we can create class compoent 
+rcc tab
+
+-- open the extension and check for all the options available
+
+Example Code Snippets
+
+imr→ 	import React from 'react'
+imrd→ 	import ReactDOM from 'react-dom'
+imrc→ 	import React, { Component } from 'react'
+imrpc→ 	import React, { PureComponent } from 'react'
+imrm→ 	import React, { memo } from 'react'
+
+https://github.com/ults-io/vscode-react-javascript-snippets/blob/HEAD/docs/Snippets.md
+
+------------------------------------------------------------------------------
+First Component in Details
+ -> capital letter
+ -> must return something
+ -> JSX syntax (return html)
+
+
+src/index.js
+ -- stateless functional component
+ -- always return something in function  return <h4></h4>;
+ -- always return JSX
+
+comment Greeting() function and write a new component
+const Greeting = () => {
+  return React.createElement('h1',{},'hello world')
+};
+
+React.createElement("p", {style: {color: "red", backgroundColor: "blue"}}, this.props.paragraph)
+
+ReactDom.render(<Greeting/>, document.getElementById('root'));
+
+-- next case
+function Greeting(){
+  return(
+    <div>
+       <h1>hello world</h1>
+    </div>
+  );
+}
+
+-- next case
+
+const Greeting = () => {
+  return React.createElement('div',{},
+	React.createElement('h1',{},'hello world')
+  );
+};
+
+import { createElement } from 'react';
+  return createElement(
+    'h1',
+    { className: 'greeting' },
+    'Hello'
+  );
+
+
+-- to add styles
+
+import React from 'react';
+const Greeting = () => {
+    return React.createElement('div',{ style: { color: "red", backgroundColor: "blue" } },
+      React.createElement('h1',{},'hello world'),
+      React.createElement('h2',{},'hello India')
+    );
+  };
+ export default Greeting; 
+
+
+const Greeting = ()=>{
+    return React.createElement(
+      "div", {}, React.createElement("h1", { style: { color: "red", backgroundColor: "blue" } },
+        "My First Component" ));
+}
+-----------------------------------------------------------------------------
+
+Loop inside App.js
+
+<tbody>
+  {[...Array(10)].map((x, i) =>
+    <TopicCard key={i} />
+  )}
+</tbody>
+

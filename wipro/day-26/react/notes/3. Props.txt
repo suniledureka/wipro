@@ -1,0 +1,137 @@
+React Props & State
+===================
+React components are controller by Props & State
+Props are used to transfer the data from one component to another
+Props are the arguments passed to the React Components
+
+-> Props are usually passes via HTML attributes to components, they are used by both class and functional components
+-> Props are used to render the data from parent component to child component. Hence flow of data in react is unidirectional
+-> Props are immutable; that means their values cannot be changed
+
+Syntax: passing Props
+ <ReactComponent property="value"/>  ---> a prop named "property" is passed to the component names "ReactComponent" with a value"value"
+
+<customTag attribute_name="value"/>	  here attribute_name is the property and value is the state
+
+
+Props with class based component ---> we can access props from the component's class using "this.props.propName"
+				 ---> "this.props" is a global object which stores all props of a component
+
+
+Props with Function based component ---> to access a prop from a function - we do not need to use the "this" keyword anymore
+		---> Function compoents accept props as parameters and can be accessed directly
+
+-- a component is a small UI can it can be a div, table etc		
+-- how a component is getting data
+
+
+-> Create src/components/Employee.jsx
+
+-> class Employee extends React.Component{
+  render(){
+    return(
+     <div class="card">
+      <div class="card-body">
+       <h2>Welcome to John</h2>       
+      </div>
+     </div>	
+    );
+  }
+}
+
+
+-> in App.js		 <Employee/>
+
+
+-> the property value can be read by using constructor and ReactJS Expression
+-> in Employee.js
+class Employee extends React.Component{
+  constructor(props){
+    super(props);
+  }
+  render(){
+    console.log(this.props);
+    return(
+     <div class="card">
+      <div class="card-body">
+       <h2>Welcome to {this.props.name}</h2>       
+      </div>
+     </div>	
+    );
+  }
+}
+-- from where the data is coming? from outside
+
+<Employee name="Sunil" age={35}/>
+
+<h2>Welcome to {this.props.name}</h2>  
+<h3>Age : {this.props.age} yrs</h3>
+
+
+
+
+
+==> in functional component - no need to use "this" - only {props.name}
+
+Props with Function based component ---> to access a prop from a function - we do not need to use the "this" keyword anymore
+	---> Function compoents accept props as parameters and can be accessed directly
+
+Functional Component with Props 
+
+--> in src/components/Student.jsx
+    import React from 'react';
+    let Student = () => {
+      return(
+         <React.Fragment>
+            <h2>Welcome to Student</h2>
+         <React.Fragment>
+      );
+    }
+    export default Student;
+
+--> in App.js
+
+<Student/>  
+
+
+
+
+<Student name="John"/>
+<Student name="Sachin"/>
+ 
+
+   let Student = (props) => {
+      //console.log(props);
+      return(
+         <React.Fragment>
+	     <div class="card">
+	      <div class="card-body">
+	       <h2>Welcome {props.name}</h2>       
+	      </div>
+	     </div>
+         <React.Fragment>
+      );
+    }
+    export default Student;
+
+<Student name="John" course="BE" />
+<h3>Course: {props.course}</h2>     
+
+
+import React from 'react';
+
+//let Employee = (props)=> {
+function Employee(props){    
+         return(
+            <React.Fragment>
+                <div className="card">
+                    <p>Employee Name: <span>{props.name}</span></p>
+                    <p>Department: <span>{props.department}</span></p>
+                    <span>{JSON.stringify(props)}</span>
+                </div>
+            </React.Fragment>
+        );
+}
+
+export default Employee;
+------------------------------------------------------------------------------------
