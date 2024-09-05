@@ -1,0 +1,1 @@
+useEffect() hook with JSON-SERVER for displaying products without styles and with styles
