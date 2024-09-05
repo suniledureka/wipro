@@ -1,0 +1,38 @@
+1. Show Tasks List with Delete functionality with <Header/> & <Footer/> with an option to Show or Hide Tasks List and also to make each Task as a component <TaskCard />
+
+  {
+     show && tasks.map(task => 
+                  <TaskCard key={task.id} task = {task} handleDelete={handleDelete}/>
+    )
+
+//const TaskCard = (props) => {
+const TaskCard = ({task, handleDelete}) => {
+
+
+2. Component Child (Children) - Props Children    
+Show Tasks List with Delete functionality with <Header/> & <Footer/> with an option to Show or Hide Tasks List and also to make eack Task as a component <TaskCard />
+Component Child (hildren) - Props Children --> Adding Success, Alert and Warning Cards
+
+<BoxCard result="success">
+          <p className="title">Offerings</p>
+          <p className="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit quod ab, excepturi fuga delectus minus nostrum quos, ad numquam facilis, repellat modi nesciunt itaque deserunt exercitationem inventore error sapiente tempora?</p>
+</BoxCard>
+
+
+3. Add a New Task to Tasks List
+=> Create a New Component AddTask.js
+=> integrate a form with label, text field, submit button, reset button
+=> change event for text field for getting the value of task name and assign to a state variable
+=> event handler of reset click
+=> event handle for onSubmit of <form>
+     <form onSubmit={handleSubmit}>
+
+=> Add new Task
+//setTasks([...tasks, newTask])
+setTasks(tasks.concat(newTask))
+
+
+
+
+
+
