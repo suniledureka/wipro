@@ -1,1 +1,0 @@
-Show Tasks List with Delete functionality with <Header/> & <Footer/> with an option to Show or Hide Tasks List
