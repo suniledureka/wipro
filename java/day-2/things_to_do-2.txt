@@ -1,0 +1,23 @@
+OOPs concepts, Classes and Objects, Inheritance, Polymorphism, Abstraction, Encapsulation, Interfaces, Composition, Overloading and Overriding, Aggregation
+
+Exception Handling, Try-Catch Blocks, types of exceptions, Throwing Exceptions & catching Multiple Exceptions, Finally block, custom exceptions, Concurrency, File I/O, Try with Resources, Error Hierarchy
+Solid Design Principles, Creational/Structural Design Patterns, JDBC & NoSQL
+
+
+1. class & objects
+2. OOPS Principles
+3. Constructors
+4. Constructor Vs a normal method
+
+5. Overloading methods & constructors
+6. constructor chaining 
+
+7. Inheritance
+8. Overloading Vs Overriding
+9. Encapsulation
+10. Why to override toString() method
+11. Contract between hashCode() and equals()
+
+12. Java Annotations
+13. Polymorphism
+
