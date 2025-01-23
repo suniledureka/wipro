@@ -21,3 +21,16 @@ Solid Design Principles, Creational/Structural Design Patterns, JDBC & NoSQL
 12. Java Annotations
 13. Polymorphism
 
+14. Access Modifiers - private, default, protected, public
+15. Non Access Modifiers - static, final etc
+
+16. Abstract Class
+17. Interfaces
+18. Enhancements to Interfaces
+
+19. Exception Handling
+
+20. Relationships in Java - IS-A, HAS-A , USES-A Relationship
+21. Aggregation Vs Composition 
+
+
