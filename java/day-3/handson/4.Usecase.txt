@@ -1,0 +1,18 @@
+Requirement: Write a program to insert String or StringBuffer objects into the TreeSet
+where the sorting order is in increasing length order. If 2 objects having the same length
+then consider their alphabetical order.
+
+how many students: 5
+enter student-1 name: Pankaj Kumar
+do you want to add more student[Y/N]: y
+enter student-2 name: Sunil
+enter student-3 name: Annil
+enter student-4 name: Annil  --- Note:--- should not be entered in collection
+enter student-5 name:Srinivas
+
+O/P
+
+1. Annil
+2. Sunil
+3. Srinivas
+4. Pankaj Kumar

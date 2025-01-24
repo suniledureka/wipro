@@ -1,0 +1,44 @@
+1. throw & throws
+2. custom exceptions or user-defined exceptions
+3. try with resources
+
+Concurrency, File I/O, Try with Resources, Error Hierarchy
+Solid Design Principles, Creational/Structural Design Patterns, JDBC & NoSQL
+
+
+Introduction to Collections Framework, List, Set,Map, Queue Interface, Deque Interface, Stack Class, Iterator Interface, Sorting and Searching Collections, Comparators and Comparables, Generics and Type Safety, Concurrent Collections, Synchronization and Thread Safety, Thread Local
+
+
+4. Why collections framework is introduced in Java?
+5. Collections Hierarchy
+javap java.util.Iterable
+javap java.util.Collection
+javap java.util.List
+javap java.util.Set
+javap java.util.Queue
+javap java.util.Deque
+javap java.util.SortedSet
+javap java.util.NavigableSet
+
+6. Implementation Classes
+javap java.util.ArrayList
+javap java.util.LinkedList
+javap java.util.PriorityQueue
+javap java.util.HashSet
+javap java.util.LinkedHashSet
+javap java.util.TreeSet
+javap java.util.Stack
+etc
+
+
+7. Generics in Java
+
+8. Iterator Vs ListIterator
+9. Iterator Vs Enumeration
+
+10. RegExpression in Java
+
+11. Map
+HashMap, LinkedHashMap, TreeMap, Hashtable
+
+12. Internal Architecture of HashMap
