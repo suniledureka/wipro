@@ -1,0 +1,9 @@
+1. Git
+ -- create a public repository in GitHub.com
+2. Download & Install git-client
+https://git-scm.com/downloads
+
+3. work on Team in Eclipse
+Right Click on Project > Team > Share > Share Project..
+
+
