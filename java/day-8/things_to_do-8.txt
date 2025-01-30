@@ -1,0 +1,8 @@
+1. Session Tracking
+Cookie Vs HttpSession
+
+2. JSP
+3. MVC application
+4. Http Response Status Codes -https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+4. ORM - Hibernate
+

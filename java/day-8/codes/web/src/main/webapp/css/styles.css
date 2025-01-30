@@ -1,0 +1,31 @@
+body{
+	background: linear-gradient(to right, #3a7bd5, #3a6073);
+}
+form{
+	width:450px;
+	margin:150px auto;	
+	background: linear-gradient(to right, #2c3e50, #4ca1af);
+	box-shadow:0 0 10px white;	
+	text-align:center;
+	padding:10px;
+	border-radius:15px;
+}
+
+input{
+	font-size:18px;
+	display:block;
+	margin:20px auto;	
+	text-align:center
+}
+input[type="submit"]{
+	border:none;
+	background:transparent;
+	border:1px solid white;
+	padding:4px 40px;
+	border-radius:20px;
+}
+input[type="submit"]:hover{
+	background-color:yellow;
+	box-shadow:0 0 10px yellow;
+	text-transform: uppercase
+}
