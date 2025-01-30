@@ -90,5 +90,8 @@ public class SaveStudent {
 }
 
 
+-- load() Vs get() of org.hibernate.Session
+
+Assignment:  convert employee-management system in JDBC to hibernate based
 
 
