@@ -1,0 +1,322 @@
+----------- to have a Bi directional one-to-one mapping  ----------
+@Entity
+@Data
+public class Address {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String street;
+	private String city;
+	private String state;
+	
+	@OneToOne(mappedBy = "employeeAddress")	
+	//@JsonIgnore
+	private Employee employee;
+}
+
+In the child entity(Address), we just need to link the name of the property mapped in Employee entity.
+
+"@JsonIgnore" annotation was placed there for user property since I do not need to have the user object to be seen in Address data. Just to ignore that field from JSON object.
+
+
+----------- PRACTICALS # 2 -----------------------------
+Person & Password
+
+package com.modeln.mappings.oto.entity;
+@Entity
+@Data
+public class Person {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer personId;
+
+	private String personName;
+
+	private String personGender;
+
+	@OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
+	private Passport passport;
+}
+
+
+package com.modeln.mappings.oto.entity;
+@Entity
+@Data
+public class Passport {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer passportId;
+
+	private String passPortNum;
+
+	private LocalDate issuedDate;
+
+	private LocalDate expDate;
+	
+	@OneToOne
+	@JoinColumn(name = "person_id")
+	private Person person;
+}
+
+
+package com.modeln.mappings.oto.services;
+@Service
+public class PersonServices {
+	@Autowired
+	private PersonRepository personRepo;
+	@Autowired
+	private PassportRepository passportRepo;
+	
+	public void saveData() {
+
+		Person person = new Person();
+		person.setPersonName("Praveen Kumar");
+		person.setPersonGender("Male");
+
+		Passport passport = new Passport();
+		passport.setPassPortNum("RS12387");
+		passport.setIssuedDate(LocalDate.now());
+		passport.setExpDate(LocalDate.now().plusYears(10));
+
+		person.setPassport(passport);
+		passport.setPerson(person);
+
+		personRepo.save(person);
+
+	}
+	
+	public void deleteById(int id) {
+		personRepo.deleteById(id);
+	}
+	
+	public void searchByPassPortId(int id) {
+		Passport pass = passportRepo.findById(id).get();
+		System.out.println(pass.getPassPortNum());
+	}
+}
+
+
+
+@JsonManagedReference annotation for the first objects instantiated
+
+@JsonBackReference annotation for the second objects instantiated
+
+
+-------------------------- One-To-Many Mappings ------------------------------------
+
+The one-to-many mapping means that one row in a table is mapped to multiple rows in another table.
+
+We will implement one-to-many unidirectional mapping using @OneToMany and @JoinColumn JPA annotations.
+
+define a one-to-many unidirectional mapping between two entities using JPA and Hibernate.
+
+Example : Posts & Comments
+
+@Entity
+@Table(name = "posts")
+@Data
+public class Post {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+
+	@Column(name = "title")
+	private String title;
+
+	@Column(name = "description")
+	private String description;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "pc_fid", referencedColumnName = "id")
+	List<Comment> comments = new ArrayList<>();
+
+	public Post(String title, String description) {
+		super();
+		this.title = title;
+		this.description = description;
+	}
+}
+
+
+@Entity
+@Data
+@Table(name = "comments")
+public class Comment {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+	private String text;
+	
+	public Comment(String text) {
+		this.text=text;
+	}
+}
+
+
+
+	Post post = new Post("one to many mapping", "one to many mapping using JPA and hibernate");
+
+        Comment comment1 = new Comment("Very useful");
+        Comment comment2 = new Comment("informative");
+        Comment comment3 = new Comment("Great post");
+
+        post.getComments().add(comment1);
+        post.getComments().add(comment2);
+        post.getComments().add(comment3);
+
+
+
+-------------- Example -2 Employee & Addresses ----------------------
+@Entity
+public class Employee {
+ @Id
+ @GeneratedValue(strategy = GenerationType.IDENTITY)
+ private Integer empId;
+
+ private String empName;
+
+ private Double salary;
+
+ @OneToMany(mappedBy = "emp", cascade = CascadeType.ALL)
+ private List<Address> addr;
+}
+
+
+@Entity
+public class Address {
+ @Id
+ @GeneratedValue(strategy = GenerationType.IDENTITY)
+ private Integer addrId;
+
+ private String city;
+
+ private String state;
+
+ private String type;
+
+ @ManyToOne
+ @JoinColumn(name = "emp_id")
+ private Employee emp;
+}
+
+
+@Service
+public class EmployeeService {
+ @Autowired
+ private EmpRepo empRepo;
+
+ @Autowired
+ private AddressRepo addrRepo;
+
+ public void deleteEmp() {
+  empRepo.deleteById(1);
+ }
+
+ public void getAddrData() {
+  Optional<Address> findById = addrRepo.findById(1);
+ }
+
+ public void getEmpData() {
+   Optional<Employee> findById = empRepo.findById(1);
+ }
+
+ public void saveEmpData() {
+  Employee emp = new Employee();
+  emp.setEmpName("John");
+  emp.setSalary(1000.00);
+  
+  Address a1 = new Address();
+  a1.setCity("Hyd");
+  a1.setState("TG");
+  a1.setType("Present");
+  a1.setEmp(emp); // setting emp to addr
+
+  Address a2 = new Address();
+  a2.setCity("GNT");
+  a2.setState("AP");
+  a2.setType("Permanent");
+  a2.setEmp(emp); // setting emp to addr
+
+  List<Address> addrList = Arrays.asList(a1, a2);
+  emp.setAddr(addrList); // setting addr list to emp
+
+  empRepo.save(emp);
+
+}
+}
+
+
+
+==============================================
+
+Hibernate Many to Many Example 
+In many-to-many association, the source entity has a field that stores a collection of target entities. The @ManyToMany JPA annotation is used to link the source entity with the target entity.
+
+A many-to-many association always uses an intermediate join table to store the association that joins two entities. The join table is defined using the @JoinTable JPA annotation.
+
+Example:
+ employees (table)
+employee_id
+first_name
+last_name
+
+ projects (table)
+project_id
+project_title
+
+ employees_projects (table) 
+emloyee_id
+project_id
+
+@Entity
+@Table(name = "employees")
+public class Employee extends AuditModel {
+
+    private static final long serialVersionUID = 1 L;
+
+    @Id
+    @Column(name = "employee_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long employeeId;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @ManyToMany(cascade = {
+        CascadeType.ALL
+    })
+    @JoinTable(
+        name = "employees_projects",
+        joinColumns = {
+            @JoinColumn(name = "employee_id")
+        },
+        inverseJoinColumns = {
+            @JoinColumn(name = "project_id")
+        }
+    )
+    Set < Project > projects = new HashSet < Project > ();
+}
+
+
+@Entity
+@Table(name = "projects")
+public class Project extends AuditModel {
+
+ private static final long serialVersionUID = 1L;
+
+ @Id
+    @Column(name = "project_id")
+    @GeneratedValue
+    private Long projectId;
+
+    @Column(name = "title")
+    private String title;
+
+    @ManyToMany(mappedBy = "projects", cascade = { CascadeType.ALL })
+    private Set<Employee> employees = new HashSet<Employee>();
+}
+
+
