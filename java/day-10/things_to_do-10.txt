@@ -1,0 +1,8 @@
+1. Spring
+2. Spring Boot
+3. Spring Vs Spring
+4. Spring Boot Features
+5. Working with VSCode, Eclipse, STS
+6. Dependency Injection - setter , constructor, field
+7. Annotations used for making a Java class as a Spring Bean
+8. @ConfigurationProperties
