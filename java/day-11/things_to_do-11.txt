@@ -166,3 +166,137 @@ tasks:
 			}catch(Exception ex) {}
 		});		
 	}
+
+
+
+
+Task - implement employee-management system using Data JPA
+
+==================== Sorting - Approach - 1=================
+1. Repository should be extended from JpaRepository
+
+2. Service Interface - IContactServices.java
+package com.wipro.boot.cms.services;
+import java.util.List;
+public interface IContactServices {
+	public List<Contact> getContactsInOrder();
+}
+
+3. Service Implementation
+package com.wipro.boot.cms.services.impl;
+
+@Service
+public class ContactServicesImpl implements IContactServices {
+	private ContactRepository contactRepo;
+	
+	//-- constructor injection
+	@Autowired //optional as there is only one constructor in this class
+	public ContactServicesImpl(ContactRepository contactRepo) {
+		super();
+		this.contactRepo = contactRepo;
+	}
+
+	@Override
+	public List<Contact> getContactsInOrder() {
+		//-- approach -1 -- using findBy orderBy 
+		//List<Contact> contacts = contactRepo.findByOrderByContactName();
+		//List<Contact> contacts = contactRepo.findByOrderByContactNameAsc();
+		//List<Contact> contacts = contactRepo.findByOrderByContactNameDesc();
+		
+		//-- approach -2 -- findAll(Sort)
+		//List<Contact> contacts = contactRepo.findAll(Sort.by("contactName"));
+		//List<Contact> contacts = contactRepo.findAll(Sort.by("contactName", "contactNumber"));
+		//List<Contact> contacts = contactRepo.findAll(Sort.by("contactName").ascending());
+		List<Contact> contacts = contactRepo.findAll(Sort.by("contactName").descending());
+		return contacts;
+	}
+
+}
+
+
+=== starter class ===
+@SpringBootApplication
+public class Application implements CommandLineRunner {
+	@Autowired
+	private IContactServices contactService;
+	
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		List<Contact> contactsInAsc = contactService.getContactsInOrder();
+		contactsInAsc.stream().forEach(System.out::println);
+		System.out.println("=".repeat(100) + "\n");
+	}
+}
+
+
+
+======  Pagination =======
+pageno starts from 0  -- which is first page
+
+@SpringBootApplication
+public class Application implements CommandLineRunner{
+	@Autowired
+	private ContactRepository repo;
+
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		/*
+		Page<Contact> page = repo.findAll(Pageable.ofSize(4));
+		List<Contact> contacts = page.getContent();
+		contacts.stream().forEach(System.out::println);
+		*/
+		
+		/*
+		//int pageNo = 0;
+		int pageNo=1;
+		int pageSize = 4;
+		
+		PageRequest pageReq = PageRequest.of(pageNo, pageSize);
+		Page<Contact> page = repo.findAll(pageReq);
+		List<Contact> contacts = page.getContent();
+		contacts.stream().forEach(System.out::println);		
+		*/
+		
+		int pageSize = 4;
+		long noOfPages = repo.count() / pageSize;
+		if(repo.count() % pageSize > 0) {
+			noOfPages++;
+		}
+		
+		for(int i=0 ; i<noOfPages; i++) {
+			System.out.println("--------------- Page " + (i+1) + " / " + noOfPages + " ---------------" );
+			PageRequest pageReq = PageRequest.of(i, pageSize);
+			Page<Contact> page = repo.findAll(pageReq);
+			List<Contact> contacts = page.getContent();
+			contacts.stream().forEach(System.out::println);	
+			
+			System.out.println();
+		}
+	}
+
+}
+
+
+===> Generators
+===> Mappings 
+
+
+
+
+
+
+
+
+
+
+
+
+
