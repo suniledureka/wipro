@@ -1,0 +1,168 @@
+1. Spring Data JPA
+
+create table CONTACT_MASTER(CONTACT_ID int(5), CONTACT_NAME varchar(30), CONTACT_NUMBER varchar(10), primary key(CONTACT_ID));
+
+create spring starter project with following dependencies
+MySQL
+Spring Data Jpa
+Lombok
+
+
+provide the configuration details in src/main/resources/application.properties
+#Database Connection Properties
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/db_wipro
+spring.datasource.username=root
+spring.datasource.password=root
+
+#Hibernate JPA properties
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=update
+
+
+create entity class
+package com.wipro.boot.cms.entities;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Data;
+
+@Entity
+@Table(name = "CONTACT_MASTER")
+@Data
+public class Contact {
+	@Id
+	@Column(name = "CONTACT_ID")
+	private Integer contactId;
+	
+	@Column(name = "CONTACT_NAME")
+	private String contactName;
+	
+	@Column(name = "CONTACT_NUMBER")
+	private String contactNumber;	
+}
+
+-- create repository interface
+package com.wipro.boot.cms.repository;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.wipro.boot.cms.entities.Contact;
+
+@Repository  //optional
+public interface ContactRepository extends CrudRepository<Contact, Integer> {
+
+}
+
+
+bootstrap class - Application.java
+
+package com.wipro.boot.cms;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.wipro.boot.cms.entities.Contact;
+import com.wipro.boot.cms.repository.ContactRepository;
+
+@SpringBootApplication
+public class Application {
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+		
+		//get the repository bean
+		ContactRepository contactRepo = context.getBean(ContactRepository.class);
+		
+		//--save a Contact
+		Contact contact = new Contact();
+		contact.setContactId(101);
+		contact.setContactName("Sanjay");
+		contact.setContactNumber("9848586878");
+		
+		contactRepo.save(contact);
+		System.out.println("Contact Saved!!");
+		context.close();
+	}
+}
+
+
+============================================
+
+
+tasks:
+1. save a contact
+2. save multiple contacts - saveAll()
+3. to get the number of contacts
+4. to check whether a contact is existing with a contactId or not
+5. to get a Contact based on contactId( ID property value)
+6. to get Contacts based on multiple contactIds
+7. to get all contacts
+8. delete a contact by Id
+9. check all delete methods in CrudRepository
+
+
+
+
+
+
+
+		ConfigurableApplicationContext context =  SpringApplication.run(Application.class, args);
+		
+		ContactRepository contactRepo = context.getBean(ContactRepository.class);
+		
+		//----- to get the number of contacts -----
+		long noOfContacts = contactRepo.count();
+		System.out.println("no of contacts = " + noOfContacts);
+		System.out.println("=".repeat(100) + "\n");
+		
+		//----- to check whether a contact is existing with a contactId or not
+		int cid = 1015;
+		boolean isContactExists = contactRepo.existsById(cid);
+		if(isContactExists)
+			System.out.println("contact existing with contact id: " + cid);
+		else
+			System.err.println("no matching contact found for contact id: " + cid);
+		
+		System.out.println("=".repeat(100) + "\n");
+		
+		//----- to get a Contact based on contactId( ID property value)
+		Optional<Contact> optContact = contactRepo.findById(101);
+		if(optContact.isPresent()) {
+			Contact ct = optContact.get();
+			System.out.println(ct);
+		}else {
+			System.err.println("no matchig contact found!!!");
+		}
+		System.out.println("=".repeat(100) + "\n");
+		
+		//----- to get Contacts based on multiple contactIds -----
+		List<Integer> contactIds = Arrays.asList(102,105, 103, 202, 101);
+		Iterable<Contact> contacts = contactRepo.findAllById(contactIds);
+		printContacts(contacts);
+		System.out.println("=".repeat(100) + "\n");
+		
+		//-- ----- to get all contacts -----
+		Iterable<Contact> allContacts = contactRepo.findAll();
+		printContacts(allContacts);
+		System.out.println("=".repeat(100) + "\n");
+		
+		cid = 115;
+		contactRepo.deleteById(cid);
+		System.out.println("=".repeat(100) + "\n");
+		
+		context.close();
+	}
+
+	private static void printContacts(Iterable<Contact> contacts) {
+		contacts.forEach(ct -> {
+			System.out.println(ct);		
+			try {
+				Thread.sleep(1000);
+			}catch(Exception ex) {}
+		});		
+	}
