@@ -1,0 +1,139 @@
+1. REST Architecture Principles
+2. Spring Web Dependency - spring-boot-starter-web  
+
+3. Download & Install POSTMAN
+
+4. HTTP Protocol - HTTP Request & HTTP Reponse
+
+5. HTTP Status Codes
+
+
+===== 1=======
+@RestController
+public class WelcomeRestController {
+	
+	@GetMapping("/welcome")
+	public String showWelcomeMessageGet() {
+		return "Welcome to Wipro from GET";
+	}
+	
+	@PostMapping("/welcome")
+	public String showWelcomeMessagePost() {
+		return "Welcome to Wipro from POST";
+	}	
+	
+	@PutMapping("/welcome")
+	public String showWelcomeMessagePut() {
+		return "Welcome to Wipro from PUT";
+	}	
+	
+	@DeleteMapping("/welcome")
+	public String showWelcomeMessageDelete() {
+		return "Welcome to Wipro from DELETE";
+	}	
+}	
+
+
+===== 2 ResponseEntity======
+@RestController
+public class DateRestController {
+	
+	@GetMapping(path = {"/today", "/date"})
+	public ResponseEntity<String> showDateAndTime() {
+		LocalDateTime ldt = LocalDateTime.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm:ss");
+		String responseData = ldt.format(formatter);
+		
+		//ResponseEntity<String> reponseEntity = new ResponseEntity<String>(HttpStatus.OK);
+		//ResponseEntity<String> reponseEntity = new ResponseEntity<String>(responseData, HttpStatus.CREATED);
+		
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("company", "Wipro Technologies");
+		responseHeaders.add("team", "DEV Team");
+		responseHeaders.add("version", "1.0.1");
+		
+		ResponseEntity<String> reponseEntity = new ResponseEntity<String>(responseData, responseHeaders, HttpStatus.OK);
+		
+		return reponseEntity;
+	}
+}
+
+
+===== 3. Request Headers & Request Body ======
+@RestController
+@RequestMapping("/wipro")
+public class ProcessRequestDataAndHeaders {
+
+	@PostMapping("/data")
+	public ResponseEntity<Map<String, String>> processRequestDataAndHeaders(@RequestHeader("Host") String host,
+																			@RequestHeader(name = "company", required = false, defaultValue = "NA") String company,
+																			@RequestBody(required = false) String data){
+		
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("Host", host);
+		map.put("Company", company);
+		map.put("Data", data);
+		
+		return new ResponseEntity<Map<String, String>>(map, HttpStatus.OK);
+	}
+}
+
+
+=====. 4. Query Parameters - @RequestParam ======
+API/ Endpoint - http://localhost:8080/cibil/score?name=Sunil Joseph&pan=AAREP5438T
+
+@RestController
+@RequestMapping("/cibil")
+public class CibilRestController {
+
+	@GetMapping("/score")
+	public ResponseEntity<String> getCibilScore(@RequestParam("name") String customerName,
+												@RequestParam(name = "pan") String pan){
+		if(pan != null && pan.length() == 10) {
+			//return new ResponseEntity<>(String.format("Hello %s, your PAN is %s and your CIBIL Score is 794", customerName, pan), HttpStatus.OK);
+			//return ResponseEntity.ok(String.format("Hello %s, your PAN is %s and your CIBIL Score is 794", customerName, pan));
+			String responseText = String.format("Hello %s, your PAN is %s and your CIBIL Score is 794", customerName, pan);
+			return ResponseEntity.ok().body(responseText);
+		}else {
+			//return new ResponseEntity<String>("Hello " + customerName + ", Please submit a Valid PAN", HttpStatus.BAD_REQUEST);
+			return ResponseEntity.badRequest().body(String.format("Hello %s, Please submit a Valipd PAN", customerName));
+		}
+	}
+}
+
+
+======= 5. Path Parameters - @PathVariable =======
+http://localhost:8081/cibil/score/Sunil/AAREP9876T
+
+to change server (tomcat) port from default port of 8080 to 8081
+- in application.properties
+server.port=8081
+
+
+@RestController
+@RequestMapping("/cibil")
+public class CibilRestController {
+
+	@GetMapping("/score/{name}/{pan}")
+	public ResponseEntity<String> getCibilScore(@PathVariable("name") String customerName, 
+												@PathVariable String pan){
+		if(pan != null && pan.length() == 10) {
+			String responseText = String.format("Hello %s, your PAN is %s and your CIBIL Score is 794", customerName, pan);
+			return ResponseEntity.ok().body(responseText);
+		}else {
+			return ResponseEntity.badRequest().body(String.format("Hello %s, Please submit a Valid PAN", customerName));
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+Query Parameters Vs Path Parameters
+
