@@ -1,0 +1,10 @@
+CSS Properties
+1. colors
+2. background properties
+3. margin properties
+4. padding properties
+5. text properties
+6. list properties
+7. font properties
+8. display properties
+etc
