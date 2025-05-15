@@ -1,0 +1,454 @@
+CSS PROPERTIES
+===============
+
+I) Background Properties
+------------------------
+a) background-color: "color_name | hex_color | rgb() | rgba()"
+  
+b) background-image: url(image path)
+
+c) background-repeat: repeat | repeat-x | repeat-y | no-repeat;
+
+4) background-attachment: scroll | fixed
+
+ scroll - the background scrolls along with the element. This is default
+
+ fixed - the background is fixed
+
+5) background-size: auto | cover | contain
+
+6) background-position: horizontal vertical
+- to define the initial position of the background image. By default, the background image is placed on the top-left of the webpage. 
+
+
+Shorthand property for background
+---------------------------------
+<style>
+body
+{
+ background: red url('images/p1.jpg') no-repeat center top fixed;
+ color: yellow;
+}
+</style>
+
+
+background-image:linear-gradient:(red, yellow);
+
+background-image:linear-gradient(to right, red,yellow);
+
+background:linear-gradient(to top, red,yellow,purple);
+
+background:linear-gradient(45deg,red, yellow, green);  
+
+
+background-clip: border-box|padding-box|content-box|initial|inherit
+
+II) Border Properties
+---------------------
+- used to provide the style, color and size of the border 
+
+a) border-style: none | solid | dashed | dotted | double | groove | ridge | inset | outset
+
+
+b) border-width:  "thin" | "medium" | "thick" | <num>px
+
+c) border-color: color_name | hex_value |rgb_function | transparent
+
+Border Shorthand Property:
+--------------------------
+   border: <width> <style> <color>
+
+Eg:   border: 5px solid rgb(0,255,0);
+
+
+to apply border width for each border:
+
+  border-width: <top> <right> <bottom> <left>
+
+Eg: border-width: 2px 10px 2px 10px;
+	OR
+ border-width: 2px 10px; 
+      - top and bottom border width will be 2px and that of right and left will be 10px
+
+to apply border color for each border:
+ border-color: green yellow green yellow
+	OR
+ border-color: green yellow;
+  //top and bottom border color will be green and left and right border color will be yellow
+
+border-top-style: solid
+border-bottom-color: red
+border-left-width: 5px
+etc
+
+Short-hand Property:
+ border-top: solid 5px red; 
+ border-bottom:double 5px green 
+
+
+border-radius: 15px;
+
+to apply different border radius for each corner:
+ border-top-left-radius: 10px;  
+ border-top-right-radius: 180px;    
+ border-bottom-right-radius: 10px;
+ border-bottom-left-radius: 180px  
+
+
+
+III) Font Properties
+====================
+Using  CSS font property we can change the text size, color, style etc. 
+
+a) color: color_name | hex_value | rgb() | rgba() 
+
+b) font-family: Serif | Sans-serif | Monospace | font_name
+
+c) font-size: xx-small | x-small | small | medium | large | x-large | xx-large | smaller | larger | px | % value
+
+d) font-style: normal | italic | oblique 
+
+e) font-variant: normal | small-caps
+
+f) font-weight: normal | bold | bolder | lighter | number (100, 200..... upto 900)
+- to specify "how bold a font is" 
+
+"normal" value maps to 400 and 
+the value "bold" maps to 700
+
+ font-weight: bold;
+	OR
+ font-weight: 700;
+
+To work with google fonts: 
+ > visit fonts.google.com
+ > Select the font to integrate 
+ > copy the <link> tag and place it in <head>
+ > use that font name in CSS
+
+
+IV) Text Properties
+-------------------
+a) color: color_name | hex_value | rgb() | rgba() etc
+   
+b) letter-spacing: normal | length in px
+
+   letter-spacing: 20px;
+
+c) text-align:  left | right | center |  justify etc
+
+d) text-decoration:  none | underline | overline | line-through | blink
+ 
+e) text-indent:  length in px | percentage
+- to indent the first line of text in a web page
+  text-indent: 20px;
+  	OR
+  text-indent: 40%
+
+f) text-transform: none | capitalize | lowercase | uppercase
+  
+   text-transform: uppercase;
+
+g) word-spacing: normal | length in px
+
+h) direction: ltr|rtl
+
+i) text-shadow: h-shadow v-shadow blur-radius color
+etc
+
+
+V) Line Height
+==============
+- to define the minimal height of line boxes within the element. 
+
+ line-height: normal | number | length in px |  %  
+
+% - specifies the line height in percent of the current font.
+
+The default line height in most browsers is about 110% to 120%
+
+
+Example:
+#mypara
+{
+ ....;
+ line-height: 2 | 25px | 200%
+}
+
+
+VI) Margin Properties
+=====================
+- used to define the space around elements. 
+- it is completely transparent and doesn't have any background color.
+
+margin
+margin-left
+margin-right
+margin-bottom
+margin-top
+
+ the values can be "length | percentage | auto"
+
+Shorthand Property
+------------------
+1) margin: 50px 100px 150px 200px;
+	     T    R     B     L	
+
+
+
+It identifies that:
+ top margin - 50px
+ right margin - 100px
+ bottom margin - 150px
+ left margin - 200px
+
+2) margin: 50px 100px 150px;
+
+It identifies that:
+ top margin - 50px
+ left and right margin - 100px
+ bottom margin - 150px
+
+3) margin: 50px 100px;
+
+ top and bottom margin - 50px
+ left and right margin - 100px
+
+4) margin: 50px;
+
+
+#region{
+ background-color:yellow;
+ width: 200px;
+ height: 200px;
+ border-radius: 50%;
+ margin: 50px;
+}
+
+
+To make a <div> tag center aligned
+ div{
+   margin:auto;
+   width:200px;
+   height:150px;
+   border:2px solid black;
+ }
+---------------------------------
+Working with awesome font:
+-------------------------
+> https://fontawesome.com/
+> Download "Free for Web"
+> fontawesome-free-5.10.2-web.zip
+> extract it
+> place that folder in our workspace
+> to view different icons : https://fontawesome.com/icons
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+<i class="fa-solid fa-user fa-4x"></i>
+
+
+---------------------------------
+
+
+VII) Display Properties
+=======================
+CSS display specifies how the element is displayed. 
+
+Every element on the webpage is a rectangular box and the CSS property defines the behavior of that rectangular box. 
+
+ display: block | inline | inline-block | none | flex | inline-flex....;
+
+
+1) inline - takes the required width only. 
+
+2) inline-block - this is similar to inline element but the difference is that we are able to set the width and height. 
+
+3) block - this value takes the full available width by default. They make a line break before and after them. 
+
+4) none - this value totally removes the element display from the page. 
+
+5) flex - displays an element as a block-level flex container
+
+etc
+
+
+"display" property is used to make an inline element as block element:
+
+Eg: <a> tag is an inline element
+
+<style>
+ a{
+  display: block;
+ }
+</style>
+
+To hide an element in a web page we can use the following css properties
+ 1) display: none
+ 2) visibility: hidden
+
+Difference:
+-----------
+visibility: hidden;  -takes the area in the web page, affects the layout
+
+display:none; - will not take the area in the web page
+
+
+VIII) overflow Property
+-----------------------
+- The overflow property controls what happens to content that breaks outside of its boundary
+
+ overflow: visible | hidden | scroll | auto;
+
+visible - content is not clipped when it proceeds outside its box. This is the default value of the property	
+
+hidden 	- overflowing content will be hidden.
+
+scroll 	- similar to hidden except users will be able to scroll through the hidden content
+
+auto 	- if the content proceeds outside its box then a scrollbar is provided to the user to read the missing content
+
+
+
+9) CSS Float Property
+=====================
+This property is a positioning property. 
+
+It is used to push an element to the left or right, allowing other elements to wrap around it. 
+
+It is generally used with images and layouts.
+
+Elements are floated only horizontally; so it is possible only to float elements left or right, not up or down.
+
+- A floated element may be moved as far to the left or the right as possible. 
+
+- The elements after the floating element will flow around it.
+
+- The elements before the floating element will not be affected.
+
+  float : none | left | right 
+
+Values:
+
+left - floats the element to the left of its container.
+
+right - floats the element to the right of its container.
+
+none -the element does not float. This is the initial value.
+
+
+
+clear property:
+---------------
+- used to avoid elements after the floating elements which flow around it. 	
+
+  clear: left | right | both | none
+
+
+10) CSS Opacity
+===============
+- used to specify the transparency of an element or to specify the clarity of the image.
+
+- the opacity value may be a floating point value between 0 and 1. For example, 0.4 means 40% 
+
+Use case : place an image in the center of the page with opacity 0.3 (30%) and change the opacity to 1 (100%) on mouse over (hover) on the image
+
+
+11) Padding Property
+====================
+- used to define the space between the element content and the element border.
+
+padding-top
+padding-right
+padding-bottom
+padding-left
+padding
+
+values can be "length" | "%"
+
+padding: 10px 20px 30px 40px;
+
+
+12) Width Property
+===================
+- used to set the width of the content area of an element.
+
+  width: "auto | % | length"
+
+
+13) List Properties
+-------------------
+1) list-style-type: "disc | circle | square | decimal | lower-roman |  upper-roman | lower-alpha | upper-alpha | none"
+
+2) list-style-image: url(image_path)
+ - to provide an image as a marker for list item
+
+3) list-style-position: " outside | inside"
+- property specifies the position of the list-item markers (bullet points).
+
+inside-	The bullet points will be inside the list item 	
+
+outside - The bullet points will be outside the list item. This is default
+
+
+14) Anchors Properties
+----------------------
+a:link - to set the unvisited link properties
+
+a:visited - to set the visited link propeties
+
+a:hover - to set the properties for mouse over on a link
+
+a:focus - properties for a link when the focus comes on top of the link; normally comes when we do without using mouse (we use tab key for focus control)
+
+a:active - to set the properties for an active link (when pressing on a link).
+
+
+15) Vertical Align
+------------------
+The CSS vertical align property is used to define the vertical alignment of an inline or table-cell box. 
+
+vertical-align : baseline | length in px | % | sub | super | top | bottom | middle | text-top | text-bottom 
+
+
+15) CSS Pseudo Elements
+-----------------------
+The pseudo elements are:
+a) first-line
+b) first-letter
+
+The first-line pseudo element styles the first line of text in a block level element.
+
+p:first-line 
+{
+ font-size: medium; 
+ color: #f00;
+}
+
+
+16) Position Property
+=====================
+- used to set position for an element
+- helps to manipulate the location of an element 
+
+position: static | fixed | relative | absolute | sticky  ....
+
+
+Difference between Relative and Absolute Positioning
+-----------------------------------------
+-based on how the position is being calculated.
+
+1) relative: position an element based on its current position without changing layout.
+
+2) absolute: position an element based on its closest positioned (other than "static" positioned) parent  position.
+
+
+CSS UNITS
+=========
+Two type of units: 
+ 1) relative units and  
+ 2) absolute units
+
+
+

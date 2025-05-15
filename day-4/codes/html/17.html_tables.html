@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            margin-bottom: 500px;
+        }
+        #batches_list{
+            width: 80%;
+            background-color:orangered;
+            box-shadow: 0 0 10px black;
+        }
+        #batches_list{
+            font-size:18px;            
+            width:80%;
+            margin:auto;
+            padding:5px;
+            border-collapse: collapse;
+            background-color:lightsalmon;
+            box-shadow:0 0 10px black;
+            background-image: url("images/tree.png");
+            background-repeat: no-repeat;            
+            background-size: contain;
+        }
+        #batches_list th, #batches_list td{
+            border:1px solid black;
+            padding:5px;
+        }
+        #batches_list thead tr{
+            background-color:orangered;
+        }
+    </style>
+    <title>tables</title>
+</head>
+<body>
+    <div>
+        <h2>Simple Table</h2>
+        <table border="1">
+          <thead>
+            <tr>
+              <th>Sl No</th>  
+              <th>Course</th>
+              <th>Date</th>
+              <th>Time</th>
+            </tr>
+          </thead> 
+
+          <tbody>
+            <tr>
+                <td>01</td>
+                <td>UI Technologies</td>
+                <td>06.04.2020</td>
+                <td>07.30 AM</td>
+            </tr>
+            <tr>
+                <td>02</td>
+                <td>Core Java</td>
+                <td>06.04.2020</td>
+                <td>06.00 PM</td>
+            </tr>          
+            <tr>
+                <td>03</td>
+                <td>Data Science</td>
+                <td>04.04.2020</td>
+                <td>10.00 AM</td>
+            </tr>    
+            <tr>
+                <td>04</td>
+                <td>Advanced UI Technologies</td>
+                <td>08.04.2020</td>
+                <td>09.00 AM</td>
+            </tr>                       
+          </tbody>
+        </table>
+    </div>
+
+    <div>
+        <h2>Table with Colspan</h2>
+        <table border=1>
+            <tr>
+                <th>Sl No</th>
+                <th>Name</th>
+                <th colspan="2">Contact No</th>               
+            </tr>
+            <tr>
+                <td>01</td>
+                <td>Sunil Joseph</td>
+                <td>9848586878</td>
+                <td>40-23845748</td>
+            </tr>
+            <tr>
+                <td>02</td>
+                <td>Harsha Vardhan</td>
+                <td>9988445566</td>
+                <td>40-23874854</td>
+            </tr>            
+            <tr>
+                <td>03</td>
+                <td>Vamsi Krishna</td>
+                <td>6548586878</td>
+                <td>40-23845100</td>
+            </tr>  
+
+            <tr>
+                <td colspan="4" align="center" bgcolor="lightgreen">Personal Details</td>
+            </tr>          
+        </table>
+    </div>    
+
+    <div>
+        <h2>Table with Rowspan</h2>
+        <table border=1>
+            <tr>
+                <th>Sl No</th>
+                <th>Name</th>
+                <th>Contact No</th>
+            </tr>
+            <tr>
+                <td rowspan="2">01</td>
+                <td rowspan="2">Sunil Joseph</td>
+                <td>9848586878</td>
+            </tr>
+            <tr>
+                <td>40-23845745</td>
+            </tr>   
+            <tr>
+                <td rowspan="2">02</td>
+                <td rowspan="2">Harsha Vardhan</td>
+                <td>6808521485</td>
+            </tr>
+            <tr>
+                <td>40-27858574</td>
+            </tr>              
+            
+            <tr>
+                <td rowspan="2">03</td>
+                <td rowspan="2">Vamsi Krishna</td>
+                <td>7848586878</td>
+            </tr>
+            <tr>
+                <td>40-73845745</td>
+            </tr>             
+        </table>
+    </div>
+
+    <div>
+        <h2>Custom Table with Attributes</h2>
+        <table border="1" width="80%" align="center" bgcolor=lightblue background="images/computer3.jpg" cellpadding="10px" cellspacing=10px>
+                <tr>
+                  <th>Sl No</th>  
+                  <th>Course</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                </tr>
+
+                <tr>
+                    <td>01</td>
+                    <td>UI Technologies</td>
+                    <td>06.04.2020</td>
+                    <td>07.30 AM</td>
+                </tr>
+                <tr>
+                    <td>02</td>
+                    <td>Core Java</td>
+                    <td>06.04.2020</td>
+                    <td>06.00 PM</td>
+                </tr>          
+                <tr>
+                    <td>03</td>
+                    <td>Data Science</td>
+                    <td>04.04.2020</td>
+                    <td>10.00 AM</td>
+                </tr>  
+        </table>
+
+        <table frame="box" rules="all" style="margin-top:30px" cellpadding=10px>
+            <caption align=bottom>SIT | Bathes</caption>
+            <thead>
+                <tr>
+                  <th>Sl No</th>  
+                  <th>Course</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                </tr>
+              </thead>   
+              <tbody>
+                <tr>
+                    <td>01</td>
+                    <td>UI Technologies</td>
+                    <td>06.04.2020</td>
+                    <td>07.30 AM</td>
+                </tr>
+                <tr>
+                    <td>02</td>
+                    <td>Core Java</td>
+                    <td>06.04.2020</td>
+                    <td>06.00 PM</td>
+                </tr>          
+                <tr>
+                    <td>03</td>
+                    <td>Data Science</td>
+                    <td>04.04.2020</td>
+                    <td>10.00 AM</td>
+                </tr>    
+                <tr>
+                    <td>04</td>
+                    <td>Advanced UI Technologies</td>
+                    <td>08.04.2020</td>
+                    <td>09.00 AM</td>
+                </tr>                       
+              </tbody>            
+        </table>              
+    </div>
+
+    <div>
+        <h2>Custom Table with CSS</h2>
+        <table id="batches_list">
+            <thead>
+                <tr>
+                  <th>Sl No</th>  
+                  <th>Course</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                </tr>
+              </thead>   
+              <tbody>
+                <tr>
+                    <td>01</td>
+                    <td>UI Technologies</td>
+                    <td>06.04.2020</td>
+                    <td>07.30 AM</td>
+                </tr>
+                <tr>
+                    <td>02</td>
+                    <td>Core Java</td>
+                    <td>06.04.2020</td>
+                    <td>06.00 PM</td>
+                </tr>          
+                <tr>
+                    <td>03</td>
+                    <td>Data Science</td>
+                    <td>04.04.2020</td>
+                    <td>10.00 AM</td>
+                </tr>    
+                <tr>
+                    <td>04</td>
+                    <td>Advanced UI Technologies</td>
+                    <td>08.04.2020</td>
+                    <td>09.00 AM</td>
+                </tr>                       
+              </tbody>            
+        </table>    
+    </div>    
+</body>
+</html>

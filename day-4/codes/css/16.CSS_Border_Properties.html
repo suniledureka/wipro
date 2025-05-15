@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            margin-bottom:400px;
+        }
+        div{
+            width:550px;
+            height:100px;
+            text-align:center; 
+            line-height:70px;          
+            box-shadow:0 0 10px black;
+        }
+        .b_top{
+            border-top-width:5px;
+            border-top-style:solid;
+            border-top-color:blueviolet;
+        }
+        .b_right{
+            border-right:5px solid blueviolet
+        }
+        .b_bottom{
+            border-bottom:5px solid blueviolet
+        }
+        .b_left{
+            border-left:5px solid blueviolet
+        }
+        .b_all{
+            border-width:5px;
+            border-style:solid;
+            border-color:blueviolet
+        }
+        .b_round_all{
+            border:5px solid blueviolet;
+            border-radius:40px;
+        }
+        .b_round_two{
+            border:5px solid blueviolet;
+            /*
+            border-top-left-radius: 60px;
+            border-bottom-right-radius: 60px;
+            */
+            border-radius:60px 0px
+        }
+        .b_mixed{
+            border-width:5px;
+            border-style:solid dashed dotted;
+            border-color:blue maroon orangered lime
+        }
+        .b_circle{
+            width:200px;
+            height:190px;
+            border:10px solid orangered;
+            background-color:teal;
+            border-radius:50%;
+            line-height:140px;
+        }
+        .b_ellipse{
+            width:100px;
+            height:100px;
+            border-radius:50%;
+            border:2px solid orangered;
+            border-width:10px 50px;
+        }
+    </style>
+    <title>Border Properties</title>
+</head>
+<body>
+    <h2>Border Top</h2>
+    <div class="b_top">
+        <h2>Wipro Labs</h2>
+    </div>
+
+    <h2>Border Right</h2>
+    <div class="b_right">
+        <h2>Wipro Labs</h2>
+    </div>
+
+    <h2>Border Bottom</h2>
+    <div class="b_bottom">
+        <h2>Wipro Labs</h2>
+    </div>  
+    
+    <h2>Border Left</h2>
+    <div class="b_left">
+        <h2>Wipro Labs</h2>
+    </div>   
+    
+    <h2>Border All Sides</h2>
+    <div class="b_all">
+        <h2>Wipro Labs</h2>
+    </div>   
+    
+    <h2>Border Rounded All Sides</h2>
+    <div class="b_round_all">
+        <h2>Wipro Labs</h2>
+    </div>    
+
+    <h2>Border Rounded Two Sides</h2>
+    <div class="b_round_two">
+        <h2>Wipro Labs</h2>
+    </div>       
+    
+    <h2>Border Mixed</h2>
+    <div class="b_mixed">
+        <h2>Wipro Labs</h2>
+    </div>    
+    
+    <h2>Circle Shape</h2>
+    <div class="b_circle">
+        <h2>WTL</h2>
+    </div>   
+    
+    <h2>Ellipse Shape</h2>
+    <div class="b_ellipse">
+        <h2>WTL</h2>
+    </div>        
+</body>
+</html>
