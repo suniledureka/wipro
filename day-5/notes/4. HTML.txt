@@ -1,0 +1,481 @@
+HTML Tables 
+-----------
+
+- used to represent the data in a tabular manner that is, information presented in a two-dimensional table comprised of rows and columns of cells containing data.. 
+
+Tables are defined with the <table> tag.
+
+Tables are divided into table rows with the <tr> tag.
+
+Table rows are divided into table data with the <td> tag and table headings with the <th> tag.
+
+The text in <th> elements are bold and centered by default. 
+
+The text in <td> elements are regular and left-aligned by default.
+
+Tables can be divided into 3 sections using:
+
+1) <thead> - Table Header - represents the block of rows that consist of header details of table.
+
+2) <tbody> - Table body - represents a block of rows that consist of contents of table.
+
+3) <tfoot> - Table Footer - represents the block of rows that consist footer data of table.
+
+<caption> tag - to add a caption for a table
+
+
+
+
+Attributes of <table> Tag
+-------------------------
+1) align= left | center | right 
+
+2) bgcolor = "colorname | hex_value"
+
+3) background="image path"
+
+4) border = 0 | 1
+
+5) bordercolor="colorname | hex_value"
+ 
+6) cellpadding=pixels 
+- specifies the space between the cell wall and the cell content
+
+7) cellspacing=pixels 
+- specifies the space between cells 
+
+8) frame =void | above | below | hsides | lhs | rhs | vsides | box | border 
+- specifies which parts of the outside borders that should be visible
+
+9) rules=none | groups | rows | cols | all - specifies which parts of the inside borders that should be visible
+
+10) width = pixels | % 
+
+11) height = pixels
+
+12) summary=text 
+- specifies a summary of the content of a table. The summary attribute has no visual effect in browsers, but can be used by screen readers
+
+
+
+
+Attributes of <th> and <td> - Cell level ---------------------------
+1) align =left | right | center | justify
+
+2) bgcolor="colorname | hex_value"
+
+3) colspan= number 
+- specifies the number of columns a cell should span (merge) horizontally. 
+
+4) rowspan=number 
+- specifies the number of rows to span (merge) vertically
+
+5) background=image
+
+6) valign=top | middle | bottom specifies the vertical alignment of the content in a header cell.
+
+7) width= pixels | % 
+- specifies the width of a cell (column)
+
+
+
+Attributes of <caption>
+-----------------------
+
+1) align= top | left | right | bottom (of the table)
+
+
+
+Empty Cells
+-----------
+<td>&nbsp;</td>
+
+
+<colgroup> Tag
+--------------
+<colgroup> tag represents a group of one or more columns within a table in an HTML document. 
+
+It can be used to apply styles for one or more columns. 
+
+This is useful because it eliminates the need to apply the styles at the individual <td> or <th> level.
+
+The <colgroup> tag must be used as a child of a <table> element, after any <caption> element and before any <thead>, <tbody>, <tfoot>, and <tr> elements.
+
+<col> Tag
+---------
+used to apply properties to a column within a <colgroup>
+
+===================================================***************=========================================
+
+
+Hyperlinking in HTML
+--------------------
+Links are used to navigate from one web page to another page or from one page to another website etc.
+
+Hyperlinks can point to any resource on the web like an HTML page, an image, a sound file, a movie, etc. 
+
+The text that provides linking is known as "Hypertext" and the link is known as "Hyperlink". 
+
+The links are divided into 2 types:
+
+1) Internal Links : linking within the page or within the same website is called as internal links
+
+2) External links : link to external files , another web site etc is called external link. 
+
+The HTML anchor element <a> is used to define both hyperlinks and anchors.
+
+    <a>......</a>
+
+ 
+An anchor is a term used to define a hyperlink destination inside a web page. 
+
+Linking can be done:
+(1) between different web sites
+(2) between different web pages in the same site
+(3) with in the page itself
+(4) used for sending an electronic mail
+(5) used for downloading a file etc
+
+
+Attributes
+----------
+1) href - defines the link "address"
+
+2) target - defines where the linked document to be opened 
+
+Values of "target" attribute:: _blank | _self | _parent | _top
+
+(a) _blank : opens the page in a new browser tab
+
+(b) _self  : loads the new page in the current window
+
+(c) _parent : loads new page into a parent frame
+
+(d) _top : loads new page into the current browser window, cancelling all frames
+
+"href" attribute values can be:
+
+(a) Global - href="https://www.google.com/" Links to other domains outside your website domain.
+
+(b) Local - href="about.html"   Links to other pages within your website.
+
+(c) Internal - href="#anchorname | #id" Links to anchors/bookmaks embedded in the current web page.
+
+4) download=filename -	Specifies that the target will be downloaded when a user clicks on the hyperlink
+
+Linking within the page
+-----------------------
+Option-1::
+---------
+- mark an area with a name:
+  <a name="last">This is last part of the page</a>
+
+- provide a link in some other part of the page
+  <a href='#last'>Last part</a>
+
+Option-2::
+----------
+- mark an area with ID attribute
+ <h1 id="top">Wipro Home</h1>
+
+- provide a link to the above ID region    
+ <a href="#top">Go Top</a>
+
+
+HTML - Email Links
+------------------
+Feedback to: 
+<a href="mailto:info@wipro.com?cc=manager@wipro.com&bcc=director@wipro.com&subject=Feedback&body=Please write your feedback here!">Send Feedback</a>
+
+
+
+HTML - Download Links
+
+<a href="soft/npp.6.8.3.Installer.exe" download>Download Notepad++ </a>
+<a href="resources/SIT_UI.pdf" download="wipro.pdf">Download</a>
+
+
+HTML - Default Links
+--------------------
+Use the <base> tag in the header section to set a default base URL for all links on a page to go to. 
+
+<html>
+<head>
+  <base href="https://www.wipro.com/" />
+</head>
+<body>
+ <div style="font-size:25px">
+  <a href="about-us.html">About Us</a> | 
+  <a href="training.html">Batches</a> 
+ </div>
+</body>
+
+
+Image Maps
+==========
+With HTML image maps, we can create clickable areas on an image.
+Image map is the process of defining different areas like rectangle, circle, polygon etc on an image and each area points to a web resource.
+
+The HTML <map> tag defines an image map. An image map is an image with clickable areas. The areas are defined with one or more <area> tags. 
+<map> Tag: 
+----------
+- used to create image maps
+
+Attributes of <map>:
+--------------------
+1) name : is the name used to refer the map
+
+  <map name="map1"></map>
+
+
+<area> tag:
+-----------
+- <area> tag is a child tag of <map> 
+- used to define a specific region in the map.
+
+Attributes
+
+1) href  = URL
+
+2) shape = rect | circle | polygon
+
+3) coords - specify the coordinates depending upon the shape of the region. 
+
+
+The rectangle shape will take four coordinates as parameters (x1, y1, x2, y2) i.e., x1, y1 denoting the upper left corner and x2, y2 denoting the lower right corner
+
+Circle will take three coordinates. Center (x, y) and the radius of the circle.
+
+Polygon will take three or more pairs of coordinates representing its region.
+
+"usemap" is an attribute of <img> tag , used to apply a map to the image
+
+ <img src="...." usemap="#map1">
+
+
+<html>
+<body>
+
+<h1 align="center">HTML IMAGE MAPS</h1>
+
+<img src="images/planets.gif" width="145" height="126" usemap="#mymap" >
+
+<map name="mymap">
+<area shape="rect" coords="0,0,82,126" href="sun.html" title="Sun"/>
+
+<area shape="circle" coords="90,58,3" title="Mercury" href="mercur.html" />
+
+<area shape="circle" coords="124,58,8" title="Venus" href="venus.htm" />
+</map>
+
+</body>
+</html>
+
+
+======================================== ************************ ==================================
+
+HTML Entities
+-------------
+Entities are used to display reserved characters in HTML (< , >  etc).
+
+Characters not present on your keyboard can also be replaced by entities.
+
+Syntax:
+	&entity_name;
+	   OR
+	&#entity_number; 
+
+https://www.freeformatter.com/html-entities.html
+
+
+Reference: https://dev.w3.org/html5/html-author/charref
+
+Entity 	Entity Name	  
+
+&nbsp;	non-breaking space
+< 	&lt; 	&#60;
+> 	&gt; 	
+&  	&amp; 	
+¢ 	&cent; 	
+£ 	pound 		&pound; 
+¥ 	yen 		&yen; 	
+€ 	euro 		&euro; 	
+© 	copyright 	&copy; 	
+® 	registered trademark 	&reg; 	 	
+
+Indian Rupees	&#8377;		
+
+™ 	&trade; 
+
+&larr; 	left arrow
+&uarr; 	up arrow 
+&rarr;	right arrow
+&darr; 	down arrow
+&spades;spades
+&clubs; clubs
+&hearts;hearts
+&diams;	diamonds
+etc
+
+
+
+HTML Frames
+===========
+HTML frames are used to divide your browser window into multiple sections where each section can load a separate HTML document. 
+
+A collection of frames in the browser window is known as a frameset. 
+
+To use frames , use <frameset> tag instead of <body> tag. 
+
+The <frameset> tag defines how to divide the browser window into frames.
+
+Each frameset defines a set of rows or (and) columns 
+
+Attributes of <frameset>
+------------------------
+1) cols = specifies how many columns are contained in the frameset and the size of each frame.
+The size of each frame can be given in any of the 4 ways as:
+
+ (a) Absolute values in pixels
+	cols = "100, 500, 200"
+
+ (b) A percentage of the browser window.
+	cols = "15%, 75%, 10%"
+
+ (c) Using a wildcard symbol
+For example to create three vertical frames, use cols="10%, *, 10%" 
+In this case second frame takes remainder of the window (80%)
+
+ (d) As relative widths of the browser window
+For example - to create three vertical frames
+  <frameset cols = "3*, 2*, 1*">
+
+here the window is divided into sixths: the first frame takes up half of the window, the second frame takes one third, and the third takes one sixth.
+
+2) rows - specifies the size of each frame in a frameset.
+
+To create two horizontal frames, 	     
+ <frameset rows="50%, 50%"> 
+
+3) bordercolor="color_name | hex_name"
+
+4) frameborder = 1 | 0
+
+====================================================================================================
+
+<frame> Tag
+-----------
+The <frame> tag defines what HTML document to put in each frame.
+
+Attributes of <frame>
+---------------------
+1) src = URL - specifies the URL of the document to show in a frame
+
+2) name = text - specifies the name of a frame
+
+3) marginwidth=pixels -specifies the left and right margins of a frame
+
+4) marginheight= pixels -specifies the top and bottom margins of a frame
+
+5) noresize="noresize"  -specifies that a frame is not resizable
+
+6) scrolling= auto | yes | no - specifies whether or not to display scrollbars in a frame
+
+
+
+Note: 
+If a user is using a browser that does not support frames then <noframes> element is used and we should place <body> element inside the <noframes> element
+
+<html>
+<head>
+<title>HTML Frames</title>
+</head>
+<frameset cols="25%,50%,25%">
+   <frame name="left" src="top_frame.html" />
+   <frame name="center" src="main_frame.html" />
+   <frame name="right" src="bottom_frame.html" />
+   <noframes>
+   <body>
+      Your browser does not support frames.
+   </body>
+   </noframes>
+</frameset>
+</html>
+
+
+Limitations of Frames
+---------------------
+1) Some smaller devices may not work with frames often because their screen is not big enough to be divided.
+
+2) Sometimes the page with frames will be displayed differently on different computers due to different screen resolution.
+
+3) The browser's back button might not work as the user hopes.
+
+4) There are browsers that do not support frame technology.
+
+
+
+
+<iframe> tag
+------------
+- it defines an inline frame that contains another document like an HTML document, youtube video, any type of document like text document, PDF file,  another web site etc into the current web page
+
+The <iframe> creates an inline frame, which embeds an independent HTML document into the current document.
+
+The iframe in HTML stands for "Inline Frame". The "iframe" tag defines a rectangular region within the document in which the browser can display a separate document, including scrollbars and borders. An inline frame is used to embed another document within the current HTML document.
+
+The "src" attribute is used to specify the URL of the document that occupies the iframe.
+
+Syntax :
+
+<iframe src="URL"></iframe>
+
+
+
+Attributes:
+-----------
+1) align =left | right | top | middle | bottom	
+		
+2) frameborder = 1 | 0  
+
+3) height = pixels
+				
+4) width = pixels
+
+5) marginheight =  
+6) marginwidth = 			
+
+7) name	= 
+
+8) scrolling = yes | no | auto  
+
+9) src		
+
+10) allowfullscreen 
+etc
+
+::to integrate a YouTube video in web page
+> play a video in youtube.com
+> click on "SHARE" link
+> click on "EMBED"
+> Copy the link
+> paste it in our html document
+
+
+<iframe src="https://www.wipro"....></iframe> 
+
+
+360 degree image in web page
+----------------------------
+pixexid.com  ---      google "360 degree image" -- download an image
+  360 panorama
+  select an image
+  download image
+
+  upload the image to momento360.com after creating a login
+  open image 
+  Share 
+
+
+Integrate a Video
+
