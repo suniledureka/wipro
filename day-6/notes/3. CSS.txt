@@ -1,0 +1,376 @@
+CSS Transitions
+===============
+CSS transitions allows you to change property values smoothly, over a given duration.
+
+    transition
+    transition-delay
+    transition-duration
+    transition-property
+    transition-timing-function			         
+
+
+To create a transition effect, you must specify two things:
+    1. the CSS property you want to add an effect to
+    2. the duration of the effect
+
+div {
+  width: 100px;
+  height: 100px;
+  background: red;
+  transition: width 2s;
+}
+
+div:hover {
+  width: 300px;
+}
+
+
+
+transform Property:
+------------------
+it applies a 2D or 3D transformation to an element. 
+this property allows you to rotate, scale, move (translate), skew, etc., elements.
+
+1) translate(left, top)
+- moves an element from its current position
+
+translateX(left position)  - defines a translation, using only the value for the X-axis	
+translateY(top position)   - defines a translation, using only the value for the Y-axis
+
+skewX(a) 	defines a 2D skew transformation along the X-axis 	
+skewY(a) 	defines a 2D skew transformation along the Y-axis
+
+rotateX(angle) 	defines a 3D rotation along the X-axis 	
+rotateY(angle) 	defines a 3D rotation along the Y-axis
+rotate(angle) 	defines a 2D rotation, the angle is specified in the parameter
+
+scaleX(x) 	scales an element horizontally (the width) 	
+scaleY(y) 	scales an element vertically (the height)
+scale(x,y) 	scales an element horizontally and vertically (width and height)
+
+div{
+ transform: translate(550px, 100px);
+}
+
+
+transform-origin:
+
+
+CSS 3 Animations:
+-----------------
+- It allows animation of HTML elements without using JavaScript or Flash!
+
+- animation lets an element gradually change from one style to another.
+
+- to use animation, we must first specify some "keyframes" for the animation.
+
+
+@keyframes Rule
+---------------
+- When you specify CSS styles inside the @keyframes rule, the animation will gradually change from the current style to the new style at certain times.
+- define the @keyframe
+- To get an animation to work, you must bind the animation to an element.
+- apply the keyframe to an HTML element by using the CSS property 
+"animation-name"
+
+    @keyframes
+    animation-name
+    animation-duration
+    animation-delay       - property specifies a delay for the start of an animation.
+    animation-iteration-count  - property specifies the number of times an animation should run.
+    animation-direction  - normal | reverse | alternate | alternate-reverse - The animation is played backwards first, then forwards
+    animation-timing-function - property specifies the speed curve of the animation. - ease | linear | ease-in | ease-out | ease-in-out | 
+    animation
+
+animation short-hand property
+animation: example 5s linear 2s infinite alternate;
+
+
+
+
+
+======== Responsive Page using CSS ================
+
+sm -  small mobile - 576px
+md - medium device - 768px
+lg - large device --992px
+xl - extra large - 1200px
+
+
+Responsive web design is about creating web pages that look good on all devices!
+
+A responsive web design will automatically adjust for different screen sizes and viewports.
+
+Responsive Web Design is about using HTML and CSS to automatically resize, hide, shrink, or enlarge, a website, to make it look good on all devices (desktops, tablets, and phones)
+
+To create a responsive website, add the following <meta> tag to all your web pages:
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+ <img src="img_girl.jpg" style="width:100%;"> 
+ <img src="img_girl.jpg" style="max-width:100%;height:auto;"> 
+
+
+
+Media Queries
+-------------
+In addition to resize text and images, it is also common to use media queries in responsive web pages.
+
+With media queries you can define completely different styles for different browser sizes.
+
+
+@media 
+
+    <style>
+        @media (max-width: 500px) {
+            body{
+                background-color:limegreen;
+            }
+        }
+
+        @media (min-width: 501px) and (max-width: 700px){
+            body{
+                background-color:blue;
+            }
+        }
+
+        @media (min-width:701px) and (max-width:1100px){
+            body{
+                background-color:orangered;
+            }
+        } 
+       
+        @media (min-width:1101px){
+            body{
+                background-color:darkred
+            }
+        }
+    </style>
+
+
+
+    <style>
+        body{
+            text-align:center;
+            color:white;
+            margin:0px;
+        }
+        h2{
+            display: none;
+        }
+        p{
+            font-size:20px;
+        }
+        img{
+            width:100%;
+        }
+
+        @media (max-width: 500px) {
+            body{
+                background-color:limegreen;
+            }
+            div h2:last-child{
+                display:block;
+            }
+            h1{
+                font-size:15px
+            }
+        }
+        @media (min-width: 501px) and (max-width: 700px){
+            body{
+                background-color:blue;
+            }
+            div h2:nth-child(3){
+                display:block;
+            }            
+            h1{
+                font-size:20px
+            }
+        }
+        @media (min-width:701px) and (max-width:1100px){
+            body{
+                background-color:orangered;
+            }
+            div h2:nth-child(2){
+                display:block;
+            }
+            h1{
+                font-size:25px
+            }
+        }        
+        @media (min-width:1101px){
+            body{
+                background-color:darkred
+            }
+            div h2:nth-child(1){
+                display:block;
+            }
+            h1{
+                font-size:30px
+            }
+        }
+    </style>
+    <title>Responsive Page</title>
+</head>
+<body>
+    <h1>Scree Size : <span id="screen"></span></h1>
+    <div>
+        <h2>X-Large Screen</h2>
+        <h2>Laptop Screen</h2>
+        <h2>Tablet Screen</h2>
+        <h2>Mobile Screen</h2>
+    </div>
+    <div>
+        <img src="../HTML/images/computer8.jpeg" alt="">
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At voluptatibus, voluptas aspernatur doloribus illo, dolorem accusamus dolorum deleniti eaque in minus? Nobis explicabo nesciunt quod dignissimos provident molestias voluptates tempore deserunt? Natus corporis quod fugiat nesciunt! Minima, voluptatibus, exercitationem a quod totam, repellendus voluptate similique provident asperiores aliquam consequatur deserunt eligendi delectus esse corporis veniam? Quos doloremque aliquid ut ipsam!</p>
+    </div>
+
+    <script>
+        window.addEventListener('resize', function(){
+            let in_width = window.innerWidth
+            let in_height = window.innerHeight
+            document.querySelector('#screen').innerHTML = 'Width: '+in_width+' | Height: '+in_height
+        })
+    </script>
+</body>
+</html>
+
+
+
+======================== display : flex ==============================
+CSS Flex Box
+------------
+- flexible box
+
+- To define a layout module like block, inline , table , positioned etc
+
+- The Flexible Box Layout Module, makes it easier to design flexible responsive layout structure without using float or positioning
+
+- flex-container & flex-item
+
+display:flex
+
+flex-direction: row | row-reverse | column | column-reverse
+ - defines in which direction the container wants to stack the flex items.
+
+flex-wrap: nowrap | wrap | wrap-reverse
+ - property specifies whether the flex items should wrap or not.
+
+flex-flow 
+ - property is a shorthand property for setting both the flex-direction and flex-wrap properties
+flex-flow: row wrap;
+
+align-items: stretch | flex-start | center | flex-end
+- The align-items property is used to align the flex items vertically
+The stretch value stretches the flex items to fill the container (this is default)
+The center value aligns the flex items in the middle of the container
+The flex-start value aligns the flex items at the top of the container
+The flex-end value aligns the flex items at the bottom of the container
+
+justify-content: flex-start | center | flex-end | space-between | space-around | space-evenly 
+ -property is used to align the flex items
+The flex-start value aligns the flex items at the beginning of the container (this is default)
+The center value aligns the flex items at the center of the container
+The flex-end value aligns the flex items at the end of the container
+The space-around value displays the flex items with space before, between, and after the lines
+The space-between value displays the flex items with space between the lines
+
+align-content: stretch | space-between | space-around | center | flex-start | flex-end | 
+- The align-content property is used to align the flex lines
+.flex-container {
+  display: flex;
+  height: 600px;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+
+
+Flex Item Properties
+--------------------
+The direct child elements of a flex container automatically becomes flexible (flex) items
+
+ <div class="flex-container">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+</div> 
+<style>
+.flex-container {
+  display: flex;
+  background-color: #f1f1f1;
+}
+
+.flex-container > div {
+  background-color: DodgerBlue;
+  color: white;
+  width: 100px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+}
+</style>
+
+
+The flex item properties are:
+
+(1) order
+- specifies the order of the flex items
+ <div class="flex-container">
+  <div style="order: 3">1</div>
+  <div style="order: 2">2</div>
+  <div style="order: 4">3</div>
+  <div style="order: 1">4</div>
+</div> 
+
+(2) flex-grow
+ - specifies how much a flex item will grow relative to the rest of the flex items.
+ <div class="flex-container">
+  <div style="flex-grow: 1">1</div>
+  <div style="flex-grow: 1">2</div>
+  <div style="flex-grow: 8">3</div>
+</div> 
+
+(3) flex-shrink
+- specifies how much a flex item will shrink relative to the rest of the flex items
+- default value is 1
+
+ <div class="flex-container">
+  <div>1</div>
+  <div>2</div>
+  <div style="flex-shrink: 0">3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+  <div>7</div>
+  <div>8</div>
+  <div>9</div>
+  <div>10</div>
+</div> 
+
+(4) flex-basis
+ - specifies the initial length of a flex item
+ <div class="flex-container">
+  <div>1</div>
+  <div>2</div>
+  <div style="flex-basis: 200px">3</div>
+  <div>4</div>
+</div> 
+
+(5) flex
+- The flex property is a shorthand property for the flex-grow, flex-shrink, and flex-basis properties
+
+Make the third flex item not growable (0), not shrinkable (0), and with an initial length of 200 pixels:
+<div class="flex-container">
+  <div>1</div>
+  <div>2</div>
+  <div style="flex: 0 0 200px">3</div>
+  <div>4</div>
+</div> 
+
+        .container h1:nth-child(1){
+            flex:3;
+        }
+

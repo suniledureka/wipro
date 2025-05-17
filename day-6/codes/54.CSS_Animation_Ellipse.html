@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Ellipse</title>
+    <style>
+        h1{
+            text-align:center
+        }
+        div{
+            width:80px;
+            height:80px;
+            background-color:indigo;
+            color:white;
+            border-radius:50%;
+            font-size:30px;
+            text-align:center;
+            line-height:80px;
+            margin:200px;
+            display:inline-block;
+            border-width:30px 80px;
+            border-style:solid;
+            border-color:red yellow;
+            animation:clock_anim 1s linear infinite
+        }
+        #anti_clock{
+            animation-direction:reverse
+        }
+        @keyframes clock_anim{
+            0%{
+                transform:rotate(0deg)
+            }
+            100%{
+                transform:rotate(180deg)
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS3 | ANIMATION | ELLIPSE</h1>
+    <div id="clock">UI</div>
+    <div id="anti_clock">AUI</div>
+</body>
+</html>
