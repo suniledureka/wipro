@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>java script</title>
+</head>
+<body>
+    <nav>
+        <h2>Java Script | Variables</h2>
+    </nav>    
+
+    <body>
+       
+        <script type="text/javascript">
+            var firstName = 'Sanjay';
+            console.log('first name = ' + firstName);
+
+            let lastName = 'Patil';
+            console.log('last name = ' + lastName);
+            console.log();
+
+            /*----- difference between var and let -----*/
+            var age = 25;
+            var age = 26; //redeclaration is possible with var
+            console.log('age = ' + age)
+
+            let address = 'Hyderabad';
+            //let address = 'Chennai'; //Uncaught SyntaxError: redeclaration of let address
+            console.log(address)
+
+            console.log();
+            //-- var got function scope whereas let got block scope
+            for(var i=1; i<=3; i++){
+                console.log(i)
+            }
+            console.log('var i = ' + i)
+
+            for(let j=1; j<=3; j++){
+                console.log(j)
+            }
+            //console.log('let j = ' + j); //Uncaught ReferenceError: j is not defined
+            console.log();
+
+            console.log(city) //undefined
+            var city = 'Hyderabad';
+
+            console.log(country);
+            let country; //Uncaught ReferenceError: can't access lexical declaration 'country' before initialization
+        </script>
+    </body>
+</body>
+</html>

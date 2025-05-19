@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        div{
+            width:60%;
+            margin:50px auto;
+            font-size:20px;
+            background:linear-gradient(45deg,darkslategray,blueviolet);
+            color:white;
+            padding:10px;
+            border-radius:15px;
+            text-align:center;
+        }
+        input{
+            font-size:20px;
+        }
+    </style>
+    <title>Odd Numbers Between</title>
+</head>
+<body>
+    <nav>
+        <h2>Java Script | Odd Numbers between x and y</h2>
+    </nav>
+    <div>
+        Odd Numbers between 
+        <input type="text" id="input-element-1" autofocus size=5> and
+        <input type="text" id="input-element-2" size=5>
+        <input type=button value="Show" onclick="getOddNumbers()">
+    </div>
+    <div id="odd_numbers"> </div>
+
+    <script src="odd_numbers.js"></script>
+</body>
+</html>

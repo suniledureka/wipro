@@ -1,0 +1,26 @@
+body{
+    margin: 0px;
+}
+
+nav{
+    background: linear-gradient(135deg, darkslategray, lightgreen);
+    color: white;
+    padding: 16px;
+    margin-bottom: 30px;
+}
+nav h2{
+    margin: 0px;
+}
+.btn{
+    padding: 10px 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: lightskyblue;
+    box-shadow: 0 0 10px black;
+}
+
+#emp_details{
+    font-size: 20px;
+    line-height: 2;
+    margin-left: 50px;
+}

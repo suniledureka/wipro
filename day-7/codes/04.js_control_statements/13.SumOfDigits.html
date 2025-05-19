@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        div{
+            background:linear-gradient(45deg,darkslategray,blueviolet);
+            padding:10px;
+            text-align:center;
+            font-family:'comic sans ms',sans-serif;
+            font-size:22px;
+            border-radius:20px;
+            width:50%;
+            margin:auto;
+            color:yellow;
+        }
+        input{
+            font-size:22px;
+        }
+        input:focus{
+            background-color:yellow
+        }
+    </style>
+    <title>Sum of Digits</title>
+</head>
+<body>
+    <div>
+        Enter a Number: 
+        <input type="text" id="txtNum" size=8 autofocus onblur="sumOfDigits(this.value)">
+        <br><br>
+        <span id="sum_region"></span>
+    </div>
+    <script>
+        function sumOfDigits(num)
+        {
+          let msg = 'Sum of Digits of '+num+' = '   
+          if(!isNaN(num))  {
+           let n = parseInt(num) //to convert string type data to number           
+           let sum = 0  
+           while(n>0){
+               let rem = n%10
+               sum += rem
+               n = Math.floor(n/10)
+           }
+           msg += sum
+          }
+          else{
+              msg = 'Please enter a valid number'
+          }
+          document.getElementById('sum_region').innerHTML = msg
+        }
+    </script>
+</body>
+</html>
