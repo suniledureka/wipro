@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>String Method</title>
+</head>
+
+<body>
+    <div>
+        <h2>Java Script | String Methods</h2>
+    </div>
+    <script>
+        let str = "JavaScript is a scripting language. Scripting languages are often interpreted";
+
+        console.log(`indexOf('scripting') = ${str.indexOf('scripting')}`);
+        console.log(`search('scripting') = ${str.search('scripting')}`);
+
+        console.log(`indexOf("Scripting") = ${str.indexOf("Scripting")}`) //36 
+        console.log(`search("Scripting") = ${str.search("Scripting")}`) //36   
+
+        let exp = /Scripting/
+        console.log(`search(regexp) = ${str.search(exp)}`) //36 
+
+        exp = /Scripting/i
+        console.log(`search(regexp) = ${str.search(exp)}`) //16     
+
+        str = "Learn Node.js at Wipro. Node.js is a well-known JavaScript framework.";
+
+        let str1 = str.replace("Node.js", "Angular");
+        console.log(str1); //1 replacement
+
+        let str2 = str.replace(/node.js/gi, "Angular");
+        console.log(str2) //2 replacements - global
+    </script>
+</body>
+
+</html>
