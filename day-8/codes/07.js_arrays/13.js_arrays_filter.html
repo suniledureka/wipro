@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Array Methods</title>
+</head>
+<body>
+    <nav>
+        <h2>Java Script Array | filter()</h2>
+    </nav>
+
+    <script>
+        let ages = [71, 3, 15, 10, 28, 15, 26];
+  
+        let checkAge = (age)=>{
+            return age >= 18;
+        }
+
+        let ages_more_than_18 = ages.filter(checkAge)
+        
+        
+        /*
+        let ages_more_than_18 = ages.filter(function(age){
+            return age>18
+        })
+        */
+
+        /*
+        let ages_more_than_18 = ages.filter((age)=>{
+            console.log(age)
+            return age>=18
+        })
+        */
+        
+        console.log(`Age >= 18 = ${ages_more_than_18}`)
+        console.log(ages_more_than_18)
+    </script>
+</body>
+</html>

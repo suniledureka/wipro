@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        button{
+            border:none;
+            background:transparent;
+            font-size:20px;
+            border:2px solid black;
+            padding:10px 30px;
+            border-radius: 15px;;
+        }
+        button:hover{
+            background-color:whitesmoke;
+            box-shadow: 0 0 10px white;
+            border:none;
+        }
+        table{
+            margin:auto;
+            margin-top:20px;
+            font-size:20px;
+            width:800px;
+            border-collapse: collapse;
+        }
+        td,th{
+            border:1px solid black;
+            padding:10px;
+        }
+    </style>
+    <title>JS Arrays</title>
+</head>
+<body>
+    <nav>
+        <h2>EMPLOYEE MANAGEMENT</h2>
+    </nav>
+
+    <div style="margin:auto;margin-top:50px;padding:20px;width:850px;border-radius:20px;">
+        <button onclick="allEmployees()">All Employees</button>
+        <button onclick="activeEmployeesFun()">Active Employees</button>
+        <button onclick="inActiveEmployeesFun()">In-Active Employees</button>
+        <button onClick="juniorStaffFun()">Junior Staff</button>        
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>NAME</th>
+                <th>AGE</th>
+                <th>DESIGNATION</th>
+                <th>WORKING STATUS</th>
+            </tr>
+        </thead>
+        <tbody id="table_body">
+
+        </tbody>
+    </table>
+    <script type="text/javascript" src="employees.js"></script>
+</body>
+</html>

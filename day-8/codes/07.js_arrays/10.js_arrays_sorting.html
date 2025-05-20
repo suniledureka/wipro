@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Array Methods</title>
+</head>
+<body>
+    <nav>
+        <h2>Java Script Array Sorting</h2>
+    </nav>
+
+    <script>
+        let courses = ['Core Java','Adv Java','Spring','Hibernate','Android']
+        console.log(courses)
+
+        courses.sort()
+        console.log(courses)
+         
+        courses.reverse()
+        console.log(courses)
+
+        console.log(`---- sorting in numeric array ----`)
+        let marks = [98,85,76,25,38,100, 100, 85]
+        console.log(`Original Array - ${marks}`)
+
+        /*
+        marks.sort()
+        console.log(`Sorted Array - ${marks}`)
+        */
+
+        marks.sort(function(a, b){
+            //console.log(`${a}, ${b}`)
+            //return a-b
+            if(a > b){
+                return 1;
+            }else {
+                return -1;
+            }
+        })
+        console.log(`Sorted Array - ${marks}`)       
+    </script>
+</body>
+</html>

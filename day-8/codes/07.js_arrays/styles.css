@@ -1,0 +1,12 @@
+body{
+    margin:0px;
+    font-family:'Verdana',serif;
+}
+nav{
+    background:linear-gradient(35deg, darkslateblue, lightgreen);
+    color:white;
+    padding:15px;
+}
+h2{
+    margin:0px;
+}

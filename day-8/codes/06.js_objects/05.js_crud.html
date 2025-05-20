@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #product_details{
+            width:50%;
+            margin:auto;
+            padding:20px;
+            border-radius:20px;
+            font-size:22px;
+            background-color:blueviolet
+        }
+    </style>
+    <title>CRUD in Object</title>
+</head>
+<body>
+    <nav>
+        <h2>CRUD Operations in Object</h2>
+    </nav>
+
+    <div id="product_details" style="margin-top:100px"></div>
+
+    <script>
+     //arrow function definition with object parameter
+     let productDetails = (product) => {
+        let details = ''
+
+        if(typeof(product) == 'object') {
+         for(let prop in product)   
+         {
+           details = `${details}${prop.toUpperCase()} : ${product[prop]} <br><br>`
+         }
+        }
+        else{
+            details =' Not an Object'
+        }
+
+        document.getElementById('product_details').innerHTML = details
+     }        
+    </script>
+    <script>
+     //create a product object
+     let product = {}
+     console.log(product)
+
+     //add properties to object - CREATE
+     product.productId = 100123
+     product['productName'] = 'Computer'
+     product.productPrice = 35550
+     console.log(product)
+
+     //retrive the property
+     console.log(`Product Name : ${product.productName}\nProduct Price : ${product['productPrice']}`)
+
+     //update product price
+     product.productPrice = 35852
+     console.log(product)
+     
+
+     //function call with object as argument
+     productDetails(product)
+
+     console.log(`Price property available = ${product.hasOwnProperty('productPrice')}`)
+
+     //delete a property
+     delete product.productPrice
+     console.log(product)
+
+     console.log(`Price property available = ${product.hasOwnProperty('productPrice')}`)
+     //productDetails(product)
+    </script>
+</body>
+</html>

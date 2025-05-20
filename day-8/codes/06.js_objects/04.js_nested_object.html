@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>nested object</title>
+</head>
+
+<body>
+    <nav>
+        <h2>Java Script | Nested Object</h2>
+    </nav>
+
+    <script>
+        let student = {
+            name: 'Sunil Joseph',
+            age: 24,
+            course: 'ReactJS Certification Training',
+            address: {
+                street: 'Ameerpet',
+                city: 'Hyderabad',
+                state: 'Telangana'
+            }
+        }
+
+        console.log(student)
+        console.log(`Name: ${student.name}`)
+        console.log(`Address: ${student.address}`)
+        console.log(`Street: ${student.address.street}`)
+
+        //to add a new property to address dynamically
+        student.address.country = 'India'
+
+        console.log(student)
+        console.log();
+        
+        /*object iteration*/
+        console.log(`----- Student Details --------`)
+        for (let prop in student) {
+            if (typeof student[prop] === 'object') {
+                console.log(`${prop.toUpperCase()} Details::`)
+                for (let inprop in student[prop]) {
+                    console.log(`${inprop} = ${student[prop][inprop]}`)
+                }
+            }
+            else
+                console.log(`${prop} = ${student[prop]}`)
+        }        
+    </script>
+</body>
+
+</html>

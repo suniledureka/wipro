@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            background: linear-gradient(45deg, black, goldenrod, black);
+        }
+        .container{
+            width:750px;
+            height:500px;
+            margin: 100px auto;
+            padding: 10px;
+            box-shadow:0 0 20px black;    
+            position:relative;
+            cursor: pointer; 
+            border:20px solid rgb(102, 52, 5);
+            overflow:hidden; 
+            background: linear-gradient(45deg, black, red, black);        
+        }
+        .container img{
+            width:inherit;
+            height:inherit;
+            cursor: pointer;      
+        /*
+        transition-property: transform;
+        transition-duration:2s;         
+        */
+        transition:transform 2s
+        }
+        .container #details-1{
+            position:absolute;
+            top:0px;
+            left:0px;
+            width:33.3%;
+            color: gold;
+            background:rgba(62, 133, 4, 0.911);
+            height:20%;              
+            transform:rotateX(90deg);
+            transition: all 2s;
+            transform-origin:top;  
+            font-family:'castellar';
+            font-size: 26px;
+            text-align:justify;
+            text-shadow: 2px 2px 4px #000000;
+            cursor: pointer; 
+                              
+        }
+        .container #details-2{
+            position:absolute;
+            top: 0px;
+            left: 0px;
+            margin-left: 258px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            width:33.3%;
+            color: gold;
+            text-shadow: 0, 2px, 4px, 2px gray;
+            background: rgba(242, 245, 239, 0.811);
+            height:20%;             
+            transform:rotateX(90deg);
+            transition: all 3s;
+            transform-origin:top;  
+            font-family:'castellar';
+            font-size: 26px;
+            text-shadow: 2px 2px 4px #000000;
+            text-align: center;
+            cursor: pointer;                  
+        }
+        .container:hover #details-1,.container:hover #details-2 {
+            transform:rotateY(0deg)
+        }
+        .container:hover img{
+            transform:scale(1.3,1.3)
+        }
+        
+        #details-1:hover{
+            animation: myanimation 10s;
+            transform:scale(1.3,1.3);
+            transition: transform 2s;
+        }
+        /*#details-1, 2:active....click and hold for animation
+        /*10s*/
+        @keyframes myanimation
+        {
+            0%{background-color: green;}
+            25%{background-color: white;}
+            50%{background-color:red;}
+            
+        }
+        .container #details-3{
+            position:absolute;
+            top: 0px;
+            right: 0px;
+            width:33.3%;
+            color: gold;
+            text-shadow: 0, 2px, 4px, 2px gray;
+            background:rgba(245, 6, 6, 0.811);
+            height:20%;             
+            transform:rotateX(90deg);
+            transition: all 4s;
+            transform-origin:top;  
+            font-family:'castellar';
+            font-size: 26px;
+            text-shadow: 2px 2px 4px #000000;
+            text-align: center;
+            cursor: pointer;                  
+        }
+        .container #details-4{
+            position:absolute;
+            bottom: 0px;
+            right: 0px;
+            padding-bottom: 50px;
+            width:50%;
+            color: red;
+            text-shadow: 0, 2px, 4px, 2px gray;
+            background:none;
+            height:20%;             
+            transform:rotateY(90deg);
+            transition: all 6s;
+            transform-origin:right;  
+            font-family: 'consistance';
+            font-size: 80px;
+            text-shadow: 3px 3px 5px black;
+            text-align: center;
+            cursor: pointer;                  
+        }
+        .container:hover #details-1,.container:hover #details-2,.container:hover #details-3,.container:hover #details-4 {
+            transform:rotateY(0deg)  
+        }
+        .container:hover #details-4 {
+        transform:rotateY(45deg) scale (1.2,1.2);
+        }
+        .container:hover img{
+            transform:scale(1.2,1.2)
+        }
+        #details-1:hover{
+            animation: myanimation 10s;
+            transform:scale(1.3,1.3);
+            transition: transform 2s;
+        }
+        /*#details-1, 2, 3:active....click and hold for animation
+        /*10s*/
+        @keyframes myanimation
+        {
+            0%{background-color: green;}
+            25%{background-color: white;}
+            50%{background-color:red;} 
+        }
+        /*
+            transition-property: transform;
+            transition-duration:2s;         
+            */
+        #details-2:hover{
+            animation: myanimation 10s;
+            transform:scale(1.3,1.3);
+            transition: transform 2s;
+        }
+        /*#details-1, 2, 3:active....click and hold for animation
+        /*10s*/
+        @keyframes myanimation
+        {
+            0%{background-color: green;}
+            25%{background-color: white;}
+            50%{background-color:red;}
+        }
+        /*
+            transition-property: transform;
+            transition-duration:2s;         
+            */
+        
+        #details-3:hover{
+            animation: myanimation 10s;
+            transform:scale(1.3,1.3);
+            transition: transform 2s;
+        }
+        /*#details-1, 2, 3:active....click and hold for animation
+        /*10s*/
+        @keyframes myanimation
+        {
+            0%{background-color: green;}
+            25%{background-color: white;}
+            50%{background-color:red;}
+        }
+        /*
+            transition-property: transform;
+            transition-duration:2s;         
+            */
+
+    </style>
+    <title>Transformations</title>
+</head>
+<body>
+    <div class="container">
+        <img src="../images/food/burger4.jpg" alt="">
+        <div id="details-1">
+            <h2 style="text-align:center">PIZZA</h2>
+        </div>
+        <div id="details-2">
+            <h2 style="text-align:center">RUSTICA</h2>
+        </div>
+        <div id="details-3">
+            <h2 style="text-align:center">ITALIANA</h2>
+        </div>
+        <h2>transform:rotate & scale</h2>
+        <div id="details-4">
+            <article>Deliziosa!</article>  
+        </div>
+    </div>
+</body>
+</html>
