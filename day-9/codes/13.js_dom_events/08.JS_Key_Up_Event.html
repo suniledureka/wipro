@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        input{
+            font-size:20px;
+            border:none;
+            background-color:yellowgreen;
+            padding:5px;
+            border-radius:5px
+        }
+        #numChars{
+            font-size:20px
+        }
+    </style>
+    <title>Key Event</title>
+</head>
+<body>
+    <nav>
+        <h2>Java Script | Key Event | Keyup</h2>
+    </nav>
+    
+    <section>
+        <article>
+            <label for="txtName">Enter Name: </label>
+            <input type="text" id="txtName" size=25 autofocus onkeyup="changeCase(this.value)">
+            <span id="numChars"></span>
+        </article>
+    </section>
+
+    <script>
+        //get the reference of text field
+        let txtName = document.getElementById('txtName')
+        let numChars = document.querySelector('#numChars')
+
+        let changeCase = (name) => {
+            name = name.toUpperCase();
+            txtName.value = name;
+            numChars.innerText = `(${name.length})`
+            if(name.length >= 20){
+                numChars.style.color = 'red'
+                console.log(event)
+               //event.preventDefault()
+            }
+            else{
+                numChars.style.color = 'black'
+            }
+        }
+    </script>
+</body>
+</html>

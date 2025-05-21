@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Employee Management</title>
+</head>
+<body>
+    <nav>
+        <h2>WIPRO | EMPOYEE MANAGEMENT</h2>
+    </nav>
+    <section>
+        <article>
+            <button onclick="allEmployees()" class="button">ALL EMPLOYEES</button>
+            <button onclick="maleEmployees()" class="button">MALE EMPLOYEES</button>
+            <button onclick="femaleEmployees()" class="button">FEMALE EMPLOYEES</button>
+        </article>
+        <article>
+            <input type="text" txt='name_search' id="name_search" size=20 placeholder="enter a name">
+        </article>
+        <article>
+            No of Records : <span id='noRecs'></span>
+        </article>
+        <article>
+            <table>
+                <thead>
+                    <tr>
+                        <th>SL NO</th>
+                        <th>EMP NO</th>
+                        <th>FIRST NAME</th>
+                        <th>LAST NAME</th>
+                        <th>GENDER</th>
+                        <th>AGE</th>
+                        <th>COUNTRY</th>
+                    </tr>
+                </thead>
+                <tbody id="table_body">
+
+                </tbody>
+            </table>
+        </article>
+    </section>
+
+    <script src="employee_details.js"></script>
+    <script src="script_1.js"></script>
+</body>
+</html>

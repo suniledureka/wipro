@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body{
+            background-color:darkslategray;
+            color:white;
+        }
+        #txtUname{
+            border:none;           
+            padding:5px;
+            border-radius:10px;
+            font-size:20px;
+        }
+        #txtHelp{
+            font-size:15px;
+            color:aqua;
+            display: none;
+        }
+    </style>
+    <title>Focus Event</title>
+</head>
+<body>
+    <nav>
+        <h2>Java Script | Focus & Blur Event  </h2>
+    </nav>
+    <section>
+        <article>
+            <label for="txtUname">Enter User Name</label>
+            <input type="text" id="txtUname" size=20 onfocus="changeSettings()">
+            <span id="txtHelp">(enter only alphabets and spaces)</span>
+        </article>        
+    </section>
+
+    <script>
+        let txtField = document.querySelector('#txtUname')
+        let txtHelp = document.querySelector('#txtHelp')
+
+        let changeSettings = () => {
+            txtField.style.backgroundColor = 'yellow'
+            txtField.style.boxShadow = '0 0 10px white'
+            txtHelp.style.display = 'inline'
+        }
+
+        let defaultSettings = () => {
+            txtField.style.backgroundColor = 'white'
+            txtField.style.boxShadow = 'none'
+            txtHelp.style.display = 'none'
+        }
+
+        txtField.addEventListener('blur', defaultSettings)
+    </script>
+</body>
+</html>

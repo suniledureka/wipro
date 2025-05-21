@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>        
+        section article button{
+            border:none;
+            padding:10px 20px;
+            background:none;
+            font-size:20px;
+            border:2px solid black;
+            border-radius:20px;            
+        }
+        section article button:hover{
+            background:linear-gradient(45deg, black, orangered);
+            color:white;
+            border:none;
+            box-shadow:0 0 10px orangered
+        }
+        .anchor_settings{
+            text-decoration:none;
+            display:inline-block;
+            margin-bottom:40px;
+        }
+    </style>
+    <title>Change Content</title>
+</head>
+<body>
+    <nav>
+        <h2>
+            Java Script | DOM | Change Content
+        </h2>
+    </nav>
+
+    <section>
+        <article>
+          <a href="https://www.google.com" target="_self" class="anchor_settings"> Google </a>
+        </article>
+        <article>
+            <button onclick="changeSettings()">Change </button>
+        </article>
+        <article>
+            <img src="../images/computer1.jpg" style="width:350px;height:250px;border-radius:20px" onclick="this.setAttribute('src','../images/computer2.jpg')">
+        </article>
+    </section>
+
+    <script>
+        let changeSettings = () => {
+            let anchorTag = document.querySelector(".anchor_settings")
+            if(anchorTag != null){                
+                anchorTag.innerText = 'wipro'
+                anchorTag.setAttribute('href','https://www.wipro.com')
+                //anchorTag.href = 'https://www.wipro.com'
+                console.log('target = '+anchorTag.getAttribute('target'))
+                anchorTag.target = '_blank'
+                console.log('target = '+anchorTag.target)
+                console.log('target = '+anchorTag.getAttribute('target'))
+            }
+        }
+    </script>
+</body>
+</html>

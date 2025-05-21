@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Date Methods</title>
+</head>
+
+<body>
+    <div>
+        <h2>Java Script | Date Methods</h2>
+    </div>
+    <script>
+        let findDayName = (day) => {
+            let day_name = ''
+            switch (day) {
+                case 0:
+                    day_name = 'Sunday'
+                    break
+                case 1:
+                    day_name = 'Monday'
+                    break
+                case 2:
+                    day_name = 'Tuesday'
+                    break
+                case 3:
+                    day_name = 'Wednesday'
+                    break
+                case 4:
+                    day_name = 'Thursday'
+                    break
+                case 5:
+                    day_name = 'Friday'
+                    break
+                case 6:
+                    day_name = 'Saturday'
+                    break
+            }
+            return day_name
+        }
+    </script>
+    <script>
+        let today = new Date();
+        console.log(`${today}`)
+
+        console.log(`Year = ${today.getYear()}`) //2025-1900 = 125
+        console.log(`Year = ${today.getFullYear()}`)
+        console.log(`Month = ${today.getMonth()}`)
+        console.log(`Date = ${today.getDate()}`)
+        console.log(`Hours = ${today.getHours()}`)
+        console.log(`Minutes = ${today.getMinutes()}`)
+        console.log(`Seconds = ${today.getSeconds()}`)
+        console.log(`Miliiseconds = ${today.getMilliseconds()}`)
+
+        let day = today.getDay()
+        console.log(`Day = ${day}`)
+        console.log(`Day = ${findDayName(day)}`)
+
+        /*--- setter methods ---- */
+        console.log(`------------------`)
+        today.setYear(2022)
+        today.setMonth(10)
+        today.setDate(15)
+        today.setHours(12)
+        today.setMinutes(56)
+        console.log(`${today}`)
+
+        console.log(`------------------`)
+        today = new Date()
+        console.log(`${today}`)
+        let time = today.getTime()
+        console.log(`No of milliseconds from 1970 Jan Ist = ${time}`)
+
+        let d = new Date(time)
+        console.log(`${d}`)
+
+        d.setTime(1000)
+        console.log(`${d}`)
+    </script>
+</body>
+
+</html>

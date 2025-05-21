@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+
+
+    </style>
+    <title>Change Event</title>
+</head>
+<body>
+    <nav>
+        <h2>Java Script | Change Event | </h2>
+    </nav>
+    <section>
+        <article>
+            <p id="content_region" style="font-size:15px;margin:50px ;height:70px;">Softwave IT Solutions</p>
+            <div>
+                <input type="radio" name="fsize" value="15px" checked onchange="change_font(this)"> Small
+                <input type="radio" name="fsize" value="25px" onchange="change_font(this)"> Medium
+                <input type="radio" name="fsize" value="45px" onchange="change_font(this)"> Large
+            </div>
+        </article>        
+    </section>
+
+    <script>
+        let para = document.querySelector('#content_region');
+
+        let change_font = (element) => {             
+            let fosize = element.value            
+            para.style.fontSize = fosize;
+        }
+    </script>
+</body>
+</html>

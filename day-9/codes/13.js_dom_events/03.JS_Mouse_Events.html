@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Mouse Event</title>
+</head>
+<body>
+    <nav>
+        <h2>Java Script | Mouse Event | mouseover & mouseout</h2>
+    </nav>
+    <section>
+        <article>
+          <!--
+           <img src="../images/bulboff.png" id="bulb" alt="" onmouseover="mouse_on()" onmouseout="mouse_out()"> 
+          -->
+          <img src="../images/bulboff.png" id="bulb" alt="" >
+        </article>
+    </section>
+
+    <script>
+        let bulb = document.querySelector('#bulb')
+
+        let mouse_on = () => {
+            bulb.setAttribute('src','../images/bulbon.png')
+        }
+
+        let mouse_out = () => {
+            bulb.src = '../images/bulboff.png'
+        }
+
+        bulb.addEventListener('mouseover', mouse_on)
+        bulb.addEventListener('mouseout', mouse_out)
+       
+    </script>
+</body>
+</html>

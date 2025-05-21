@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .sit{
+            font-size:22px;
+            color:blue;
+        }
+    </style>
+    <title>Getting Element References</title>
+</head>
+<body>
+    <nav>
+        <h2>Java Script | DOM | Find HTML Elements | getElementsByClassName()</h2>
+    </nav>  
+    <section>
+        <article>
+            <h2>Article-1</h2>
+            <p>HTML Paragraph</p>
+            <p class="sit">CSS Paragraph</p>
+            <p>Java Script Paragraph</p>
+            <h3 class="sit">End of Course List</h3>
+        </article>
+        <article>
+            <p class="sit">UI Technologies</p>
+        </article>
+        <article>
+            <button style="padding:8px 10px;border-radius:15px" onclick="changeContent()">Change Paragraph Content</button>
+        </article>
+    </section>
+
+    <script>
+        function changeContent(){
+            let elements = document.getElementsByClassName('sit')
+            console.log(`No of elements with class=sit :: ${elements.length}`)
+            /*
+            for(let element of elements){
+                element.innerText = 'Changed Content'
+                element.style.color = 'green'
+            }
+            */
+            /*--- to change the content of only the first element with class=sit ---*/
+            if(elements.length>0){
+                elements[0].innerText = 'Changed Content'
+                elements[0].style.color = 'green'
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body{
+            text-align:center;   
+            background-color:rgba(0,0,0,0.3);         
+        }
+        img{
+            width:300px;
+            height:150px;
+            border-radius:20px;
+            box-shadow:0 0 10px black;
+        }
+    </style>
+    <title>Change Content</title>
+</head>
+<body>
+    <nav>
+        <h2>
+            Java Script | DOM | Change Content
+        </h2>
+    </nav>
+
+    <section>
+        <article>
+            <img src="../images/computer1.jpg" alt="" id="imgLogo" onmouseover="changeImage_In()" onmouseout="changeImage_Out()">
+        </article>  
+        
+        <article>
+            <img src="../images/computer3.jpg" alt="" style="margin-top:100px" title="click on me" onclick="this.setAttribute('src','../images/computer4.jpg')">
+        </article>          
+    </section>
+
+    <script>
+        let imgLogo = document.querySelector('#imgLogo')        
+        let changeImage_In = () => {           
+              imgLogo.style.width='500px'
+              imgLogo.style.height='280px'
+              imgLogo.style.border='2px solid black'
+              imgLogo.style.padding='5px'
+        }
+
+        function changeImage_Out(){
+            imgLogo.style.width='300px'
+            imgLogo.style.height='150px'  
+            imgLogo.style.border='none'
+            imgLogo.style.padding='0px'          
+        }
+    </script>
+</body>
+</html>

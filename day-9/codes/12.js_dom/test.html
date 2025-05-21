@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #list {
+            background: rgb(41, 33, 33);
+            width: 400px;
+            margin: 0 auto;
+            border: 2px solid #0033ff;
+            padding: 20px;
+            color: white;
+            border-radius: 15px;
+        }
+        .mycolor{
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Working with DOM</h2>
+    <ul id="list"></ul>
+    <button onclick="addTask()">Add Task</button>
+
+    <script>
+        const addTask = () => {
+            const li = document.createElement("li");
+            
+            li.innerHTML = `some data`;
+            li.classList.toggle('mycolor')
+            document.getElementById('list').appendChild(li);
+        }   
+    </script>
+</body>
+
+</html>
