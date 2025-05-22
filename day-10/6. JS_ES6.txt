@@ -1,0 +1,510 @@
+JavaScript was invented by Brendan Eich in 1995, and became an ECMA standard in 1997.
+
+ECMAScript is the official name of the language.
+
+From 2015 ECMAScript is named by year (ECMAScript 2015).
+
+
+ES6 OR ECMAScript 2015 OR Java Script 6 Features
+------------------------------------------------
+
+1) let - for variable declaration
+
+"let" is similar to "var" but "let" has scope. 
+"let" is only accessible in the block level it is defined.
+
+<script>
+if (true) {
+ let a = 40;
+ console.log(a); //40
+}
+console.log(a); // ReferenceError: a is not defined
+</script>
+
+In the above example variable "a" is defined inside "if" block and so it is not accessible outside that block
+
+<script>
+let a = 50;
+let b = 100;
+if (true) {
+ let a = 60;
+ var c = 10;
+ console.log(a/c); 
+ console.log(b/c);
+}
+console.log(c); //10
+console.log(a); //50
+</script>
+
+
+2) const - for declaring constant variables
+
+"const" is used to assign a constant value to the variable. And the value cannot be changed. It is fixed.
+
+const a = 50;
+a = 60; // shows error. You cannot change the value of const.
+
+const b = "Constant variable";
+b = "Assigning new value"; // shows error.
+
+
+const LANGUAGES = ['JS', 'Ruby', 'Python', 'Go'];
+
+LANGUAGES = "Javascript"; // shows error. 
+
+LANGUAGES.push('Java'); // Works fine.
+console.log(LANGUAGES); // ['JS', 'Ruby', 'Python', 'Go', 'Java']
+
+
+3) Exponentiation Operator (Version 7/ ES7)
+ **
+<script>
+ console.log(Math.pow(3,2)) //9
+ console.log(3 ** 2) //9   
+</script>
+
+
+4) The Number.isInteger() Method
+
+The Number.isInteger() method returns true if the argument is an integer.
+
+<script>
+ Number.isInteger(10);        // returns true
+ Number.isInteger(10.5);      // returns false
+</script>
+
+
+5) Arrow Function
+
+Functions in ES6 have changed the syntax
+
+// Old Syntax
+function oldOne() {
+ console.log("Hello World..!");
+}
+
+// New Syntax
+
+let newOne = () => {
+ console.log("Hello World..!");
+}
+
+There are two parts of the syntax.
+
+   (a) let newOne = ()
+   (b) => {}
+
+The first part is just declaring a variable and assigning the function (i.e) () to it. It says the variable is actually a function.
+
+Then the second part is declaring the body part of the function.
+
+<script>
+let NewOneWithParameters = (a, b) => {
+ console.log(a+b); // 30
+}
+</script>
+<script>
+NewOneWithParameters(10, 20);
+</script>
+
+
+6) Default Parameters:
+
+Default parameters are parameters which are given by default while declaring a function. But it's value can be changed when calling the function.
+
+Example
+<script>
+let sum = (a, b=10) => {
+ return a + b; 
+}
+
+console.log(sum(20)); // 20 + 10 = 30
+</script>
+
+
+
+7) for...of loop
+for... of loop takes the content of array and in each iteration where as for..in loop takes the index
+
+<script>
+let arr = [20,30,40,11];
+for(let x in arr){
+ console.log(x)    
+}
+    
+for(let x of arr){
+ console.log(x)    
+}    
+</script>
+
+<script>
+let string = "Javascript";
+for (let char of string) {
+ console.log(char);
+}
+</script>
+
+8) Spread & Rest Operators
+
+The Spread Operator is used to 'spread' an iterable into its elements, while the Rest Operator 'collects' multiple elements into an array. 
+
+JavaScript uses three dots (...) for both the rest and spread operators. But these two operators are not the same.
+
+The main difference between rest and spread is that the rest operator puts the rest of some specific user-supplied values into a JavaScript array. But the spread syntax expands iterables into individual elements.
+
+
+Example - Rest operator
+
+function myBiodata(firstName, lastName, ...otherInfo) { 
+  return otherInfo;
+}
+
+// Invoke myBio function while passing five arguments to its parameters:
+console.log(myBiodata("Sunil", "Joseph", "Java Full-stack Dev", "Web Developer", "Male"));
+
+// The invocation above will return: ["Java Full-stack Dev", "Web Developer", "Male"]
+
+
+Example - Spread Operator
+
+   <script>
+        function myBiodata(firstName, lastName, company) { 
+            return `${firstName} ${lastName} runs ${company}`;
+        }
+
+        let myDetails = ['Sunil', 'Joseph', 'example.com'];
+
+        //console.log(myBiodata(myDetails));
+        console.log(myBiodata(...myDetails));
+    </script>
+
+
+
+<script>
+let sumData = (...arr) => {
+ console.log(arr); // [10, 20, 40, 60, 90]
+
+ let sum = 0;
+ for (let element of arr) {
+   sum += element;
+ }
+ console.log(sum); // 220. 
+}
+
+sumData(10, 20, 40, 60, 90); //we are not passing array here. Instead we are passing the 5 elements as arguments. 
+</script>
+
+In the above example, the spread attribute converts the list of elements (i.e) the parameters to an array.
+
+
+- spread turns array into a list of arguments
+   <script>
+    let arr = [3, 5, 1];
+    alert(Math.max(...arr) )
+  </script>
+
+
+
+9) Maps
+
+Map holds key-value pairs. It is similar to an array but we can define our own index. 
+Indexes are unique in maps.
+
+Example:
+    <script>
+        let employees = new Map()
+        employees.set(101, 'Sunil Joseph')
+        employees.set(102, 'Naveen')
+        employees.set(103, 'Harsha')
+        employees.set(104, 'Naveen')        
+
+        console.log(employees)
+        console.log(`No of Employees = ${employees.size}`)
+
+        console.log(`Employee with ID 1014 is available = ${employees.has(1014)}`)
+
+        if(employees.has(101)){
+         let ename = employees.get(101)
+         console.log('Employee Name of 101 = '+ename)
+        }
+        else{
+            console.log('No employee found with ID : 101')
+        }
+
+        console.log('----- get the keys -----')
+        let keys = employees.keys()
+        let result = ''
+        for(let key of keys){
+            result += key+ '| '
+        }
+        console.log(result)
+
+        console.log('----- get the key and values -----')
+        keys = employees.keys()
+        result = ''
+        for(let key of keys){
+            result += key+ ' : '+employees.get(key)+'\n'
+        }
+        console.log(result)
+
+        console.log(`------ get the values from Map -----`)
+        let names = employees.values()        
+        for(let name of names){
+            console.log(name)
+        }
+
+        console.log(`---- get key and value -----`)
+        let entries = employees.entries()
+        for(let [key,value] of entries){
+            console.log(`${key} : ${value}`)
+        }
+
+        console.log(employees.delete(101))
+        console.log(`No of Employees = ${employees.size}`)
+    </script>
+
+
+let newMap = new Map();
+newMap.set('name', 'Sunil'); 
+newMap.set('age', 38);
+newMap.set('interest', ['Java', 'Android', 'Python']);
+
+newMap.get('name'); //Sunil
+newMap.get('age'); // 38
+newMap.get('interest'); / 
+
+
+
+let map = new Map();
+map.set('name', 'John');
+map.set('id', 10);
+
+map.size; // 2. Returns the size of the map.
+
+map.keys(); // outputs only the keys. 
+map.values(); // outputs only the values.
+
+for (let key of map.keys()) {
+ console.log(key);
+}
+
+
+
+let map = new Map();
+
+for(let [key, value] of map) {
+ console.log(key+" - "+value);
+}
+
+Map is a collection of keyed data items, just like an Object.
+But the main difference is that Map allows keys of any type.
+
+new Map() – creates the map.
+map.set(key, value) – stores the value by the key.
+map.get(key) – returns the value by the key, undefined if key doesn't exist in map.
+map.has(key) – returns true if the key exists, false otherwise.
+map.delete(key) – removes the value by the key.
+map.clear() – clears the map
+map.size – returns the current element count.
+map.keys() – returns the keys for iteration,
+map.values() – returns the values for iteration,
+map.entries() – returns the entries [key, value], it's used by default in for..of.
+
+ */
+
+let map = new Map();
+map.set(1,'HTML');
+map.set(2,'CSS');
+map.set(3,'JavaScript');
+map.set(4,'Node JS');
+map.set(5,'JQuery');
+map.set(6,'Bootstrap');
+
+// access the map
+console.log(map);
+
+// get Key
+console.log(map.get(3)); // JavaScript
+
+// has key
+console.log(map.has(5)); // true
+
+
+// Delete Key
+console.log(map);
+map.delete(5);
+console.log(map);
+
+// Map.Size
+console.log(map.size);
+
+// keys
+let result = '';
+for(let key of map.keys()){
+    result += `${key} `;
+}
+console.log(result);
+
+// values
+result = '';
+for(let value of map.values()){
+    result += `${value} `;
+}
+console.log(result);
+
+// entries
+result = '';
+for(let entry of map.entries()){
+    result += `${entry[0]} => ${entry[1]} \n`;
+}
+console.log(result);
+
+// Clear Map
+// map.clear();
+console.log(map);
+
+
+
+
+7) Sets
+
+Sets are used to store the unique values of any type
+
+    <script>
+        let courses = new Set()
+        courses.add('HTML')
+        courses.add('CSS')
+        courses.add("Java Script")
+        courses.add('jQuery')
+        courses.add('HTML')
+
+        console.log('No of Courses = '+ courses.size)
+
+        for(let course of courses){
+            console.log(course)
+        }
+        courses.delete('HTML')
+        console.log('No of Courses = '+ courses.size)
+    </script>
+
+
+
+
+let sets = new Set([1,5,6,8,9]);
+
+sets.size; // returns 5. Size of the size.
+sets.has(1); // returns true. 
+sets.has(10); // returns false.
+
+
+8) Static methods
+
+class Example {
+ static Callme() {
+ console.log("Static method");
+ }
+}
+Example.Callme();
+
+
+Note that we are not using the keyword "function" inside Class.
+
+And we can call the function without creating any instance for the class.
+
+9) Getters and Setters
+
+Getters and setters and one of the useful feature introduced in ES6. 
+
+
+class People {
+
+constructor(name) {
+      this.name = name;
+    }
+    getName() {
+      return this.name;
+    }
+    setName(name) {
+      this.name = name;
+    }
+}
+
+let person = new People("Jon Snow");
+console.log(person.getName());
+person.setName("Dany");
+console.log(person.getName());
+
+
+with getters and setters
+
+class People {
+
+constructor(name) {
+      this.name = name;
+    }
+    get Name() {
+      return this.name;
+    }
+    set Name(name) {
+      this.name = name;
+    }
+}
+
+let person = new People("Jon Snow");
+console.log(person.Name);
+person.Name = "Dany";
+console.log(person.Name);
+
+
+there are two functions inside class People with 'get' and 'set' properties. The 'get' property is used to get the value of the variable and 'set' property is used to set the value to the variable.
+
+And you can see that getName function is called without parenthesis. And setName function is called without parenthesis and it is just like assigning a value to the variable.
+
+
+---------------------------------------------------------------------------------
+Set Collection in ECMAScript
+---------------------------------------------------------------------------------
+
+/*
+A Set is a collection of values, where each value may occur only once.
+
+Set contains the following methods
+
+new Set(iterable) – creates the set, optionally from an array of values (any iterable will do).
+set.add(value) – adds a value, returns the set itself.
+set.delete(value) – removes the value, returns true if value existed at the moment of the call, otherwise false.
+set.has(value) – returns true if the value exists in the set, otherwise false.
+set.clear() – removes everything from the set.
+set.size – is the elements count.
+
+ */
+
+let colorSet = new Set();
+colorSet.add('white');
+colorSet.add('white');
+colorSet.add('white');
+colorSet.add('black');
+colorSet.add('black');
+colorSet.add('black');
+colorSet.add('orange');
+colorSet.add('blue');
+colorSet.add('purple');
+
+// access the set
+console.log(colorSet);
+
+// has()
+console.log(colorSet.has('white'));
+
+// size
+console.log(colorSet.size);
+
+// delete
+colorSet.delete('black');
+console.log(colorSet);
+
+// clear
+colorSet.clear();
+console.log(colorSet);
+------------------------------
+

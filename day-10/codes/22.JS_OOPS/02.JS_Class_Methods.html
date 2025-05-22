@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Methods</title>
+</head>
+
+<body>
+    <nav>
+        <h2>Java Script | Class | Methods</h2>
+    </nav>
+    <script>
+        class Account{
+            constructor(acno, name, bal){
+                this.acno = acno;
+                this.name = name;
+                this.bal = bal;
+            }
+
+            details(){
+                return `A/C No: ${this.acno} | Name: ${this.name} | Balance: ${this.bal}`
+            }
+
+            deposit(amt){
+                this.bal += amt;
+                console.log(`Rs.${amt} Credited | Balance: ${this.bal}`)
+            }
+
+            withdraw(amt){
+                if(this.bal >= amt){
+                    this.bal = this.bal - amt;
+                    console.log(`Rs.${amt} Debited | Balance: ${this.bal}`)
+                }
+                else{
+                    console.log('Error: Insufficient Balance')
+                }
+            }
+        }
+    </script>
+    <script>
+        /*--create an object of Account --*/
+        let acc = new Account(10012301,'Sunil',25000);
+        console.log(acc.details());
+        acc.deposit(2500);
+
+        acc.withdraw(50000);
+        acc.withdraw(27500);
+        console.log(acc.details())
+    </script>
+</body>
+
+</html>

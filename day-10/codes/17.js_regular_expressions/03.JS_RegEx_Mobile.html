@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>RegExp _ 2</title>
+</head>
+<body>
+    <nav>
+        <h2>Java Script | Regular Expression | Part - 03 | Mobile Number</h2>
+    </nav>
+    <section>
+        <article>
+            Mobile No 
+            <input type="text" id='txtMobile' size=20 autofocus>
+
+            <div id='check_stat'></div>
+
+            <button onclick='checkData()'>Check Mobile</button>
+        </article>
+    </section>
+
+    <script>
+        let txt_mobile = document.querySelector('#txtMobile')
+        let check_stat = document.querySelector('#check_stat')
+
+ 
+        let checkData = ()=>{
+            //get mobile field value
+            let mobile = txt_mobile.value.trim()            
+            
+            //let regex = /^[6-9][0-9]{9}$/
+            let regex = /^[6-9]\d{9}$/
+
+            if(regex.test(mobile)){
+              check_stat.innerHTML = 'Valid'
+              check_stat.style.color= 'green'
+            }
+            else{
+              check_stat.innerHTML = 'Invalid'
+              check_stat.style.color= 'red'  
+            }
+        }
+    </script>
+</body>
+</html>

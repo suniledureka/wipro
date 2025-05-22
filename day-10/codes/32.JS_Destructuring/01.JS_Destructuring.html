@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Destructuring</title> 
+</head>
+
+<body>
+    <nav>
+        <h2>Java Script | Destructuring</h2>
+    </nav>
+    <script>
+       let myArr = [10,20,30,40]
+       console.log(myArr[0], myArr[1])       
+       console.log(`------------------------`)
+
+       let [fno,sno] = myArr
+       console.log(fno, sno)
+       console.log(`------------------------`)
+
+       let person = {
+         firstName: 'Sunil',
+         lastName: 'Joseph',
+         age: 38
+       }
+       console.log(person.firstName)
+
+       let {firstName, lastName} = person
+       console.log(firstName,lastName) 
+       
+    </script>
+</body>
+</html>

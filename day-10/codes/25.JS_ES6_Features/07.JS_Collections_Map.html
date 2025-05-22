@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>ES6</title>
+</head>
+<body>
+    <nav>
+        <h2>
+            Java Script | Collections | Map
+        </h2>
+    </nav>
+    <script>
+        let employees = new Map();
+
+        employees.set(101,'Sunil Joseph');
+        employees.set(102,'Rabindra');
+        employees.set(102, "Naveen");
+        employees.set(103, 'Naveen');
+        employees.set(104, "Harsha");
+
+        console.log(employees);       
+        console.log(`No of Employees = ${employees.size}`)
+
+        console.log('Is employee number 105 present = '+ employees.has(105));
+
+        if(employees.has(104)){
+            console.log(`@104 Employee Name = ${employees.get(104)}`);
+        }
+        else{
+            console.log(`No matching employee found!`)
+        }
+
+        console.log('----- get the keys -----')
+        let keys = employees.keys()        
+        //console.log(keys)
+        let key_names = 'The employee numbers: '
+        for(let key of keys){
+            key_names = `${key_names}${key} | `
+        }
+        console.log(key_names);
+
+        console.log(`----- Employee Details ----`);
+        let data = ''
+        keys = employees.keys();
+        for(let empno of keys){
+            let name = employees.get(empno);
+            data = `${data}${empno} = ${name}\n`;
+        }
+        console.log(data);
+
+        console.log(`------ get the values from Map -----`)
+        let names = employees.values()        
+        for(let name of names){
+            console.log(name)
+        }
+
+        console.log(`---- get key and value -----`)
+        let entries = employees.entries()
+        for(let [key,value] of entries){
+            console.log(`${key} : ${value}`)
+        }    
+        
+        console.log(employees.delete(101))
+        console.log(`No of Employees = ${employees.size}`) 
+        console.log(employees) 
+        
+        console.log(`--------------------------`)
+        let newMap = new Map();
+        newMap.set('name', 'Sunil'); 
+        newMap.set('age', 38);
+        newMap.set('interest', ['Java', 'Android', 'Python']);
+
+        console.log(newMap.get('name')); //Sunil
+        console.log(newMap.get('age')); // 38
+        console.log(newMap.get('interest'));  
+    </script>
+</body>
+</html>

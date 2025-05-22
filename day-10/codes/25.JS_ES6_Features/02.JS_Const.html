@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>ES-6</title>
+</head>
+<body>
+    <nav>
+        <h2>Java Script | ES6 | const</h2>
+    </nav>
+    <script>
+        const n = 24;
+        console.log(`${n}`);
+        //n = 24; //Uncaught TypeError: invalid assignment to const 'n'
+        console.log(`${n}`)
+
+        const subjects = ['Core Java','Adv Java']
+        console.log(`${subjects}`);
+        //subjects = ['Core Java','Adv Java'] //Uncaught TypeError: invalid assignment to const 'subjects'
+
+        subjects.push('Hibernate');
+        console.log(`${subjects}`);
+    </script>
+</body>
+</html>

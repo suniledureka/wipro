@@ -1,0 +1,45 @@
+body{
+    margin:0px;
+    font-family:'comic sans ms',sans-serif;
+    background-image: url('../images/background-1.jpg');
+    color:white;
+}
+#wrapper{
+    width:100%;
+    height:100vh;
+    background-color:rgba(0,0,0,0.7);
+    text-align:center;    
+}
+h1{
+    margin:0px;
+    font-size:25px;
+}
+footer{
+    position:fixed;
+    bottom:0px;
+    width:100%;
+}
+section{
+    margin-top:200px;
+}
+#txtNum{
+    font-size:25px;
+    background:transparent;
+    border:none;
+    color:yellow;
+    border-bottom:3px solid white;
+}
+article{
+    margin:50px auto;
+}
+.display_section{
+    background:linear-gradient(45deg,black,darkred);
+    color:white;
+    padding:20px;
+    border-radius:20px;
+    width:70%;
+    margin:auto;
+}
+.display_section h1{
+    text-align:center;
+}

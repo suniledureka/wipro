@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <nav>
+        <h2>Java Script | Spread Operator</h2>
+    </nav>   
+    <script>
+        let arr = [10,15,6]
+        console.log(Math.max(arr)) //NaN
+        console.log(Math.max(...arr))
+
+        let arr1 = [1,2,3,40]
+        let arr2 = [10,20,30,5]
+        console.log(Math.max(...arr1,...arr2))
+
+        //usd for concatenating arrays
+        let arr3 = [0,...arr1,100,...arr2]
+        console.log(arr3)
+
+        //array copy
+
+        let a1 = [1,2,3,4]
+        //let a2 = a1 //same reference
+        let a2 = [...a1]
+        a1.push(999)
+
+        console.log('-----------------')
+        console.log(a1)
+        console.log(a2)
+        console.log('-----------------')
+
+        let x1 = [1,2,3,4]
+        let x2 = [1,2,3,4]
+
+        console.log('Same contents in x1 & x2 ==== '+ (x1==x2))
+
+        let str_x1 = JSON.stringify(x1) //convert an object to string
+        let str_x2 = JSON.stringify(x2)
+        console.log(str_x1)
+        console.log(str_x2)
+
+        console.log('Same contents in x1 & x2 ==== '+ (str_x1==str_x2))
+    </script>
+</body>
+
+</html>

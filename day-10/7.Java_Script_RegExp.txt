@@ -1,0 +1,974 @@
+JavaScript Regular Expressions
+==============================
+Employee Number : WI-1001
+Indian Mobile No : [6-9]9digits
+Email ID: sunil@zettamine.co | sunil@wiproo.com | sunil@wipro.co.in
+Usernames : 
+
+define a pattern and check a string with that pattern
+
+A regular expression is a sequence of characters that forms a search pattern.
+When you search for data in a text, you can use this search pattern to describe what you are searching for.
+
+A regular expression can be a single character or a more complicated pattern.
+
+Regular expressions can be used to perform all types of text search and text replace operations.
+
+A regular expression in JS is an object that describes a pattern of characters.
+
+The JavaScript "RegExp" class represents regular expressions, and both String and RegExp define methods that use regular expressions to perform powerful pattern-matching and search-and-replace functions on the text.
+
+
+www.regex101.com
+/abc/
+/[ABC]/
+/^[ABC]abc/
+/^[6-9][0-9][0-9][0-9]/
+/^[6-9][0-9][0-9][0-9]$/
+/^[6-9][0-9]{9}$/
+/^[6-9]\d{9}$/
+/^[A-Za-z]{5,10}$
+/^WI-[0-9]{3}$/
+
+RegExp Object
+
+A regular expression is used to form a search pattern.
+
+It is used to perform text search and text replace operations.
+
+Syntax: 
+ /pattern/modifiers; 
+
+Example
+let pattern = /sunil/i
+
+/sunil/i  is a regular expression.
+"sunil"  is a pattern (to be used in a search).
+"i"  is a modifier (modifies the search to be case-insensitive).
+
+Using String Methods
+--------------------
+ (1) search() and  
+ (2) replace().
+
+The search() method uses an expression to search for a match, and returns the position of the match.
+
+Example-1) Search a string for "Cognizant", and display the position of the match , case in-sensitively:
+
+<html>
+<body>
+ <button onclick="funSearch()">Search</button>
+ <hr>
+ <p id="region"></p>
+
+ <script>
+ function funSearch() {
+  let str = "Visit Wipro Technologies!"; 
+  let n = str.search(/wipro/i); //6
+  document.getElementById("region").innerHTML = n;
+ }
+ </script>
+</body>
+</html>
+
+
+replace() method returns a modified string where the pattern is replaced.
+
+Example-2) Use a case in-sensitive regular expression to replace "Microsoft" with "Cognizant Technologies" in a content of <p>
+
+<html>
+<body>
+<button onclick="funReplace()">Replace</button>
+<br>
+<p id="matter">Please visit Microsoft!</p>
+<hr>
+<p id="result"></p>
+<script>
+function funReplace() {
+ let str = document.getElementById("matter").innerHTML; 
+
+ let replaced_txt = str.replace(/microsoft/i, "Cognizant");
+
+ document.getElementById("result").innerHTML = replaced_txt;
+}
+</script>
+</body>
+</html>
+
+
+Modifiers
+---------
+i - perform case-insensitive matching
+g - perform a global match (find all matches rather than stopping after the first match)
+m - perform multiline matching
+
+
+Regular Expression Patterns
+---------------------------
+[abc]  - find any character in the brackets
+[^abc] - find any character NOT in the brackets
+[0-9]  - find any digit between the brackets
+[^0-9] - find any digit NOT between the brackets
+
+Example-1 : to do a global search for the character "h" in a string:
+
+<html>
+<body>
+<button onclick="funSearch()">Search</button>
+<p id="result"></p>
+    
+<script>
+function funSearch() {
+    let str = "how many days in a month?";
+    let pattern = /[h]/g; 
+    let result = str.match(pattern); 
+    document.getElementById("result").innerHTML = result;
+}
+</script>
+</body>
+</html>
+
+
+Example-2 : to do a global search for the characters "i" and "s" in a string:
+
+<html>
+<body>
+<button onclick="funSearch()">Search</button>
+<p id="result"></p>
+    
+<script>
+function funSearch() {
+    let str = "how many days in a month?";
+    let pattern = /[is]/g; 
+    let result = str.match(pattern);
+    document.getElementById("result").innerHTML = result;
+}
+</script>
+</body>
+</html>
+
+
+Example-3 : to do a global search for the characters from lowercase "a" to lowercase "h" in a string:
+
+<script>
+function funSearch() {
+    let str = "how many days in a month?";
+    let pattern = /[a-h]/g; 
+    let result = str.match(pattern);
+    document.getElementById("result").innerHTML = result;
+}
+</script>
+</body>
+</html>
+
+
+Example-4 : to do a global search for the character from uppercase "A" to uppercase "E":
+
+    var pattern = /[A-E]/g; 
+    var result = str.match(pattern);
+
+Example-5: to do a global search for the character-span from uppercase "A" to lowercase "e" (will search for all uppercase letters, but only lowercase letters from a to e.)
+
+    var pattern = /[A-e]/g;
+    var result = str.match(pattern);
+
+Example-6: for modifiers g and gi
+<script>
+function funSearch() {
+    var str = "THIS This this";
+    var patt1 = /[THIS]/g;
+    var result = str.match(patt1);    
+    document.getElementById("result").innerHTML = result;
+}
+</script>
+ 
+
+Example-7: to do a global search for characters that are NOT inside the brackets [h]:
+<script>
+function funSearch() {
+    var str = "Is this all there is?";
+    var patt1 = /[^h]/g;
+    var result = str.match(patt1);    
+    document.getElementById("result").innerHTML = result;
+}
+</script>
+    
+
+Example-8: to do a global search for the character-span NOT from lowercase "a" to lowercase "h" in a string:
+
+var str = "Is this all there is?";
+var patt1 = /[^a-h]/g; 
+
+
+Example-9 : to do a global search for the numbers 1, 2, 3 and 4 in a string:
+let str = "123456789";
+let patt1 = /[1-4]/g; 
+let result = str.match(patt1)
+
+Do a global search for the numbers that are NOT 1 to 4 in a string:
+
+let str = "123456789";
+let patt1 = /[^1-4]/g; 
+let result = str.match(patt1) 
+
+Do a global search for numbers that are NOT "1" in a string:
+var str = "12121212";
+var patt1 = /[^1]/g; 
+
+Do a global search for numbers that are NOT 5 to 8 in a string:
+var str = "123456789";
+var patt1 = /[^5-8]/g; 
+
+
+Do a global search to find any of the specified strings "red or green"
+
+let str = "re, green, red, green, gren, gr, blue, yellow";
+let pattern = /(red|green)/g; 
+let result = str.match(pattern);
+alert(result);
+
+
+Do a global search to find any of the specified alternatives (0|5|7):
+var str = "01234567890123456789";
+var patt1 = /(0|5|7)/g; 
+
+
+
+Meta Characters 
+---------------
+- characters with a special meaning:
+
+.   - find a single character, except newline or line terminator
+\w 	Find a word character
+\W 	Find a non-word character
+\d 	Find a digit
+\D 	Find a non-digit character
+\s 	Find a whitespace character
+\S 	Find a non-whitespace character
+\b 	Find a match at the beginning/end of a word
+\B 	Find a match not at the beginning/end of a word
+\0 	Find a NULL character
+\n 	Find a new line character
+\f 	Find a form feed character
+\r 	Find a carriage return character
+\t 	Find a tab character
+\v 	Find a vertical tab character
+\xxx 	Find the character specified by an octal number xxx
+\xdd 	Find the character specified by a hexadecimal number dd
+\uxxxx 	Find the Unicode character specified by a hexadecimal number xxxx
+
+Do a global search for "h.t" in a string:
+<script>
+ let str = "Today is very hot, climate is hot, this is a   hat";
+ let pattern = /h.t/g; 
+ let result = str.match(pattern);
+ alert(result) //hot,hot,hat
+</script>
+
+
+Do a global search for word characters in a string:
+
+<script>
+ let str = "Give 100%! effort"
+ let patt1 = /\w/g 
+ let result = str.match(patt1)  
+ alert(result)</script>
+
+
+
+Do a global search for non-word characters in a string:
+var str = "Give 100%!";
+var patt1 = /\W/g; 
+
+
+Do a global search for digits:
+var str = "Give 100%!";
+var patt1 = /\d/g; 
+
+
+Quantifiers define quantities:
+Quantifier 	Description
+n+ 	Matches any string that contains at least one n
+n* 	Matches any string that contains zero or more occurrences of n
+n? 	Matches any string that contains zero or one occurrences of n
+
+
+Using the RegExp Object
+-----------------------
+test() method is a RegExp expression method.
+it searches a string for a pattern, and returns true or false, depending on the result.
+
+Example-1) search in a string for the character "e":
+
+<html>
+<body>
+<p id="para">The best things in life are freedom</p>
+
+<button onclick="myFunction()">Search</button>
+<hr>
+<p id="result"></p>
+
+<script>
+function myFunction() 
+{
+  let text = document.getElementById("para").innerHTML; 
+  let pattern = /e/
+  let result = pattern.test(text) //true
+  document.getElementById("result").innerHTML = result
+}
+</script>
+</body>
+</html>
+
+exec() -is a RegExp expression method.
+It searches a string for a specified pattern, and returns the found text.
+If no match is found, it returns null.
+The following example searches a string for the character "e":
+
+ /e/.exec("The best things in life are free!");
+
+
+
+Case-1) Username canot be blank and spaces are not allowed
+<html>
+<head>
+ <title>Validations in JS</title>
+</head>
+
+<body>
+ <form action="registration.jsp" onsubmit="return fun1()">
+  Username:
+  <input type="text" id="txtName">
+  <span id="span1"></span>
+  <br>
+  <input type="submit">
+ </form>
+ <script type="text/javascript">
+  function fun1()
+  {
+    var txt1 = document.getElementById("txtName");
+    var uname = txt1.value;
+    var sp1 = document.getElementById("span1");
+    var b; //valid or invalid
+
+    //Rule 1: Username can't be blank.
+    if (uname == ""){
+	sp1.innerHTML = "Please enter username";
+	sp1.style.color = "red";
+	b = false; //invalid
+    }
+
+    //Rule 2: Spaces not allowed in username
+    else if (uname.indexOf(" ") >= 0) {
+	sp1.innerHTML = "Spaces not allowed in username";
+	sp1.style.color = "red";
+	b = false; //invalid
+    }
+    //valid
+    else{
+	sp1.innerHTML = "";
+	b = true; //valid
+    }
+
+    return b; //return true or false to browser.
+}
+</script>
+</body>
+</html>
+
+
+
+2) Validation for Email
+
+<html>
+<head>
+<title>Regular Expression Validation using JS</title>
+</head>
+   
+<body>
+<form action="http://localhost/test.asp" onSubmit="return fun1()">
+			
+<label for="txtEmail">Email:</label><br>
+<input type="text" name="TextBox1" id="txtEmail">
+			
+<span id="span1" style="color:red"></span>
+<br>
+			
+<input type="submit" value="Submit">
+		
+</form>
+
+<script type="text/javascript">
+function fun1()
+{
+//check email
+var email = document.getElementById("txtEmail").value;
+var patt1 = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$/i;
+if (patt1.test(email))
+{
+ document.getElementById("span1").innerHTML = "";
+ document.getElementById("txtEmail").style.backgroundColor = "#FFFFFF"; //white
+ return true; //valid (form will be submitted)
+}
+else
+{
+ document.getElementById("span1").innerHTML = "Invalid E-Mail";
+ document.getElementById("txtEmail").style.backgroundColor = "#ff0000"; //red
+ return false; //invalid (stop submission)
+}
+}
+</script>
+</body>
+</html>
+
+
+Commonly Used Regular Expressions
+---------------------------------
+Pattern
+
+\d{10}   - for accepting 10 digit number
+
+\d{1,10} - for accepting 1 to 10 digit number
+
+\D{40}   - for accepting string with 40 alphabets and special characters. 
+
+\D{1,40} - for accepting string with 1 to 40 alphabets and special characters 
+
+[A-Z]{40}- for accepting string with 40 uppercase alphabets 
+
+[a-z]{40}- for accepting string with 40 lowercase alphabets
+
+^[6789]\d{9}$ - Indian mobile number 
+
+^[0-9]\d{2,4}-\d{6,8}$ - Indian landline phone number 
+
+\w+([-+.']\w+)*@\w+([.]\w+)*\.\w+([-.]\w+)* - Email address 
+
+([A-Za-z0-9-]+) Letters, numbers and hyphens (Useful for Usernames)
+
+((?=.*\d)(?=.*[az])(?=.*[A-Z]).{6,15}) - 6 to 15 character string with at least one upper case letter, one lower case letter, and one digit (Useful for passwords).
+
+
+Examples:
+
+let mobile="9848586878"
+let patt1 = /\d{10}/
+let result = patt1.test(mobile)
+// result variable value - true
+if(result){
+ console.log('Valid Mobile Number')
+}
+
+------------------------
+<html>
+
+	<head>
+
+		<title>Add Subtract Multiply Divide</title>
+
+		<style type="text/css">
+			#TextBox3
+			{
+				background-color: lightgray;
+			}
+
+			#button1,#button2,#button3,#button4
+			{
+				background-color: #ffcc99;
+				border: 1px ridge red;
+			}
+
+			body,input
+			{
+				font-family: 'Segoe UI';
+			}
+		</style>
+
+	</head>
+
+	<body>
+
+		<form>
+			Enter value for a:
+			<input type="text" id="TextBox1"><br>
+
+			Enter value for b:
+			<input type="text" id="TextBox2"><br>
+
+			<input type="button" id="button1" value="Add">
+			<input type="button" id="button2" value="Subtract">
+			<input type="button" id="button3" value="Multiply">
+			<input type="button" id="button4" value="Divide">
+			<br>
+
+			Result:
+			<input type="text" id="TextBox3" readonly="readonly">
+
+		</form>
+
+		<script type="text/javascript">
+			
+			document.getElementById("button1") .addEventListener("click", fun1);
+
+			document.getElementById("button2") .addEventListener("click", fun2);
+
+			document.getElementById("button3") .addEventListener("click", fun3);
+
+			document.getElementById("button4") .addEventListener("click", fun4);
+
+			function fun1()
+			{
+				var a = parseInt( document.getElementById("TextBox1").value);
+
+				var b = parseInt( document.getElementById("TextBox2").value);
+
+				var c = a+b;
+
+				document.getElementById("TextBox3").value = c;
+			}
+
+			function fun2()
+			{
+				var a = parseInt( document.getElementById("TextBox1").value);
+
+				var b = parseInt( document.getElementById("TextBox2").value);
+
+				var c = a-b;
+
+				document.getElementById("TextBox3").value = c;
+			}
+
+			function fun3()
+			{
+				var a = parseInt( document.getElementById("TextBox1").value);
+
+				var b = parseInt( document.getElementById("TextBox2").value);
+
+				var c = a*b;
+
+				document.getElementById("TextBox3").value = c;
+			}
+
+			function fun4()
+			{
+				var a = parseInt( document.getElementById("TextBox1").value);
+
+				var b = parseInt( document.getElementById("TextBox2").value);
+
+				var c = a/b;
+
+				document.getElementById("TextBox3").value = c;
+			}
+
+		</script>
+
+	</body>
+
+</html>
+
+----------------------------------------------------------------------
+1) User name should have "SIT"
+
+let username = 
+let regex = /SIT/
+if(regex.test(username))
+   alert('Valid')
+else
+  alert('Invalid')
+
+
+2) 
+let regex = new RegExp("SIT")
+let regex = new RegExp("SIT","i")
+
+3) Character Sets and Ranges
+- the first character can be "s" or "d" or "p" followed by "imple"
+let regexp = /[sdp]imple/
+if(regexp.test(data))
+
+- the first character can be "a" to "p" followed "imple"
+let regexp = /[a-p]imple/   - check this pattern in the entire string
+
+- the first character can be 0 to 5 followed by abc any where in string
+let regexp = /[0-5]abc/ 
+
+
+- multiple character sets
+let regex = /[1-5]a[6-9]b/
+let regex = /[1-5]a[6-9][a-z]/
+
+- to exclude a character
+let regex = /[^1abc]abc/   - exclude "1","a",'b','c' as first character
+
+- mobile number validation (Indian Mobile No)
+
+let regex = /[6-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]/
+let regex = /[6-9][0-9]{9}/
+let regex = /[6-9]\d{9}/   - 
+
+\d match any digit from 0-9
+\w match any word character (a-z, A-Z, 0-9, _, & ....
+\s match white space (space and tabs
+\t - match a tab only
+
+
+let regex = /^[6-9]\d{9}$/   - 
+
+
+Java Script to validate Email using regular expression
+------------------------------------------------------
+  email : xx
+    1      2        3	   4      5     6      7
+email_name @   domain_name .  extension .  extension
+					   (optional)
+Example:
+sunil@cognizant.co.in
+sunil@cognizant.com 
+
+1 -> any letter, numbers, dot and / or hyphens 
+3 -> any letter, numbers and / or hyphens
+5 -> any letter (a-z)
+7 -> any letter (a-z)
+
+let pattern = /abc/
+let pattern = /^abc$/
+
+let pattern = /^([A-Za-z0-9\.-]+)@([A-Za-z0-9-]+).([a-z]{2,6})$/
+let pattern= /^([A-Za-z0-9\.-]+)@([A-Za-z0-9-]+).([a-z]{2,6})(.[a-z]{2,3})?$/;
+var patt1 = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$/i;
+
+ let regex = /^([a-z]+)@([a-z]+).([a-z]{2,3})\.([a-z]{2})?$/
+
+
+[a-z]{40}- for accepting string with 40 lowercase alphabets
+^[6789]\d{9}$ - Indian mobile number 
+^[0-9]\d{2,4}-\d{6,8}$ - Indian landline phone number 
+
+
+if(pattern.test(email))
+
+<html>
+<head>
+<script type="text/javascript">
+function checkEmail()
+{
+var ema=document.getElementById("email")
+var err=document.getElementById("emailerr");
+
+var email=ema.value;
+
+var pattern= /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$/i;
+
+if(pattern.test(email))
+{
+err.innerHTML= "";
+ema.style.backgroundColor = "#FFFFFF"; 
+return true;
+}
+else
+{
+err.innerHTML="Invalid E-Mail";
+ema.style.backgroundColor = "#ff0000"; 
+return false; 
+}
+}
+</script>
+
+</head>
+<body bgcolor=lightgreen>
+<form action="login.asp" onSubmit="return checkEmail()">
+			
+Email: <input type="text" name="email" id="email">
+
+<span id="emailerr" style="color:red"> </span>
+<br>
+<input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
+
+=====================================================================
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Regular Expression</title>
+</head>
+<body>
+    <nav id="header">
+        <h2>Java Script | Regular Expression - 01</h2>
+    </nav>
+    <section>
+        <article>
+
+        </article>
+    </section>
+
+    <script>
+        /*
+        //let pattern = /SIT/;
+        let pattern = /SIT/i;
+        let str = 'abcSItabc';        
+        let result = pattern.test(str);
+        console.log(result);
+        */
+        
+        //let pattern = new RegExp('SIT');
+        let pattern = new RegExp('SIT','i');
+        let str = 'abcSItabc';        
+        let result = pattern.test(str);
+        console.log(result);        
+       
+    </script>
+</body>
+</html>
+
+----------------------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #result{
+            font-size:18px;
+            color:blue;
+            width:300px;
+            text-align:center;
+        }
+        button{
+            width:80px;
+            padding:3px;
+            font-size:17px;
+        }
+    </style>
+    <title>Regular Expression</title>
+</head>
+<body>
+    <nav id="header">
+        <h2>Java Script | Regular Expression - 02 | User Name</h2>
+    </nav>
+    <section>
+        <article>
+            <p>User Name Should have "SIT"</p>
+            <hr>
+            Enter User Name
+            <input type="text" id="username-field" size=20 autofocus>
+            <button>OK</button>
+            <p id=result></p>
+        </article>
+    </section>
+
+    <script>
+        let button = document.querySelector('button');
+
+        button.addEventListener('click', function(){
+           let result_region = document.querySelector('#result');
+           //get username value from field 
+           let uid = document.querySelector('#username-field').value 
+
+           //let uid_pattern = /SIT/
+           //let uid_pattern = /SIT/i
+
+           //let uid_pattern = new RegExp('SIT')
+           let uid_pattern = new RegExp('SIT','i')
+
+           let uid_message = 'Invalid User Name';
+           result_region.style.color = 'red'
+
+           if(uid_pattern.test(uid)){
+             uid_message = 'Valid User Name'
+             result_region.style.color = 'green'
+           }
+           result_region.innerHTML = uid_message;  
+        })
+    </script>
+</body>
+</html>
+
+----------------------------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #result{
+            font-size:18px;
+            color:blue;
+            width:300px;
+            text-align:center;
+        }
+        button{
+            width:80px;
+            padding:3px;
+            font-size:17px;
+        }
+    </style>
+    <title>Regular Expression</title>
+</head>
+<body>
+    <nav id="header">
+        <h2>Java Script | Regular Expression - 02 | User Name</h2>
+    </nav>
+    <section>
+        <article>
+            <p>Data Should have either "simple", "dimple","pimple"</p>
+            <hr>
+            Enter Data
+            <input type="text" id="data-field" size=20 autofocus>
+            <button>OK</button>
+            <p id=result></p>
+        </article>
+    </section>
+
+    <script>
+        let button = document.querySelector('button');
+
+        button.addEventListener('click', function(){
+           let result_region = document.querySelector('#result');
+           //get username value from field 
+           let data = document.querySelector('#data-field').value 
+
+           //let pattern = /[sdp]imple/;
+           //let pattern = /[^sdp]imple/;
+           //let pattern = /^[sdp]imple$/i;
+           let pattern = new RegExp('^[sdp]imple$','i');
+
+           if(pattern.test(data)){
+               result_region.innerText = 'Valid Data';
+               result_region.style.color = 'green'
+           }
+           else{
+               result_region.innerText = 'Invalid Data';
+               result_region.style.color = 'red'
+           }
+        })
+    </script>
+</body>
+</html>
+-------------------------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #result{
+            font-size:18px;
+            color:blue;
+            width:300px;
+            text-align:center;
+        }
+        button{
+            width:80px;
+            padding:3px;
+            font-size:17px;
+        }
+    </style>
+    <title>Regular Expression</title>
+</head>
+<body>
+    <nav id="header">
+        <h2>Java Script | Regular Expression - 04 | Mobile No</h2>
+    </nav>
+    <section>
+        <article>
+            <p>Data Should be a Valid Indian Mobile Number</p>
+            <hr>
+            Enter Mobile Number
+            <input type="text" id="mobile-field" size=20 autofocus>
+            <button>OK</button>
+            <p id=result></p>
+        </article>
+    </section>
+
+    <script>
+        let button = document.querySelector('button');
+
+        button.addEventListener('click', function(){
+           let result_region = document.querySelector('#result');
+           //get username value from field 
+           let mobile_no = document.querySelector('#mobile-field').value 
+
+           //let pattern = /^[6-9][0-9]{9}$/
+           let pattern = /^[6-9]\d{9}$/ 
+
+           if(pattern.test(mobile_no)){
+               result_region.innerText = 'Valid Indian Mobile No';
+               result_region.style.color = 'green'
+           }
+           else{
+               result_region.innerText = 'Invalid Indian Mobile No';
+               result_region.style.color = 'red'
+           }
+        })
+    </script>
+</body>
+</html>
+
+--------------------------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #result{
+            font-size:18px;
+            color:blue;
+            width:300px;
+            text-align:center;
+        }
+        button{
+            width:80px;
+            padding:3px;
+            font-size:17px;
+        }
+    </style>
+    <title>Regular Expression</title>
+</head>
+<body>
+    <nav id="header">
+        <h2>Java Script | Regular Expression - 06 | Email</h2>
+    </nav>
+    <section>
+        <article>
+            <p>Data Should be a Valid Email Address</p>
+            <hr>
+            Enter Email 
+            <input type="text" id="email-field" size=20 autofocus>
+            <button>OK</button>
+            <p id=result></p>
+        </article>
+    </section>
+
+    <script>
+        let button = document.querySelector('button');
+
+        button.addEventListener('click', function(){
+           let result_region = document.querySelector('#result');
+           //get username value from field 
+           let email = document.querySelector('#email-field').value 
+
+           let pattern = /^([a-z0-9]+)@([a-z]+)\.([a-z]{2,3})(\.([a-z]{2}))?$/
+
+           if(pattern.test(email)){
+               result_region.innerText = 'Valid Email';
+               result_region.style.color = 'green'
+           }
+           else{
+               result_region.innerText = 'Invalid Email';
+               result_region.style.color = 'red'
+           }
+        })
+    </script>
+</body>
+</html>

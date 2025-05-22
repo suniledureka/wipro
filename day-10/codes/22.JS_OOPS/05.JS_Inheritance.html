@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Inheritance</title>
+</head>
+<body>
+    <nav>
+        <h2>Java Script | OOPS | Inheritance</h2>
+    </nav>
+    <section>
+        <script>
+            class Person{
+                constructor(fname, lname){
+                    console.log('inside Person constructor')
+                    this.firstName = fname;
+                    this.lastName = lname;
+                }
+                getDetails(){
+                    console.log(`First Name: ${this.firstName}`)
+                    console.log(`Last Name: ${this.lastName}`)
+                }
+            }
+
+            class Employee extends Person{
+                constructor(fname, lname, sal){ 
+                    console.log('inside Employee constructor')
+                    super(fname, lname);                  
+                    this.salary = sal;
+                }
+
+                getDetails(){
+                    console.log(`${this.firstName} | ${this.lastName} | ${this.salary}`)
+
+                    super.getDetails();
+                    console.log(`Salary: ${this.salary}`)
+                }
+            }
+        </script>
+
+        <script>
+            let emp1 = new Employee('Sunil','Joseph',25000);
+            console.log(emp1)
+            emp1.getDetails();
+        </script>
+    </section>
+</body>
+</html>

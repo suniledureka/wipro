@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0px;
+        }
+
+        #header {
+            background-color: lightgreen;
+            padding: 15px;
+        }
+
+        #header h2 {
+            margin: 0px;
+        }
+    </style>
+    <title>OOPS-1</title>
+</head>
+
+<body>
+    <div id="header">
+        <h2>Java Script | OOPS | Class & Objects</h2>
+    </div>
+
+    <script>
+        class Account{
+            constructor(acno, name, bal)
+            {
+             console.log(`Inside constructor`);
+             this.acno = acno;
+             this.name = name;
+             this.bal = bal;    
+            }
+        }
+
+
+        //creating class using declaration
+        /*
+        let Account = class Account{
+            constructor(acno, name, bal)
+            {
+             console.log(`Inside constructor`);
+             this.acno = acno;
+             this.name = name;
+             this.bal = bal;    
+            }
+        }
+        */
+       /*
+        let Account = class {
+            constructor(acno, name, bal) {
+                console.log(`Inside constructor`);
+                this.acno = acno;
+                this.name = name;
+                this.bal = bal;
+            }
+        }
+        */
+        console.log('Class Name = '+ Account.name); //to get class name
+
+
+        console.log(`Type of Account = ${typeof (Account)}`);
+
+        /*-- create Account Type Objects --*/
+        let acc_1 = new Account(100012, 'Sunil', 25000);
+        let acc_2 = new Account(100013, 'Naveen', 55000);
+        let acc_3 = new Account(100014, 'Harsha', 35000);
+
+        console.log(`Type of acc_1 = ${typeof (acc_1)}`);
+        console.log(acc_1)
+
+        console.log('-----Accessing Object Properties -----')
+        console.log(`A/C No: ${acc_1.acno} | Name: ${acc_1.name} | Balance:  ${acc_1.bal}`);
+        console.log(`----------------------`);
+
+        console.log(`A/C No: ${acc_2.acno}\nName: ${acc_2.name}\nBalance:  ${acc_2.bal}`);
+        console.log(`----------------------`);
+
+        //adding a non-existing property of a class to an object
+        acc_3.branch = 'Ameerpet'
+
+        for (let property in acc_3) {
+            console.log(`${property} = ${acc_3[property]}`)
+        }
+
+        console.log(`--------------------------`)
+        let Rectangle = class Rectangle2 {
+            constructor(height, width) {
+                this.height = height;
+                this.width = width;
+            }
+        };
+        console.log(Rectangle.name);
+    </script>
+</body>
+
+</html>
