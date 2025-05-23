@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>callbacks</title>
+</head>
+<body>
+    <nav>
+        <h2>Java Script | Callbacks</h2>
+    </nav>
+
+    <script>
+        let userLeft = false
+        let userWatching = true
+
+        let watchTutorial=(callback,errorCallBack) =>{
+            if(userLeft){
+                errorCallBack({
+                    name: '** Username **',
+                    message: 'Left'
+                })
+            }
+            else if(userWatching){
+                callback({
+                    name:'**Username',
+                    message:'Watching'
+                })
+            }
+            else{
+                errorCallBack({
+                    name:'User Name',
+                    message:'Please subscribe & watch'
+                })
+            }
+        }
+		
+		//function call
+        watchTutorial((response)=>{
+            console.log(response.name+" | "+response.message)
+        },
+        (error)=>{
+            console.log(error.message)
+        })
+    </script>
+
+</body>
+</html>

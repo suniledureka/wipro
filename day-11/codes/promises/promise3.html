@@ -1,0 +1,17 @@
+<script>
+    //initialize a Promise
+    const promise1 = new Promise((resolve,  reject) => {
+		console.log('promisei inside');
+        setTimeout(() => {
+            resolve('promise-1 resolved status')
+        }, 5000)        
+    })
+    console.log(promise1);
+</script>
+<script>
+    //consume a Promise - promise.then() will be triggered when a promise is fulfilled (resolved)
+    promise1.then((response) => {
+        console.log(`consuming promise - data received - ${response}`)
+    })
+
+</script>

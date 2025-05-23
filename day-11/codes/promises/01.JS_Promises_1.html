@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Promises in JS</title>
+</head>
+
+<body>
+    <nav>
+        <h2>Java Script | Promises</h2>
+    </nav>
+    <script>
+        /*
+        let downloadImage = ()=>{
+            //Java Script code to download Image
+            let isDownloaded = true;
+            if(isDownloaded){
+                success('Yes, Image is downloaded!');
+            }
+            else{
+                failed('No, Network issue');
+            }
+        }
+
+        let success = (msg)=>{
+            console.log(msg)
+        }
+
+        let failed = (msg)=>{
+            console.log(msg);
+        }
+
+        //function call
+        downloadImage();
+        */
+    </script>
+
+    <script>
+        /*
+        let downloadImage = (resolve, reject)=>{
+            //Java Script code to download Image
+            let isDownloaded = false;
+            if(isDownloaded){
+                resolve('Yes, Image is downloaded!');
+            }
+            else{
+                reject('No, Network issue');
+            }
+        }
+
+        let success = (msg)=>{
+            console.log(msg)
+        }
+
+        let failed = (msg)=>{
+            console.log(msg);
+        }
+
+        //function call
+        downloadImage(success, failed);
+        */
+    </script>
+
+    <script>
+        /*
+        let downloadImage = (resolve, reject) => {
+            //Java Script code to download Image
+            let isDownloaded = true;
+            if (isDownloaded) {
+                resolve('Yes, Image is downloaded!');
+            }
+            else {
+                reject('No, Network issue');
+            }
+        }
+
+        //function call
+        downloadImage((message)=>{
+            console.log(message)
+        }, (message)=>{
+            console.log(message)
+        });      
+        */
+    </script>
+
+    <script>
+     /*
+        let downloadImage = new Promise(function(resolve, reject){
+            //logic to download image
+            let isDownloaded = false;
+            if(isDownloaded)
+             resolve("Image is Downloaded Successfully")
+            else
+             reject(new Error("Network Issue")) 
+        });
+
+        let success = (msg)=>{
+            console.log(msg)
+        }
+
+        let failed = (err)=>{            
+            console.log(err.toString());
+        }
+        
+        downloadImage.then(success).catch(failed)
+       */
+    </script>    
+
+    <script>
+	/*
+        let downloadImage = new Promise((resolve, reject)=>{
+            let isDownloaded = true;
+            if(isDownloaded){
+              //resolve("Image is Downloaded Successfully!")
+              resolve({fileName:'sit.png',message:'Success'})
+            }
+            else
+              reject(new Error('Invalid Image, Downloading failed'))  
+        });        
+
+        downloadImage.then((result)=>{            
+            console.log(result)
+            console.log(`File Name: ${result.fileName}\nMessage: ${result.message}`)
+        }).catch((err)=>{
+            console.log(err.toString())
+        })
+	*/
+    </script>
+</body>
+
+</html>

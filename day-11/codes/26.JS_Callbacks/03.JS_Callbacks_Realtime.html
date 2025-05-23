@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        table {
+            width: 70%;
+            font-size: 18px;
+            border-collapse: collapse;
+        }
+
+        td,
+        th {
+            border: 1px solid black;
+        }
+
+        tr {
+            height: 45px;
+        }
+    </style>
+    <title>Callbacks</title>
+</head>
+
+<body>
+    <nav>
+        <h2>Java Script | Callback | Employees</h2>
+    </nav>
+    <section>
+        <article>
+            <table>
+                <thead>
+                    <th>EMP ID</th>
+                    <th>NAME</th>
+                    <th>SALARY</th>
+                </thead>
+
+                <tbody id="table-body">
+
+                </tbody>
+            </table>
+        </article>
+    </section>
+    <script>
+        let employees = [
+            { id: 101, name: 'Sunil', age: 38 },
+            { id: 102, name: 'Naveen', age: 35 }
+        ]
+
+        let addEmployee = (employee,callback) => {
+            setTimeout(() => {
+                employees.push(employee)               
+                callback()
+            }, 3000)
+            //callback()
+        }
+
+        let displayEmployees = () => {
+            setTimeout(() => {
+                let employeeRows = ''
+                employees.forEach((emp) => {
+                    employeeRows += `<tr>
+                <td>${emp.id}</td>
+                <td>${emp.name}</td>
+                <td>${emp.age}</td>
+                </tr>
+                `
+                })
+
+                document.querySelector('#table-body').innerHTML = employeeRows
+            }, 0)
+        }
+
+        addEmployee({ id: 103, name: 'Harsha', age: 36 }, displayEmployees)
+        //displayEmployees()
+    </script>
+</body>
+
+</html>

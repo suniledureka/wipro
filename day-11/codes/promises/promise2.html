@@ -1,0 +1,14 @@
+<script>
+    //initialize a Promise
+    const promise1 = new Promise((resolve,  reject) => {
+        resolve('promise-1 resolved status')
+    })
+
+    console.log(promise1);
+</script>
+<script>
+    //consume a Promise
+    promise1.then((response) => {
+        console.log(`consuming promise - data received - ${response}`)
+    })
+</script>

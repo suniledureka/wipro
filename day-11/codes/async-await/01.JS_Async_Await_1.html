@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Async/Await in JS</title>
+    <style>
+        table {
+            width: 70%;
+            margin: 50px auto;
+            border-collapse: collapse;
+            font-size: 20px;
+            ;
+        }
+
+        td,
+        th {
+            border: 1px solid black;
+        }
+
+        tr {
+            height: 45px;
+        }
+        table thead tr{
+            background:linear-gradient(45deg,black 50%, darkred 50%);
+            color:white;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <h2>Java Script | ES 7 | Async & Await</h2>
+    </nav>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>A/C No</th>
+                    <th>Name</th>
+                    <th>Balance</th>
+                </tr>
+            </thead>
+            <tbody id="accounts-body"></tbody>
+        </table>
+    </div>
+    <script>
+        let accounts = [
+            {acno:1000123,name:'Sunil Joseph',bal:25000.50},
+            {acno:1000124,name:'Harsha Vardhan',bal:35000.50}
+        ]
+
+        /*-- function for adding new account into array */
+        function addAccount(account){
+            return new Promise(function(resolve,reject){
+              setTimeout(function(){                
+                accounts.unshift(account);                
+                let isAdded = true;
+                if(isAdded)
+                  resolve('Account Adding completed....')
+                else
+                  reject('Adding Operation Failed');  
+              }, 3000);              
+            });
+        }
+
+        /*-- function for displaying all the accounts in the page*/
+        function displayAccounts(){
+            let rows = '';
+            for(let acc of accounts){
+                rows = `${rows}<tr>
+                    <td>${acc.acno}</td>
+                    <td>${acc.name}</td>
+                    <td>${acc.bal}</td>
+                    </tr>`
+            }//for
+            document.querySelector('#accounts-body').innerHTML = rows;
+        }
+        //--------------------------------------------
+        let new_acc = {acno:'1000125',name:'Naveen',bal:15000.50};
+
+        //displayAccounts();
+
+        async function operations(){
+            console.log(`Adding new Account...`);
+            let promise = await addAccount(new_acc);
+            console.log(`Added new Account`);
+            
+            console.log(promise);
+            displayAccounts();
+        }
+
+        operations();
+    </script>
+</body>
+
+</html>

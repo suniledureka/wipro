@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>checking</title>
+</head>
+<body>
+    <nav>
+        <h2>Java Script | Employee Management</h2>
+    </nav>
+    <section>
+        <article>
+            <table>
+                <thead>
+                    <th width="25%">EMP No</th>
+                    <th width="60%">NAME</th>
+                    <th>AGE</th>
+                </thead>
+                <tbody id="emp_details"></tbody>
+            </table>
+        </article>
+    </section>
+    <script>
+        let employees = [
+            {empid: 101, name:'Sunil Joseph', age:38},
+            {empid: 102, name:'Naveen', age:35}
+        ]        
+    </script>
+    <script>
+        function addEmployee(employee,callback){             
+            setTimeout(()=>{
+                console.log('inside addEmployee...')
+                employees.push(employee);                 
+                callback();
+            }, 3000);  
+            callback();          
+        }
+
+        let displayDetails = ()=>{            
+            let contents = ''
+            console.log('Size of employees = '+employees.length)
+            for(let emp of employees){
+                contents = `${contents}<tr>
+                    <td>${emp.empid}</td>
+                    <td>${emp.name}</td>
+                    <td>${emp.age}</td>
+                </tr>`
+                console.log(contents)
+            }//for loop
+            document.querySelector('#emp_details').innerHTML = contents;
+        }
+    </script>
+    <script>
+        let emp = {empid: 103, name:'Praveen', age:30};
+        addEmployee(emp,displayDetails);        
+    </script>
+</body>
+</html>
