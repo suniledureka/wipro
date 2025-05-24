@@ -1,0 +1,479 @@
+Bootstrap
+=========
+- Library of CSS
+- developed by Mark Otto 2010 , initially called as Twitter Blue Print
+
+- Issues with CSS - Responsiveness 
+NavBar, Cards, Carousels/ Slider, Progress Bars, Models , Buttons etc are some the common components that comes in a web page
+
+To create a fancy feature  for <button>  .class selector  (time wastage)
+
+Bootstrap is free , open-source and is the most popular HTML, CSS and JavaScript framework ,developed by Twitter for creating responsive web applications
+
+It includes HTML and CSS based design templates for common user interface components like buttons, drop downs, typography, tabs, forms , tables, navigation, alerts, carousel etc along with optional java script extensions
+
+Bootstrap technologies can be used with any server side technologies like ASP.NET, Java , PHP etc
+
+Bootstrap makes front-end web development faster and easier. 
+
+Advantages of using Bootstrap
+-----------------------------
+> Supports responsive design - responsive web application automatically adapts to different screen sizes that is desktop computers, laptops, tablets, mobiles etc
+
+> Saves lot of development time - instead of writing code from the scratch, bootstrap offers readymade blocks of code that you can use and customize that suits you application requirements
+
+> Consistency - all the developers are working on a centralized development code base (twitter); so that the end result is consistent
+
+> Customizable
+
+> Support - has got a very large community base and excellent documentation
+
+Stable release: 5.3
+
+===========================================
+
+Environment Setup for Bootstrap
+-------------------------------
+1) Download Bootstrap from
+http://getbootstrap.com/ > Download Bootstrap
+
+https://getbootstrap.com/docs/5.3/getting-started/download/
+
+	
+bootstrap-5.3.6-dist.zip > Extract it
+
+
+Sass: Syntactically Awesome Style Sheets
+
+Sass is a preprocessor scripting language that is interpreted or compiled into Cascading Style Sheets. 
+Sass Script is the scripting language itself.
+SASS is a popular CSS pre-processor.
+SASS code is processed by the program and compiled into CSS code, which can be used to style HTML elements. SASS controls how it appears on the web page. It is compatible with all CSS versions.
+
+Steps Involved
+--------------
+<projet_folder>/css
+ bootstrap.css 
+ styles.css  (our css file)
+
+<projet_folder>/js
+ jquery.js
+ popper.js - Popper. js is a positioning engine, its purpose is to calculate the position of an element to make it possible to position it near a given reference element. Though Popper.js is stated as required for Bootstrap 4, and Bootstrap 4 JS logs an error if it can't find Popper, you can still use Bootstrap 4 JS without Popper, if you don't need tooltips, popovers nor dropdowns. 
+ bootstrap.js
+ script.js - (our javascript file)
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+- this viewport meta tag ensures proper rendering and touch zooming on a mobile device.
+using bootstrap default
+
+
+------------------------------------------
+
+VS Code Extension : IntelliSense for CSS class names in HTML / HAML Bootstrap Snippets & Class Autocomplete/ "HTML CSS Class Completion"
+------------------------------------------
+Basic Typography      getbootstrap.com > Docs > Content > Typography
+https://getbootstrap.com/docs/5.3/content/typography/
+
+
+Text Alignment & Display    getbootstrap.com > Docs > Utilities > Text
+
+    
+Display Properties ===> getbootstrap.com > Docs > Utilities > Text
+
+------------------------------------------
+MD Bootstrap (Material Design)
+==============================
+Material Design is an Android-oriented design language created by Google, supporting onscreen touch experiences via cue-rich features and natural motions that mimic real-world objects. Designers optimize users' experience with 3D effects, realistic lighting and animation features in immersive, platform-consistent GUIs.
+
+MDBootstrap stands for Material Design for Bootstrap. Or in simple word, a version of bootstrap that inspired with Material Designs. MDBootstrap have hundreds of beautiful components, templates, animations, effects and helpers. Everything fully responsive, compatible with different browsers and it is easy to use
+
+Material Design for Bootstrap is an open source toolkit based on Bootstrap for developing Material Design apps with HTML, CSS, and JS.
+
+Download MDBootstrap from https://mdbootstrap.com/
+> Getting Started > Download ZIP
+
+extract the zip file - MDB-Free_4.19.0.zip
+
+-------------------------------------------
+Mark Otto GitHub  (twbs - Twitter Bootstrap)
+-------------------------------------------
+
+Steps Involved
+-----------------
+<projet_folder>/css
+ bootstrap.css
+ mdb.css
+ styles.css
+
+<projet_folder>/js
+ jquery.js
+ popper.js - Popper. js is a positioning engine, its purpose is to calculate the position of an element to make it possible to position it near a given reference element. Though Popper. js is stated as required for Bootstrap 4, and Bootstrap 4 JS logs an error if it can't find Popper, you can still use Bootstrap 4 JS without Popper, if you don't need tooltips, popovers nor dropdowns. 
+
+ bootstrap.js
+ mdb.js
+ script.js
+------------------------------------------
+
+Floats & Positions - getbootstrap.com > Docs > Utilities > Float
+
+        <!-- RESPONSIVE FLOATS -->
+        <!-- CLEARFIX -->
+//clearfix: Quickly and easily clear floated content within a container by adding a clearfix utility.
+	<h3>Fixed Top</h3>
+<!-- FIXED TOP -->
+
+class="fixed-bottom"  | "fixed-top" | "sticky-top"
+
+<!-- FIXED STICKY -->
+<h3>Sticky</h3>    class="font-weight-bold sticky-top"
+<p>lorem150
+
+<!-- FIXED BOTTOM --> class="font-weight-bold fixed-bottom"
+<h3>Fixed Bottom</h3>
+
+
+------------------------------------------
+Colors & Background    Docs > Helpers >Color & background
+info - light blue
+primary - blue
+secondary - gray/ purple
+success - green
+warning - orange
+danger - red
+light - light gray
+white - white
+dark - dark
+
+text colors:
+
+text-info
+text-primary
+text-secondary
+
+background-colors
+
+bg-info
+bg-primary
+
+buttons
+btn-info
+btn-primary
+
+
+Margins & Paddings  Docs > Utilities > Spacing
+
+Sizing in Bootstrap    Docs > Utilities > Sizing
+Breakpoints Bootstrap
+----------------------
+
+    <style>
+        /* Small devices min-width 576px (landscape phones) */
+        @media (min-width:576px) {
+		body{
+                   background-color:red;
+                }
+        }
+
+        /* Medium devices 768px (tablets) */
+        @media () {
+
+        }
+
+        /* Large devices 992px(desktops) */
+        @media () {
+
+        }
+
+        /* Extra large devices 1200px (large desktops) */
+        @media () {
+
+        }
+
+        /* The given screen size or smaller */
+
+        /* Extra small devices (portrait phones)*/
+        @media () {}
+	        @media (max-width:575px) {
+		body{
+                   background-color:orange;
+                }
+        }
+-------------------------------------------------
+<hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+-------------------------------------------------
+
+Buttons in Bootstrap    Docs > Components > Buttons
+
+
+Dropdown in Bootstrap   - getbootstrap.com > Docs > Components > Dropdowns
+		- include jqueryxx.js , popper.js 
+
+
+Navbar in Bootstrap   Docs > Components > NavBar 
+-------------------
+navbar navbar-dark bg-dark navbar-expand-sm
+navbar-brand
+navbar-toggler
+data-bs-toggle="collapse" 
+data-bs-target="#simple-navbar"
+navbar-toggler-icon
+collapse navbar-collapse
+navbar-nav
+nav-link
+NAVBAR with Form
+
+
+
+ListGroup in Bootstrap   Docs > Components > ListGroup
+class="list-group"
+class="list-group-item"
+
+
+Badges Docs > Components > Badge
+
+Breadcrumb    Docs > Components > Breadcrumb
+
+Forms in Bootstrap     Docs > Forms >
+
+Form based on Grid System
+
+Input Groups in Bootstrap   Docs > Forms > Floating Labels
+
+
+Alerts in Bootstrap
+
+Progress Bar in Bootstrap
+
+
+Tables in Bootstrap
+
+Cards in Bootstrap
+classes used:: .card, .card-header, .card-body
+  .card-title
+  .card-img
+  .card-subtitle
+  .card-text
+.card-footer
+
+
+Carousel in Bootstrap
+
+Collapse in Bootstrap
+
+Modals in Bootstrap
+
+
+Bootstrap Grid System
+---------------------
+Grid system is used for creating page layouts through a series of rows and columns. 
+Bootstrap's grid system is a 12-column system that allows you to arrange content in rows and columns, making it easier to create responsive layouts. It uses classes like .row and .col-* (where * is a number from 1 to 12) to define rows and column widths. This system is responsive, meaning that the column widths will change based on the screen size
+
+The grid system consists of 12 columns.
+
+.container (or) .container-fluid
+  .row
+    .col   [col-lg-3 | col-md-6 | col-sm-12]
+		4          2          1
+
+Extra small - <576px 	
+Small - ≥576px 	
+Medium - ≥768px 	
+Large - ≥992px 	
+Extra large - ≥1200px
+
+
+Example
+   4   |  8   (4 column layout and 8 column layout)
+
+
+
+<div class="container"> class="container-fluid"
+  <div class="row">
+    <div class="col-md-4"> bg-danger
+      <p class="lead">lorem40..</p>
+    </div>
+    <div class="col-md-8">
+      <p class="lead">lorem40..</p>
+    </div>
+  </div>
+</div>
+
+<!-- Responsive Grid -->
+<div class="col-sm-6 col-md-4 col-lg-6 col-xl-8 bg-primary text-white">
+<div class="col-sm-6 col-md-8 col-lg-6 col-xl-4 bg-danger text-white">
+
+
+<!-- NESTING GRIDS -->
+    4               8
+
+              6            6
+
+			6      6
+
+div .container
+ div .row
+   div .col-md-4 bg-primary
+      p .lead lorem30
+   div .col-md8 bg-seconday
+      p .lead lorem30
+      div .row 
+        div .col-md-6
+        div .col-md-6 	
+
+<!--  Grid Example -->
+section
+  div .container
+     div  .row
+       <div class="col-md-4">
+          <i class="fa fa-users fa-4x"></i>
+          <h3>Best Faculty Members</h3>
+          <p>Lorem30
+       </div>
+
+-------------------------------------------
+Grid Alignments
+
+<div class="container mt-5">
+
+    <!-- VERTICAL ALIGNMENT align-items-start-->
+
+    <div class="container">
+        <h2>Top Aligned</h2>
+        <div class="row">
+            <div class="col">
+                <p class="bg-success text-white text-center p-2">Top Aligned Text</p>
+            </div>
+            <div class="col">
+                <p class="bg-success text-white text-center p-2">Top Aligned Text</p>
+            </div>
+            <div class="col">
+                <p class="bg-success text-white text-center p-2">Top Aligned Text</p>
+            </div>
+        </div>
+
+        <h2>Middle Aligned</h2>
+        <div class="row">
+            <div class="col">
+                <p class="bg-primary text-white text-center p-2">Middle Aligned Text</p>
+            </div>
+            <div class="col">
+                <p class="bg-primary text-white text-center p-2">Middle Aligned Text</p>
+            </div>
+            <div class="col">
+                <p class="bg-primary text-white text-center p-2">Middle Aligned Text</p>
+            </div>
+        </div>
+
+        <h2>Bottom Aligned</h2>
+        <div class="row">
+            <div class="col">
+                <p class="bg-warning text-white text-center p-2">Bottom Aligned Text</p>
+            </div>
+            <div class="col">
+                <p class="bg-warning text-white text-center p-2">Bottom Aligned Text</p>
+            </div>
+            <div class="col">
+                <p class="bg-warning text-white text-center p-2">Bottom Aligned Text</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- VERTICAL ALIGN INDIVIDUAL COLS align-self-start-->
+    <div class="container">
+        <h2>ALIGN INDIVIDUAL COLS</h2>
+        <div class="row">
+            <div class="col"> align-self-start
+                <p class="bg-success text-white text-center p-2">Top Aligned</p>
+            </div>
+            <div class="col">
+                <p class="bg-primary text-white text-center p-2">Middle Aligned</p>
+            </div>
+            <div class="col">
+                <p class="bg-warning text-white text-center p-2">Bottom Aligned</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- VERTICAL ALIGNED COLS justify-content-start-->
+    <div class="container">
+
+        <h2>VERTICAL ALIGNED COLS</h2>
+        <h3>justify-content-start</h3>
+        <div class="row" >
+            <div class="col-4">
+                <p class="bg-primary text-white text-center p-2">Left Aligned Text</p>
+            </div>
+            <div class="col-4">
+                <p class="bg-primary text-white text-center p-2">Left Aligned Text</p>
+            </div>
+        </div>
+
+        <h3>justify-content-center</h3>
+        <div class="row" >
+            <div class="col-4">
+                <p class="bg-primary text-white text-center p-2">Center Aligned Text</p>
+            </div>
+            <div class="col-4">
+                <p class="bg-primary text-white text-center p-2">Center Aligned Text</p>
+            </div>
+        </div>
+
+        <h3>justify-content-end</h3>
+        <div class="row" >
+            <div class="col-4">
+                <p class="bg-primary text-white text-center p-2">Right Aligned Text</p>
+            </div>
+            <div class="col-4">
+                <p class="bg-primary text-white text-center p-2">Right Aligned Text</p>
+            </div>
+        </div>
+
+        <h3>justify-content-around</h3>
+        <div class="row" >
+            <div class="col-4">
+                <p class="bg-primary text-white text-center p-2">Content Around</p>
+            </div>
+            <div class="col-4">
+                <p class="bg-primary text-white text-center p-2">Content Around</p>
+            </div>
+        </div>
+
+        <h3>justify-content-between</h3>
+        <div class="row " >
+            <div class="col-4">
+                <p class="bg-primary text-white text-center p-2">Content Between</p>
+            </div>
+            <div class="col-4">
+                <p class="bg-primary text-white text-center p-2">Content Between</p>
+            </div>
+        </div>
+    </div>
+-------------------------------------------
+Jumbotron
+Spinners
+Pagination
+-------------------------------------------
+google.com - free bootstrap templates
+bootstrapmade.com
+
+google - "bootstrap 4 free templates"
+creative-tim.com
+-------------------------------------------
+
+Project: Corporate Web Site
+
+<!-- Main NavBar -->
+<nav class="navbar navbar-dark navbar-expand-sm">
+  div .container
+   a href="index.html class="navbar-brand">
+     img 
+     Wipro Technologies
+
+  button 
+</nav>
+
+
+-------------------------------------------
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>BS | display</title>
+</head>
+
+<body>
+    <nav>
+        <h2>Bootstrap | Display</h2>
+    </nav>
+    <!-- to make block level element to inline -->
+    <div class="container mt-3">
+        <h1 class="bg-success p-2 d-inline">Heading-1</h1>
+        <h1 class="bg-danger p-2 d-inline">Heading-2</h1>
+    </div>
+
+    <!-- to make inline element to block element -->
+    <div class="container mt-5">
+        <p class="display-4">
+            <span class="bg-success d-block mb-4">Softwave IT</span>
+            <span class="bg-warning d-block">Solutions</span>
+        </p>
+    </div>
+
+    <!-- innline-block-->
+    <div class="container">
+        <div class="bg-info mb-4 d-inline-block">
+            <h3>Hello</h3>
+            This is inline
+        </div>
+        <div class="bg-info d-inline-block">
+            <h3>Hello</h3>
+            This is inline
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="d-none">I am Hidden</h1>
+    </div>
+</body>
+
+</html>

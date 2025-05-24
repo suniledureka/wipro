@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+        .dropdown-item:hover {
+            background-color: #FF3547
+        }
+    </style>
+    <title>BS | Drop Downs</title>
+</head>
+
+<body>
+    <nav>
+        <h2>Bootstrap | Drop_Down_Menus</h2>
+    </nav>
+
+    <div class="container mt-4">
+        <h2>Drop Down Menus</h2>
+        <div class="dropdown mb-5">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"> Dropdown button </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-danger">Courses</button>
+            <button class="btn btn-danger" data-toggle="dropdown">
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-menu p-2">
+                <a href="#" class="dropdown-item">HTML</a>
+                <a href="#" class="dropdown-item">CSS</a>
+                <a href="#" class="dropdown-item">Java Script</a>
+                <a href="#" class="dropdown-item">jQuery</a>
+                <a href="#" class="dropdown-item">Bootstrap</a>
+                <a href="#" class="dropdown-item">AJAX</a>
+            </div>
+        </div>
+
+        <hr class="bg-dark" style="height:2px">
+        <div class="btn-group">
+            <button class="btn btn-warning dropdown-toggle btn-lg" data-toggle="dropdown">Courses</button>
+            <div class="dropdown-menu">
+                <a href="" class="dropdown-item">Core Java</a>
+                <a href="" class="dropdown-item">Adv Java</a>
+                <a href="" class="dropdown-item">Hibernate</a>
+                <a href="" class="dropdown-item">Spring</a>
+                <a href="" class="dropdown-item">Web Services</a>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-3.5.1.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js" integrity="sha512-nnzkI2u2Dy6HMnzMIkh7CPd1KX445z38XIu4jG1jGw7x5tSL3VBjE44dY4ihMU1ijAQV930SPM12cCFrB18sVw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="js/bootstrap.js"></script>
+</body>
+
+</html>

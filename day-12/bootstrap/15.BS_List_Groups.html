@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/mdb.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .bg-danger{
+            background:linear-gradient(45deg,black,blue);
+            color:white;
+            border-radius:20px;
+            box-shadow:0 0 10px black;
+        }
+    </style>
+    <title>BS | List Groups</title>
+</head>
+
+<body>
+    <nav>
+        <h2>Bootstrap | List Groups</h2>
+    </nav>
+
+    <div class="container mt-3">
+        <h2>List Groups</h2>
+        <div class="container">
+            <ul class="list-group">
+                <li class="list-group-item">List Item - 1</li>
+                <li class="list-group-item">List Item - 2</li>
+                <li class="list-group-item active">List Item - 3</li>
+                <li class="list-group-item">List Item - 4</li>
+                <li class="list-group-item list-group-item-action">List Item - 5</li>
+            </ul>
+        </div>
+
+        <hr class="bg-dark" style="height:2px">
+        <h2>List Groups | Contexual Classes</h2>
+        <div class="container">
+            <ol class="list-group">
+                <li class="list-group-item list-group-item-primary list-group-item-action">List Item - 1</li>
+                <li class="list-group-item list-group-item-secondary list-group-item-action">List Item - 2</li>
+                <li class="list-group-item list-group-item-info list-group-item-action">List Item - 3</li>
+                <li class="list-group-item list-group-item-success list-group-item-action">List Item - 4</li>
+                <li class="list-group-item list-group-item-danger list-group-item-action">List Item - 5</li>
+            </ol>
+            <button class="btn btn-danger">Click Me</button>
+        </div>   
+        
+        <hr class="bg-dark" style="height:2px">
+
+        <h2>List Groups | Custom Content</h2>        
+        <div class="container list-group">            
+            <a href="#" class="list-group-item list-group-item-danger list-group-item-action mb-4">
+                <div class="bg-danger p-3 text-white mb-2">
+                    <h5>My Post - 01</h5>
+                    <small>03 Days ago!</small>                    
+                </div>                
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel repudiandae tenetur accusamus dolore dolorem! Ratione beatae consequuntur quisquam suscipit reprehenderit accusantium, possimus iste quasi aspernatur illum minus aut eos similique!
+                </p>
+                <small>by Sunil Joseph</small>                
+            </a>
+
+            <a href="#" class="list-group-item list-group-item-success mb-4 list-group-item-action">
+                <div class="bg-success p-3 text-white mb-2">
+                    <h5>My Post - 02</h5>
+                    <small>04 Days ago!</small>                    
+                </div>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel repudiandae tenetur accusamus dolore dolorem! Ratione beatae consequuntur quisquam suscipit reprehenderit accusantium, possimus iste quasi aspernatur illum minus aut eos similique!
+                </p>
+                <small>by Sunil Joseph</small>
+            </a>   
+            
+            <a href="#" class="list-group-item list-group-item-warning mb-4 list-group-item-action">
+                <div class="bg-warning p-3 text-dark mb-2">
+                    <h5>My Post - 03</h5>
+                    <small>05 Days ago!</small>                    
+                </div>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel repudiandae tenetur accusamus dolore dolorem! Ratione beatae consequuntur quisquam suscipit reprehenderit accusantium, possimus iste quasi aspernatur illum minus aut eos similique!
+                </p>
+                <small>by Sunil Joseph</small>
+            </a>            
+        </div>
+
+    </div>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/mdb.js"></script>
+</body>
+
+</html>
