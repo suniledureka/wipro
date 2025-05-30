@@ -1,2 +1,0 @@
-require('./batman')
-require('./superman')

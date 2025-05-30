@@ -1,3 +1,0 @@
-Java is a high level programming language
-mainly used to develop platform independent
-applications.
