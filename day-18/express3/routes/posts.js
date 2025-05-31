@@ -31,14 +31,15 @@ router.get('/:id', (req, res, next) => {
     if (!post) {
         //return res.status(404).json({ message: `Post with ID: ${postId} not found!!` })
 
-        const error = new Error(`Post with ID: ${postId} not found!!`);
-        throw error;
+        const error = new Error(`Post with the ID of ${postId} not found`)
+        //error.status = 500;
+        return next(error);
     }
     res.status(200).json(post)
 })
 
 //create a new post
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
     //console.log(!req.body.title);
     if (req.body.title) {
         const newPost = {
@@ -47,8 +48,10 @@ router.post('/', (req, res) => {
         }
         posts.push(newPost);
         return res.status(201).json(posts)
-    }
-    res.status(400).json({ message: 'Please include title!!' })
+    }    
+    //res.status(400).json({ message: 'Please include title!!' })
+    const error = new Error(`Please include a title`)
+    return next(error);
 })
 
 

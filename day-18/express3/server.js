@@ -17,11 +17,21 @@ app.use(logger)
 //Routes middleware
 app.use('/api/posts', postRoutes)
 
-//app.use(errorHandler)
 // Custom error-handling middleware
+/*
 app.use((err, req, res, next) => {
   console.log(err);
   res.status(500).json({ message: "Oops! Something went wrong." });
 });
+*/
+
+app.use((req, res, next) => {
+ const error = new Error(`Not Found`)
+ error.status = 404
+ next(error); 
+}) 
+
+
+app.use(errorHandler)
 
 app.listen(PORT, () => console.log(`Server listening on Port: ${PORT}`))
