@@ -1,8 +1,7 @@
-//const express = require('express'); //File is a CommonJS Module can be converted to ES
-//const postRoutes = require('./routes/posts')
-
 import express from 'express';
 import postRoutes from './routes/posts.js';
+import logger from './middleware/logger.js';
+import errorHandler from './middleware/errorHandler.js';
 
 const app = new express();
 
@@ -12,7 +11,19 @@ const PORT = process.env.PORT || 1001;
 app.use(express.json()) //<--- allows to submit raw json data
 app.use(express.urlencoded()) //<--- allows to get form data
 
+//logger middleware to app-level
+app.use(logger)
+
 //Routes middleware
 app.use('/api/posts', postRoutes)
+
+app.use((req, res, next) => {
+ const error = new Error(`Not Found`)
+ error.status = 404
+ next(error); 
+}) 
+
+
+app.use(errorHandler)
 
 app.listen(PORT, () => console.log(`Server listening on Port: ${PORT}`))

@@ -1,8 +1,3 @@
-//const express = require('express');  //CommonJS
-import express from 'express';
-
-const router = express.Router();
-
 let posts = [
     { id: 1, title: 'Post One' },
     { id: 2, title: 'Post Two' },
@@ -10,8 +5,9 @@ let posts = [
     { id: 4, title: 'Post Four' }
 ]
 
-//get all posts 
-router.get('/', (req, res) => {
+//@desc Get All Posts
+//@route GET /api/posts/
+export const getPosts = (req, res) => {
     const limit = parseInt(req.query.limit)
 
     if (!isNaN(limit) && limit > 0) {
@@ -19,11 +15,11 @@ router.get('/', (req, res) => {
     } else {
         res.status(200).json(posts)
     }
-})
+}
 
-
-//get a single post based on id 
-router.get('/:id', (req, res, next) => {
+//@desc Get a single post based on id 
+//@route GET /api/posts/:id
+export const getPost = (req, res, next) => {
     const postId = parseInt(req.params.id);
     //const post = posts.filter(post => post.id === postId)
     const post = posts.find(post => post.id === postId)
@@ -36,10 +32,11 @@ router.get('/:id', (req, res, next) => {
         return next(error);
     }
     res.status(200).json(post)
-})
+}
 
-//create a new post
-router.post('/', (req, res, next) => {
+//@desc Create a New Post 
+//@route POST /api/posts/
+export const createPost = (req, res, next) => {
     //console.log(!req.body.title);
     if (req.body.title) {
         const newPost = {
@@ -49,14 +46,13 @@ router.post('/', (req, res, next) => {
         posts.push(newPost);
         return res.status(201).json(posts)
     }    
-    //res.status(400).json({ message: 'Please include title!!' })
     const error = new Error(`Please include a title`)
     return next(error);
-})
+}
 
-
-//update an existing post
-router.put("/:id", (req, res) => {
+//@desc Updating an existing Post 
+//@route PUT /api/posts/:id
+export const updatePost = (req, res) => {
    const postId = parseInt(req.params.id);
    const post = posts.find(post => post.id === postId);
 
@@ -67,10 +63,11 @@ router.put("/:id", (req, res) => {
         post.title = req.body.title;
    }
    res.status(200).json(posts);
-})
+}
 
-//delete a post
-router.delete("/:id", (req, res) => {
+//@desc Delete post based on id 
+//@route DELETE /api/posts/:id
+export const deletePost = (req, res) => {
     const postId = parseInt(req.params.id)
     const post = posts.find(post => post.id === postId)
 
@@ -80,7 +77,4 @@ router.delete("/:id", (req, res) => {
     
     posts = posts.filter(post => !(post.id === postId));
     res.status(200).json(posts);
-})
-
-//module.exports = router;   //CommonJS
-export default router;
+}
