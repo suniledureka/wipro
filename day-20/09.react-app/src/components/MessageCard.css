@@ -1,0 +1,12 @@
+.card{
+    background: linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    width: 300px;
+    text-align:center;
+    color: white;
+    margin: 40px 50px;
+    height: 190px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px black;
+    line-height: 5;
+    display:inline-block
+}
