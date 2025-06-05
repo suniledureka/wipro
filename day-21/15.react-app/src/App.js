@@ -4,6 +4,7 @@ import Counter1 from './components/Counter1';
 import Counter2 from './components/Counter2';
 import Counter3 from './components/Counter3';
 import Counter4 from './components/Counter4';
+import Counter5 from './components/Counter5';
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       {/* <Counter1 /> */}
       {/* <Counter2 /> */}
       {/* <Counter3 /> */}
-      <Counter4 />
+      {/* <Counter4 /> */}
+      <Counter5 />
     </div>
   );
 }
