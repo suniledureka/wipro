@@ -1,1 +1,0 @@
-integrating bootstrap & font-awesome
