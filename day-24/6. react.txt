@@ -1,0 +1,260 @@
+----- Dynamic Routes with React Router ---
+
+let's assume we are building an admin dashboard and we need a user listing and details page if the user navigates to "/users"
+
+we should display a list of three users 
+
+http://localhost:3000/users
+  User-1
+  User-2
+  User-3
+
+however in addition to this if the user navigates to "/users" followed by the "id" of that user we need to display details about that "individual user" 
+
+for example if the user navigates to /users/1 - we should display details about the first user - similarly if the user navigates to "/users/2" - we need to display details about the second user 
+in "/users/3 - we need to display details about the third user 
+
+http://localhost:3000/users/1	  Details of User-1
+
+let's understand how to achieve this with react router 
+
+create a new component - src/components/Users.js  - component that displays list of three users 
+
+const Users = () => {
+  return (
+    <div>
+      <h2>User-1</h2>
+      <h2>User-2</h2>
+      <h2>User-3</h2>
+    </div>
+  )
+}
+
+
+Configure a route for this component in App.js - add a new route 
+
+ <Route path="users" element={<Users />}></Route>
+
+http://localhost:3000/users - we see the list of users as expected 
+
+
+-- Part-2 ---
+
+let's focus on the details page - we know that we need a detailed view for the user 
+so let's create a new component UserDetails
+
+src/components/UserDetails.js 
+
+const UserDetails = () => {
+  return (
+    <div>
+      <h2>Details about User</h2>
+    </div>
+)}
+
+- this same component has to be rendered for three different URLs -  /users/1, /users/2, /users/3
+add the Routes in App.js 
+        <Route path="users/1" element={<UserDetails />}/>
+        <Route path="users/2" element={<UserDetails />}/>        
+        <Route path="users/3" element={<UserDetails />}/>
+
+
+http://localhost:3000/users/1 , /2, /3  -- we see the UserDetails page same for all
+
+==> if we had 100 users - we would need to configure a hundred different routes - this is not the feasible solution.
+
+the correct solution is to use dynamic route segments 
+
+for our scenario the user id which can be 1, 2, 3 and so on should be a dynamic value and for such a value we specify what is termed as a "URL Param" in react-router 
+
+so instead of users/1 we specify users/:userId  - and we can get rid of the other two routes 
+
+this userId param will match any value as long as the pattern is the same 
+localhost:3000/users/1,  localhost:3000/users/2,  localhost:3000/users/100, localhost:3000/users/admin,  
+
+src/components/Admin.js    Admin Page
+<Route path="users/admin" element={<Admin />}/>
+
+I want you to keep in mind - even though we have a dynamic route where the userId can be anything - react-router is smart enough to first match the route that is more specific 
+so if you navigate to users/admin react router will first try to find a matching route only - if that is not found then it will match the dynamic route 
+
+dynamic routes can be nested as well - since the two routes we have just configured have users as the prefix we can nest them 
+
+<Route path="users" element={<Users />}>
+  <Route path=":uid" element={<UserDetails />}/>
+  <Route path="admin" element={<Admin />}/>
+</Route>
+
+in User.js --- <Outlet />
+
+localhost:3000/users/1    localhost:3000/users/admin
+
+
+==== URL Params ======
+
+-> Usecase - display the userId from the URL in the component
+
+to extract the Route parameter -  we need to use a hook called useParams() from 'react-router'
+
+import {useParams} from 'react-router-dom'
+const params = useParams();
+useParams() returns an object of key-value pairs of the dynamic params from the current URL.  The parameter we wnt to access is the "userId"
+
+const userId = params.uid
+
+
+UserDetails.js
+
+import { useParams } from 'react-router-dom'
+const UserDetails = () => {
+  const params = useParams();  
+  const uid = params.uid;
+  return (
+    <div>
+      <h2>Details about User - {uid}</h2>
+    </div>
+  )
+}
+
+Assignment - create link to each user - <Link to="1">User-1</Link>
+
+
+Part-3
+
+==== Search Params ======
+
+We can also add an optional QUERY STRING in URL
+
+for example at the end of the current url ?filter=active - this parameter is called "SEARCH PARAMS" in react-router http://localhost:8080/users?filter=active
+
+for our understanding let's implement a simple scenario in the User page - let's add two buttons one that says "Active Users" and one that says "Reset Filter"
+
+by default the page renders the text showing all users 
+
+
+=> on click of "Active Users" we're going to add a search query param called "filter" and set it to "active" /users?filter=active 
+
+
+in the component we will display text showing active users 
+
+if you click on "Reset Filter" - we remove the filter search param and revert the text 
+
+Step-1: User's component let's add two buttons "Active Users" and the second button is "Reset Filter"  - User.js
+
+import { Outlet , Link} from 'react-router-dom'
+const Users = () => {
+  return (
+    <div>
+      <h2>User-1</h2>      <h2>User-2</h2>      <h2>User-3</h2>
+      <Outlet />
+      <div>
+        <button>Active Users</button>
+        <button>Reset Filter</button>
+      </div>
+    </div>
+  )
+}
+
+Step-2:  onClick of these buttons - we need to add or remove the search param 
+to deal with search params react router provides a hook called useSearchParams() - this hook behaves similar to the useState() hook in react.  Instead of storing state in memory-it is stored in the URL
+
+import { useSearchParams} from 'react-router'
+
+within the component invoke the hook useSearchParams() - the hook returns two values of which the first one is an object -which we are going to call as "searchParams" and  the second value returned is a function -to set the search params - so let's call this setSearchParams 
+
+const [searchParams, setSearchParams] = useSearchParams(); as you can see it is very similar to useState 
+
+now using setSearchParams() function we can add or remove the parameters 
+first onClick of "Active Users" button - we call setSearchParam - and we pass in an object with one property called "filter"  this value is "active" 
+	
+	<button onClick={() => setSearchParams({filter: 'active'})}>Active Users</button>
+
+next on click of "Reset Filter" button we call setSearchParams again - but this time with an empty object 
+        <button onClick={() => setSearchParams({})}>Reset Filter</button>
+
+Browser - http://localhost:3000/users   -- click on "Active Users" -- http://localhost:3000/users?filter=active
+
+
+
+now what we need to do is - check if filter searchParam is set to "active" and display the appropriate text
+
+
+so for step 3  - within the component we make a check on the filter parameter  - show "Showing Active Users" text in component for ?filter=active and "Showing All users" while clicking on "Reset Filter" button
+
+const showActiveUsers = searchParams.get("filter") === 'active';
+
+{
+  showActiveUsers ? <h2>Showing Active Users</h2> : <h2>Showing All Users</h2>
+}
+
+
+import { Outlet , Link, useSearchParams} from 'react-router-dom'
+
+const Users = () => {
+  const [searchParams, setSearchParams] = useSearchParams();  
+  const showActiveUsers = searchParams.get("filter") === 'active';
+  return (
+    <div>
+      <h2>User-1</h2>
+      <h2>User-2</h2>
+      <h2>User-3</h2>
+      <Outlet />
+      <div>
+        <button onClick={() => setSearchParams({filter: 'active'})}>Active Users</button>
+        <button onClick={() => setSearchParams({})}>Reset Filter</button>
+      </div>
+      {
+        showActiveUsers ? <h2>Showing Active Users</h2> : <h2>Showing All Users</h2>
+      }
+    </div>
+  )
+}
+
+
+
+
+
+====== NavBar Integration ----- NavBar.js  ======   getbootstrap.com
+
+import logo from '../assets/logo.png'
+
+const NavBar = () => {
+    return (
+        <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+            <a class="navbar-brand" href="/">
+                <img src={logo} alt="company logo" className="navbar-brand-logo"/>
+                 &nbsp; &nbsp; Edureka
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <Link class="nav-link" to="/">Home </Link>
+                    </li>
+
+
+
+===== Render Links Conditionally =======
+
+In NavBar Component show HOME, ABOUT, CONTACT Link if the user is logged in otherwise show only HOME
+
+App.js --- <NavBar isLoggedIn={true}/>
+
+NavBar.js 
+const NavBar = ({isLoggedIn}) => {
+....
+ <li class="nav-item">
+  <NavLink to="/">Home </NavLink>
+ </li>
+
+ {isLoggedIn ? ( <li class="nav-item">
+              <NavLink  to="/about">About</NavLink>
+          </li>) : ("")} 
+
+ {isLoggedIn ? (<li class="nav-item">
+                        <NavLink  to="/contact">Contact</NavLink>
+                    </li>) : ("")} 
