@@ -1,0 +1,167 @@
+==== useEffect Hook =====
+
+import { useEffect } from 'react'
+
+-> useEffect() hook is used to perform side effects in our functional component
+
+What are side-effects?
+
+- side effects are actions which are performed with the "outside world"
+- we perform side effects when we need to reach outside of our react components to do something
+
+Some common side effects:
+ 1. fetching data from API
+ 2. directly updating the DOM - in which we use document or window object
+ 3. using timer functions like setTimeout() or setInterval()
+
+   useEffect = componentDidMount + componentDidUpdate + componentWillUnmount
+
+
+useEffect() hook accepts 2 arguments
+  useEffect(callback_function, dependencies)
+
+callback --> a function - in which we write our side effect logic
+dependencies --> which is an array of variables, an optional argument
+
+
+--- Variations of useEffect -----
+
+1. useEffect() - without dependencies
+2. useEffect() - with an empty array
+3. useEffect() - with an array of variables
+
+Practicals:  change the title of the page on button click
+
+useEffect without dependencies - gets executed whenever component renders
+useEffect with an empty array dependency - gets executed only once when our components renders for the first time
+useEffect with dependency - gets executed whenever the variable changes
+
+
+function App() {
+  const initialValue = 0;
+  const [count, setCount] = useState(initialValue)
+
+  const [count5, setCount5] = useState(initialValue)
+  /*
+  //case-1 useEffect without dependencies - gets executed whenever component renders
+  useEffect(() => {
+    console.log(`inside useEffect`)
+    document.title = `${count} Messages`
+  })
+  */
+
+  /*
+  //case-2 useEffect with an empty array dependency - gets executed only once when our components renders for the first time
+  useEffect(() => {
+    console.log(`inside useEffect`)
+    document.title = `${count} Messages`
+  }, [])
+  */
+
+  //case-3 useEffect with dependency - gets executed whenever the variable changes
+  useEffect(() => {
+    console.log(`inside useEffect`)
+    document.title = `${count} Messages`
+  }, [count5])  
+
+  return (
+    <div className="App">
+      <h3>{count} New Messages!!!</h3>
+
+      <button onClick={() => setCount(prevCount => prevCount + 1)}>Increase</button>
+
+      <button onClick={() => setCount5(prevCount => prevCount + 5)}>Increase by 5</button>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+============== Working with Node.js Application  =================
+
+JSON Server  - is an NPM package that lets you create fake REST APIs without coding.
+
+npm install cors
+const cors = require('cors');     - import {cors } from 'cors'   import cors from 'cors'
+app.use(cors()); // Enable CORS for all routes  -- middleware
+
+
+2. setup json server project
+create a new folder and inside
+
+terminal> npm init --y     --> initializes a package.json with the default settings
+
+terminal> npm install -g json-server
+terminal> json-server --version
+
+3. create a json file - db.json   (to use dn.json as the data source)
+4. json-server db.json			terminal>json-server -w db.json -p 3001
+
+
+Endpoints:
+http://localhost:3001/products
+http://localhost:3001/reviews
+
+http://localhost:3001/products/1
+
+-- filtering ---
+http://localhost:3001/products?category=electronics
+
+-- sorting ---
+http://localhost:3001/products?_sort=price     ---> asc
+http://localhost:3001/products?_sort=-price    ---> desc
+http://localhost:3001/products?_sort=-price,-category
+http://localhost:3001/products?_sort=-price,category
+
+--- pagination ---
+http://localhost:3001/products?_limit=1
+http://localhost:3001/products?_limit=4
+http://localhost:3001/products?_page=1&_per_page=3
+http://localhost:3001/products?_page=2&_per_page=3
+
+--- Range ---
+http://localhost:3001/products?_start=0&_end=6
+
+--- Operators ====
+http://localhost:3001/products?price_gt=2000
+http://localhost:3001/products?price_gte=2000
+http://localhost:3001/products?price_gt=2000&price_lte=4000
+
+
+
+
+
+
+
+--- React Application working with Backend -- Node.js -----  React with HTTP
+
+how react is going to work with HTTP  - using HTTP Clients
+how react application is going to make GET, POST, PUT, DELETE HTTP Requests
+
+Web Application (React) ------------> HTTP Library ---------------> Server
+
+HTTP Library -- fetch API,  AXIOS etc
+
+Fetch API is a Java Script library that helps you to make HTTP Request
+ 
+Pre-requisite -- Promises in Java Script, Async/Await in Java Script, fetch API, list rendering in react
+
+
+Usecase --- 
+
+    
+            .then(response => response.json())
+            .then(data => setProducts(data))
+            .catch(err => setErrorMsg('HTTP Status 404 - Server Down - Try After some time'))
+
+
+
+
+
+
+
+
+
+
