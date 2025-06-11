@@ -1,0 +1,1 @@
+userRef() hook is used for storing the previous state

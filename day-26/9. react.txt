@@ -1,0 +1,39 @@
+==== useRef Hook ====
+
+1. it can be used to access a DOM element directly
+2. it can be used to store the previous state - storing the state between re-renders.
+   It can be used to store a mutable value that does not cause a re-render when updated
+3. Does not cause re-renders
+
+useRef('') hook returns an object with a property called 'current'
+
+
+=== useMemo hook ====
+useMemo Hook returns a memorized value
+useMemo Hook only runs when one of its dependencies update
+useMemo hook can improve performance.
+
+1. optimize expensive operations
+2. referential equality
+
+useMemo() hook will memorize the function which perform expensive / heavy operation
+useMemo() will compute the memorized value only when one of the dependencies has changed
+
+  const factorialResult = useMemo(() => {
+      return factorial(num)
+  }, [num])
+
+=== useCallback hook ====
+
+- used to memorize a function in react
+1. memorize the function (useCallback)   memorise the value (useMemo)
+2. referential equality
+
+The React useCallback Hook returns a memoized callback function.
+The useCallback Hook only runs when one of its dependencies update.
+
+The useCallback and useMemo Hooks are similar. The main difference is that useMemo returns a memoized value and useCallback returns a memoized function.
+
+
+
+
